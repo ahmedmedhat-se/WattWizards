@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/WattWizards/static/css/main.3040793f.css",
+    "main.js": "/WattWizards/static/js/main.11c064c4.js",
+    "static/js/453.6e446ef5.chunk.js": "/WattWizards/static/js/453.6e446ef5.chunk.js",
+    "index.html": "/WattWizards/index.html",
+    "main.3040793f.css.map": "/WattWizards/static/css/main.3040793f.css.map",
+    "main.11c064c4.js.map": "/WattWizards/static/js/main.11c064c4.js.map",
+    "453.6e446ef5.chunk.js.map": "/WattWizards/static/js/453.6e446ef5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3040793f.css",
+    "static/js/main.11c064c4.js"
+  ]
+}

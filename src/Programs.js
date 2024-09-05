@@ -70,7 +70,7 @@ function Programs() {
         if (BreakerData[CBB] && CBB.toFixed(2) <= 6300) {
             setCbSize(`The available circuit-breaker to use is ${BreakerData[CBB]} قاطع التيار المناسب هو`);
         } else {
-            setCbSize(`The Circuit-Breaker is out of range, you can ask a technician or ask our ElectroBot`);
+            setCbSize(`The Circuit-Breaker is out of range, you can ask a technician or ask our SparkTalk`);
         }
 
         const CableData = {
@@ -86,7 +86,7 @@ function Programs() {
         if (CableData[CBC] && CBC <= 300) {
             setCableThickness(`The Cable thickness to use is ${CableData[CBC]}mm² - سُمك الكابل المناسب هو`);
         } else {
-            setCableThickness(`The Cable current is out of range, you can ask a technician or you can ask our ElectroBot`);
+            setCableThickness(`The Cable current is out of range, you can ask a technician or you can ask our SparkTalk`);
         }
 
         function lossVoltCalc(cableArea) {
@@ -371,12 +371,14 @@ function Programs() {
     // Ampere TO Watt (Program) Ends
 
     const HeaderStyle = {
-        color: "black"
+        color: "black",
+        fontWeight: "bold",
+        fontSize : "18px"
     }
 
     const HeaderStyleH2 = {
         color: " #7170d7",
-        fontWeight: "bold"
+        fontWeight: "bold",
     }
 
     const HeaderStyleH2Arabic = {
@@ -387,7 +389,7 @@ function Programs() {
 
     return (
         // <!-- Programms Section Starts -->
-        <section className="courses" id="Programs">
+        <section className="cards-lg-containers" id="Programs">
             <header className="section-header">
                 <div className="header-text">
                     <h1>Our Programs</h1>
@@ -401,8 +403,8 @@ function Programs() {
             </header>
             {/* <!-- Programms Contents Starts -->
             <!-- CB/Cable Program Content Starts --> */}
-            <div className="course-contents">
-                <div className="course-card">
+            <div className="cards-lg-containers-contents">
+                <div className="cards-lg-containers-card">
                     <img
                         src="https://images.thdstatic.com/productImages/57bdcbb9-bed9-4c5c-a471-d118cfeee9b4/svn/renogy-solar-power-accessories-sundccb160mc2p-us-64_600.jpg" />
                     <div className="category">
@@ -652,7 +654,7 @@ function Programs() {
                 </div>
                 {/* <!-- CB/Cable Program Content Ends --> */}
                 {/* <!-- PFC Program --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://img.directindustry.com/images_di/photo-g/222679-15601372.webp" />
                     <div className="category">
                         <div className="subject">
@@ -875,7 +877,7 @@ function Programs() {
                 </div>
                 {/* <!-- PFC Program Content Ends --> */}
                 {/* <!-- ECC Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://www.shutterstock.com/image-photo/old-electricity-meter-displaying-consumption-600nw-2202564469.jpg" />
                     <div className="category">
                         <div className="subject">
@@ -1029,7 +1031,7 @@ function Programs() {
                 </div>
                 {/* <!-- ECC Program Content Ends --> */}
                 {/* <!-- HP2A Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Imperial_Horsepower.svg/1200px-Imperial_Horsepower.svg.png" />
                     <div className="category">
@@ -1155,7 +1157,7 @@ function Programs() {
                 </div>
                 {/* <!-- HP2A Program Content Ends --> */}
                 {/* <!-- VA2W Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://musicproductionglossary.com/wp-content/uploads/2023/10/volt-amperes.jpg" />
                     <div className="category">
                         <div className="subject">
@@ -1280,7 +1282,7 @@ function Programs() {
                 </div>
                 {/* <!-- VA2W Program Content Ends --> */}
                 {/* <!-- W2A Program --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://blog.ecoflow.com/us/wp-content/uploads/2023/08/image5.png" />
                     <div className="category">
                         <div className="subject">
@@ -1415,7 +1417,7 @@ function Programs() {
                 </div>
                 {/* <!-- W2A Program Ends --> */}
                 {/* <!-- Ampere TO Watt/Killowatts Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://www.inchcalculator.com/wp-content/uploads/2020/02/amps-to-watts.png" />
                     <div className="category">
                         <div className="subject">
@@ -1601,7 +1603,7 @@ function Programs() {
                 </div>
                 {/* <!-- Ampere TO Watt/Killowatts Ends --> */}
                 {/* <!-- Coulomb's Law Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Charles_de_Coulomb.png/800px-Charles_de_Coulomb.png" />
                     <div className="category">
                         <div className="subject">
@@ -1679,7 +1681,7 @@ function Programs() {
                 </div>
                 {/* <!-- Coulomb's Law Program Ends --> */}
                 {/* <!-- Ohm's Law Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://www.thoughtco.com/thmb/yanPjyDodf3W1LHWrL1gzfma1qk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/713px-Gerog_Ohm-58e5d5dc5f9b58ef7e244457.jpg" />
                     <div className="category">
                         <div className="subject">
@@ -1754,7 +1756,7 @@ function Programs() {
                 </div>
                 {/* <!-- Ohm's Law Ends --> */}
                 {/* <!-- Kirchhoff's Law Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Gustav_Robert_Kirchhoff.jpg" />
                     <div className="category">
                         <div className="subject">
@@ -1841,7 +1843,7 @@ function Programs() {
                 </div>
                 {/* <!-- Kirchhoff's Law Ends --> */}
                 {/* <!-- Alessandro Volta's Law Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://media.sciencephoto.com/c0/07/49/64/c0074964-800px-wm.jpg" />
                     <div className="category">
                         <div className="subject">
@@ -1907,7 +1909,7 @@ function Programs() {
                 </div>
                 {/* <!-- Alessandro Volta's Law Program Ends --> */}
                 {/* <!-- Andre-Marie Ampere's Law Program Starts --> */}
-                <div className="course-card">
+                <div className="cards-lg-containers-card">
                     <img src="https://media.sciencephoto.com/h4/01/01/99/h4010199-800px-wm.jpg" />
                     <div className="category">
                         <div className="subject">

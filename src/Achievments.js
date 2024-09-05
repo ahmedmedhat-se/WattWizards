@@ -16,18 +16,18 @@ function Achievments() {
 
     return (
         <>
-            <section className="courses" id="Achievments">
+            <section className="cards-lg-containers" id="cards-lg-containers">
                 {/* <!-- Programms Header Starts --> */}
                 <header className="section-header">
                     <div className="header-text">
                         <h1>Our Achievments</h1>
-                        <p style={{ color: "#000" }}>
+                        <p style={{ color : "#000", fontWeight : "bold", fontSize : "18px" }}>
                             These awards that we've obtained,
                             you can now view our certificates - awards,
                             Welcome to our gallery!.
                         </p>
                     </div>
-                    <button className="courses-btn btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button className="cards-lg-containers-btn btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Consultations Form
                     </button>
                     <a style={AnchorStyle}
@@ -38,9 +38,9 @@ function Achievments() {
                 </header>
                 {/* <!-- Programms Header Ends --> */}
                 {/* <!-- Programms Contents Starts --> */}
-                <div className="course-contents">
+                <div className="cards-lg-containers-contents">
                     {/* <!-- BASEF24 Program Starts --> */}
-                    <div className="course-card">
+                    <div className="cards-lg-containers-card">
                         <img src="https://img.peapix.com/2622272799050844425_UHD.jpg?attachment&modal" />
                         <h2 className="course-title">BASEF 2024</h2>
                         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#BASEF24">View</button>
@@ -74,7 +74,7 @@ function Achievments() {
                     </div>
                     {/* <!-- BASEF24 Program Ends --> */}
                     {/* <!-- IEEE Program Starts --> */}
-                    <div className="course-card">
+                    <div className="cards-lg-containers-card">
                         <img src="https://i.ytimg.com/vi/wHz12mg5MQ4/maxresdefault.jpg" />
                         <h2 className="course-title">IEEE YESIST12 Junior Einstein</h2>
                         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#IEEE">View</button>
@@ -108,7 +108,7 @@ function Achievments() {
                     </div>
                     {/* <!-- IEEE Program Ends --> */}
                     {/* <!-- NCCSI Program Starts --> */}
-                    <div className="course-card">
+                    <div className="cards-lg-containers-card">
                         <img
                             src="https://media.licdn.com/dms/image/D4D22AQGYf8O7059Jiw/feedshare-shrink_800/0/1717161113360?e=2147483647&v=beta&t=hH-NNzss8KJjowZys8ylGlT3L3Q0_B_MPyHLgZQrYYE" />
                         <h2 className="course-title">NCCSI 2024</h2>
@@ -146,7 +146,7 @@ function Achievments() {
                     </div>
                     {/* <!-- NCCSI Program Ends --> */}
                     {/* <!-- SRTA Program Starts --> */}
-                    <div className="course-card">
+                    <div className="cards-lg-containers-card">
                         <img
                             src="https://upload.wikimedia.org/wikipedia/commons/2/25/SRTA-City.jpg" />
                         <h2 className="course-title">City of Scientific Research and Technological Applications - Approval Of Scientific Research</h2>
@@ -251,59 +251,8 @@ function Achievments() {
                 </div>
             </div>
             {/* <!-- Consultations Area Ends --> */}
-            {/* <!-- Comments Section Starts --> */}
-            <section className="Comments" style={{ background: "#fff" }} id="Comments">
-                <div className="container my-5 py-5">
-                    <div className="row d-flex justify-content-center">
-                        <div className="col-md-12 col-lg-10 col-xl-8">
-                            <div className="card">
-                                <div className="card-body">
-                                    <div className="d-flex flex-start align-items-center">
-                                        <img className="rounded-circle shadow-1-strong me-3"
-                                            src="https://images.credly.com/images/d30e23c4-60cb-4a5d-b826-b0cd4a9cb0bc/profile_img.jpg"
-                                            alt="avatar" width="80" height="80" />
-                                        <div>
-                                            <h6 className="fw-bold text-primary mb-1"
-                                                style={{ fontSize: "18px", fontWeight: "bold" }}>
-                                                CodeCrafters</h6>
-                                            <p className="text-muted small mb-0" style={{ fontSize: "15px", fontWeight: "bold" }}>
-                                                Shared publicly - 8/3/2024
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <p className="mt-3 mb-4 pb-2" style={{ fontSize: "15px", fontWeight: "bold" }}>We are here to hear
-                                        your suggestions!
-                                        You can also share your activities through the online scientific/non-scientific
-                                        survey form feature we have enabled.
-                                        <a href="https://forms.gle/xH9MC855g2ssU9Uu7" target="_blank">Online Survey</a>
-                                    </p>
-                                </div>
-                                <div className="card-footer py-3 border-0" style={{ backgroundColor: "#f8f9fa" }}>
-                                    <div className="d-flex flex-start w-100">
-                                        <img className="rounded-circle shadow-1-strong me-3"
-                                            src="https://images.credly.com/images/d30e23c4-60cb-4a5d-b826-b0cd4a9cb0bc/profile_img.jpg"
-                                            alt="avatar" width="40" height="40" />
-                                        <div className="form-outline w-100">
-                                            <textarea className="form-control" id="CommentField" rows="4"
-                                                style={{ background: "#fff" }} placeholder="Write A Comment.."></textarea>
-                                        </div>
-                                    </div>
-                                    <div className="float-end mt-2 pt-1">
-                                        <input type="submit" value="Post comment" style={{ fontSize: "18px" }}
-                                            className="btn btn-success btn-sm" />
-                                        <input type="reset" value="Cancel" style={{ fontSize: "18px", marginLeft: "10px" }}
-                                            className="btn btn-danger btn-sm" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            {/* <!-- Comments Section Ends --> */}
         </>
     );
 }
 
-export default Achievments
+export default Achievments;

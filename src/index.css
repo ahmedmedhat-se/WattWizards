@@ -1,4 +1,8 @@
 /* Styling The Whole Document */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Moontime&family=Now:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -10,17 +14,35 @@
 html {
   scroll-behavior: smooth;
   /* Variables For Using Different RGB Colors All Over The Webpage */
-  --primary-clr: #6312aa;
+  --primary-clr: #071324;
   --primary-medium-clr: #fff;
   --primary-light-clr: #fff;
   --bg-clr-1: #ffffff;
-  --dark-heading-clr: #6312aa;
+  --dark-heading-clr: #071324;
   --dark-text-clr: #fff;
   --light-heading-clr: #fff;
   --light-text-clr: #fff;
 }
-
 /* End Of Styling The Root Node Of The Document */
+
+/* Allow scrolling but hide scrollbar for "Chrome, Safari, Edge" Strt */
+html,
+body {
+  overflow: auto;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  scrollbar-width: none;
+}
+
+body {
+  -ms-overflow-style: none;
+}
+/* Allow scrolling but hide scrollbar for "Chrome, Safari, Edge" End */
 
 /* Styling The Body Section  */
 body {
@@ -46,47 +68,158 @@ button.btn:hover {
   border: 1px solid var(--primary-clr);
 }
 
-.section-header h1 {
-  position: relative;
-  font-size: 32px;
-  letter-spacing: 1px;
-  color: var(--dark-heading-clr);
+/* Header Component Styling Starts */
+nav {
+  background: #071324;
+}
+
+nav .navbar-brand strong {
+  color: #fff;
+  font-size: 20px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+nav #nav-conatiner .navbar-nav .nav-item .nav-link {
+  color: #fff;
+  font-size: 18px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+nav .navbar-toggler {
+  background-color: #ffffff;
+  border: none;
+  font-size: 20px;
+}
+/* Header Component Styling Ends */
+
+/* SparkTalk Component Styling Starts */
+/* Styles for the chatbot */
+.bot-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+/* Button to open the chat */
+.open-chat-btn {
+  background-color: #071324;
+  box-shadow: 0 5px 15px rgba(18, 5, 63, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chatbox styles */
+.SparkTalk {
+  background-color: #fff;
+  width: 90%;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.SparkTalk header {
+  display: flex;
+  background-color: #071324;
+  color: #fff;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.SparkTalk header h2 {
+  font-size: 25px;
+  margin: 5px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Close button */
+.close-chat-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Message styles */
+.electrochat {
+  list-style: none;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 350px;
+  width: 100%;
   margin-bottom: 20px;
 }
 
-.section-header h1::before {
-  position: absolute;
-  content: '';
-  width: 100px;
-  height: 1px;
-  left: 0;
-  top: calc(100% + 5px);
-  background-color: var(--dark-text-clr);
+.message p {
+  margin: 20px;
+  padding: 10px;
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 10px;
 }
 
-.section-header h1::after {
-  position: absolute;
-  content: '';
-  width: 50px;
-  height: 3px;
-  left: 0;
-  top: calc(100% + 4px);
-  background-color: var(--primary-clr);
+.message.incoming p {
+  font-family: 'Orbitron', sans-serif;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  color: #333;
 }
 
-.section-header p {
-  color: var(--dark-text-clr);
-  margin-bottom: 40px;
-  max-width: 700px;
+.message.outgoing p {
+  background-color: #071324;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
 }
 
+.bot-input {
+  display: flex;
+  align-items: center;
+}
+
+.bot-input input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.bot-input #send-btn {
+  background-color: #071324;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+/* SparkTalk Component Styling Ends */
+
+/* Homepage Component Styling Starts */
 .home-landing {
   width: 100%;
   min-height: 100vh;
-  margin: 0px auto;
+  margin: 70px auto;
 }
 
-/* Header Section Styling Starts */
 section.home {
   position: relative;
   width: 100%;
@@ -113,7 +246,7 @@ a {
 .home .CodeCrafters {
   width: 100%;
   min-height: 100vh;
-  padding: 100px 8% 70px;
+  padding: 50px 8% 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -129,6 +262,7 @@ a {
 
 section h2 {
   color: var(--light-heading-clr);
+  font-family: 'Orbitron', sans-serif;
 }
 
 .CodeCrafters .CodeCrafters-desc h2 {
@@ -137,49 +271,13 @@ section h2 {
   letter-spacing: 1px;
   line-height: 1.4;
   margin-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .CodeCrafters .CodeCrafters-desc p {
   color: #000;
   line-height: 1.4;
   margin-bottom: 50px;
-}
-
-.CodeCrafters .CodeCrafters-desc .search-bar {
-  position: relative;
-  width: 400px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.CodeCrafters-desc .search-bar input {
-  width: 100%;
-  height: 100%;
-  padding: 0px 60px 0px 10px;
-  font-size: 17px;
-  letter-spacing: 1px;
-  background-color: var(--primary-light-clr);
-  color: var(--dark-text-clr);
-  border: 2px solid #c1dbcc;
-  border-radius: 5px;
-  outline-color: var(--primary-clr);
-}
-
-.CodeCrafters-desc .search-bar button {
-  position: absolute;
-  height: 100%;
-  width: 50px;
-  background-color: var(--primary-clr);
-  right: 0;
-  color: var(--light-heading-clr);
-  border-radius: 0px 5px 5px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 }
 
 .home .CodeCrafters .CodeCrafters-img {
@@ -206,7 +304,8 @@ section h2 {
   width: 50px;
   height: 50px;
   background-color: transparent;
-  border: 3px solid rgba(70, 5, 58, 0.6);
+  border: 5px solid rgba(9, 5, 70, 0.6);
+  border-radius: 20px;
 }
 
 .CodeCrafters .box div:nth-child(1) {
@@ -281,14 +380,47 @@ section h2 {
   }
 }
 
-/* Home Section Styling Ends */
-
 /* Features Section Styling Starts */
+.section-header h1 {
+  position: relative;
+  font-size: 32px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  color: var(--dark-heading-clr);
+  margin-bottom: 20px;
+}
+
+.section-header h1::before {
+  position: absolute;
+  content: '';
+  width: 100px;
+  height: 1px;
+  left: 0;
+  top: calc(100% + 5px);
+  background-color: var(--dark-text-clr);
+}
+
+.section-header h1::after {
+  position: absolute;
+  content: '';
+  width: 50px;
+  height: 3px;
+  left: 0;
+  top: calc(100% + 4px);
+  background-color: var(--primary-clr);
+}
+
+.section-header p {
+  color: var(--dark-text-clr);
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
 section.features {
   width: 100%;
   padding: 100px 8% 20px;
   background: rgb(30, 0, 36);
-  background: linear-gradient(90deg, rgb(44, 1, 53) 0%, rgba(121, 9, 115, 1) 50%, rgba(196, 0, 255, 1) 100%);
+  background: linear-gradient(90deg,rgb(15, 4, 45) 0%, rgb(44, 1, 53) 100%);
 }
 
 .features .section-header h1 {
@@ -371,35 +503,35 @@ section.features {
 .features-box:nth-child(3) .features-icon i {
   color: #5a49f3;
 }
-
 /* Features Section Styling Ends */
+/* Homepage Component Styling Ends */
 
-/* Courses Section Styling Starts */
-section.courses {
+/* Achievments/Programs Component Styling Starts */
+section.cards-lg-containers {
   width: 100%;
-  padding: 100px 8% 20px;
+  padding: 100px 8% 0;
 }
 
-.courses .section-header {
+.cards-lg-containers .section-header {
   position: relative;
   display: flex;
   justify-content: space-between;
 }
 
-.courses .section-header .courses-btn {
+.cards-lg-containers .section-header .cards-lg-containers-btn {
   position: absolute;
   right: 0;
   bottom: 40px;
   padding: 10px 26px;
 }
 
-.courses .course-contents {
+.cards-lg-containers .cards-lg-containers-contents {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.courses .course-contents .course-card {
+.cards-lg-containers .cards-lg-containers-contents .cards-lg-containers-card {
   flex-basis: calc(calc(100% / 3) - 1.2%);
   border: 1px solid #eee;
   padding: 10px;
@@ -409,7 +541,7 @@ section.courses {
   transition: all 0.3s;
 }
 
-.courses .course-contents .course-card:hover {
+.cards-lg-containers .cards-lg-containers-contents .cards-lg-containers-card:hover {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
 }
 
@@ -417,21 +549,21 @@ section.courses {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.795);
 }
 
-.course-contents .course-card img {
+.cards-lg-containers-contents .cards-lg-containers-card img {
   width: 100%;
   height: 250px;
   object-fit: cover;
   border-radius: 5px;
 }
 
-.course-contents .course-card .category {
+.cards-lg-containers-contents .cards-lg-containers-card .category {
   position: relative;
   display: flex;
   justify-content: space-between;
   padding: 10px 0px;
 }
 
-.course-card .category img {
+.cards-lg-containers-card .category img {
   position: absolute;
   width: 50px;
   height: 50px;
@@ -443,40 +575,34 @@ section.courses {
   outline-offset: 3px;
 }
 
-.course-card .category .subject {
+.cards-lg-containers-card .category .subject {
   padding: 8px 10px;
   background-color: var(--primary-light-clr);
   border-radius: 5px;
 }
 
-.course-card .category .subject h3 {
+.cards-lg-containers-card .category .subject h3 {
   font-size: 18px;
   font-weight: 500;
   color: var(--primary-clr);
 }
 
-.course-card .course-title {
+.cards-lg-containers-card .course-title {
   font-size: 20px;
   color: var(--dark-heading-clr);
 }
 
-.course-card .course-desc {
+.cards-lg-containers-card .course-desc {
   margin: 20px 0px;
   display: flex;
   justify-content: space-between;
 }
 
-.course-card .course-desc span {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--dark-text-clr);
+.modal .modal-dialog .modal-content .modal-header {
+  display: flex;
+  justify-content: space-between;
 }
-
-.course-card .course-desc span i {
-  color: var(--primary-clr);
-}
-
-/* Courses Section Styling Ends */
+/* Achievments/Programs Components Styling Ends */
 
 /* Feedback Area Styling Starts */
 #feedback-form-wrapper #floating-icon>button {
@@ -504,172 +630,57 @@ section.courses {
   font-size: 14px;
   color: #777;
 }
+/* Feedback Area Component Ends */
 
-/* Feedback Area Styling Ends */
-
-/* Footer Section Styling Starts */
-section.footer {
-  max-width: 100%;
-  padding: 70px 8% 30px;
-  background: rgb(30, 0, 36);
-  background: linear-gradient(90deg, rgb(44, 1, 53) 0%, rgba(121, 9, 115, 1) 50%, rgba(196, 0, 255, 1) 100%);
+/* Footer Component Styling Starts */
+footer section{
+  max-height: 100vh;
+  background: url(https://wallpapercave.com/wp/wp10156212.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.footer .footer-contents {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 50px;
+.container .row #social-icons a i{
+  font-size: 20px;
 }
 
-.footer-contents .footer-col {
-  flex-basis: calc(calc(100% / 4) - 20px);
+.container .row #company h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 25px;
+  color: #fff;
 }
 
-.footer-contents .footer-col .col-title {
-  min-height: 60px;
-  display: flex;
-  align-items: flex-end;
-  margin-bottom: 30px;
+.container .row #company p {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
 }
 
-.footer-col .col-title h3 {
-  font-size: 24px;
-  color: var(--light-heading-clr);
+.container .row #team-members h4 {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  font-size: 25px;
 }
 
-.footer-col .col-contents {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-col-1 .col-title img {
-  width: 250px;
-}
-
-.footer-col-1 .col-contents button {
-  font-size: 15px;
-  line-height: 1.3;
-  margin-bottom: 15px;
-}
-
-.footer-col-2 .col-contents .contact-row {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-col-2 .col-contents .contact-row span {
-  color: var(--light-text-clr);
-  font-size: 16px;
-}
-
-.footer-col-2 .col-contents .contact-row span:nth-child(1) {
-  color: var(--light-heading-clr);
-  font-size: 17px;
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-
-.footer-col-3 .col-contents a {
+.container .row #team-members p a {
+  color: #fff;
+  display: block;
   text-decoration: none;
-  color: var(--light-text-clr);
-  margin-bottom: 20px;
-  align-self: flex-start;
-  transition: all 0.3s;
-}
-
-.footer-col-3 .col-contents a:hover {
-  letter-spacing: 2px;
-}
-
-.footer-col-4 .col-contents input {
-  width: 100%;
-  padding: 15px;
-  background-color: var(--light-heading-clr);
-  color: var(--dark-text-clr);
-  border: none;
-  border-radius: 5px;
-}
-
-.footer-col-4 .col-contents .newsletter-btn {
-  background-color: var(--light-heading-clr);
-  color: var(--primary-clr);
-  margin-top: 20px;
-}
-
-.footer-col-1 .col-contents .newsletter-btn {
-  background-color: #000;
-  color: var(--primary-clr);
-  margin-top: 5px;
-}
-
-.footer-col-4 .col-contents .newsletter-btn:hover {
-  background-color: transparent;
-  color: var(--light-heading-clr);
-  border: 1px solid var(--light-heading-clr);
-}
-
-.footer .copy-rights {
-  padding: 30px 0px 0px;
-  border-top: 1px solid var(--light-text-clr);
-  text-align: center;
-}
-
-.footer .copy-rights p {
-  color: var(--primary-light-clr);
-}
-
-.footer .copy-rights p b {
-  color: yellow;
-}
-
-.container {
-  padding: 2rem 0rem;
-}
-
-@media (min-width: 576px) {
-  .modal-dialog {
-      max-width: 400px;
-  }
-
-  .modal-dialog .modal-content {
-      padding: 1rem;
-  }
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.modal-body .buttonModal .btn {
+  font-family: 'Orbitron', sans-serif;
   font-size: 18px;
-  margin-left: 90%;
+  transition: 1s;
 }
 
-.form-title {
-  margin: -2rem 0rem 2rem;
+.container .row #team-members p a:hover {
+  color: #6a6177;
 }
 
-.btn-round {
-  border-radius: 3rem;
+footer #div-footer {
+  font-size: 20px;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
 }
-
-.delimiter {
-  padding: 1rem;
-}
-
-.social-buttons .btn {
-  margin: 0 0.5rem 1rem;
-}
-
-.signup-section {
-  padding: 0.3rem 0rem;
-}
-
-/* Footer Section Styling Ends */
+/* Footer Component Styling Ends */
 
 /* Media Query Styling For The Variation Of Screens Starts */
 @media(max-width: 968px) {
@@ -706,24 +717,19 @@ section.footer {
       margin-bottom: 20px;
   }
 
-  /* Courses Section */
-  .courses .course-contents .course-card {
+  /* cards-lg-containers Section */
+  .cards-lg-containers .cards-lg-containers-contents .cards-lg-containers-card {
       flex-basis: calc(calc(100% / 2) - 1.2%);
   }
 
-  .courses .section-header {
+  .cards-lg-containers .section-header {
       flex-direction: column;
   }
 
-  .courses .section-header .courses-btn {
+  .cards-lg-containers .section-header .cards-lg-containers-btn {
       position: relative;
       align-self: flex-start;
       margin-top: 20px;
-  }
-
-  /* Footer Section */
-  .footer-contents .footer-col {
-      flex-basis: calc(calc(100% / 2) - 20px);
   }
 }
 
@@ -747,19 +753,13 @@ section.footer {
       flex-basis: 100%;
   }
 
-  /* Courses Section */
-  .courses .course-contents .course-card {
+  /* cards-lg-containers Section */
+  .cards-lg-containers .cards-lg-containers-contents .cards-lg-containers-card {
       flex-basis: 100%;
   }
 }
 
 @media(max-width: 576px) {
-
-  /* Footer Section */
-  .footer-contents .footer-col {
-      flex-basis: 100%;
-  }
-
   section.Comments {
       margin: 50px;
   }
@@ -779,4 +779,4 @@ section.footer {
   }
 }
 /* Media Query Ends */
-/* Styling section end */
+/* Styling Section Ends */

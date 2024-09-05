@@ -14,37 +14,37 @@ const SparkTalk = () => {
         className: className,
     });
 
-    // const generateAiResponseMessage = () => {
-    //     const OpenAIApi = "https://api.openai.com/v1/chat/completions";
-    //     const messageRequestOptions = {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Bearer ${API_KEY}`,
-    //         },
-    //         body: JSON.stringify({
-    //             model: "gpt-3.5-turbo",
-    //             messages: [{ role: "user", content: userInput }],
-    //         }),
-    //     };
+    const generateAiResponseMessage = () => {
+        const OpenAIApi = "https://api.openai.com/v1/chat/completions";
+        const messageRequestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${API_KEY}`,
+            },
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: userInput }],
+            }),
+        };
 
-    //     fetch(OpenAIApi, messageRequestOptions)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             const botMessage = createBotList(
-    //                 data.choices[0].message.content,
-    //                 "incoming"
-    //             );
-    //             setMessages((prevMessages) => [...prevMessages, botMessage]);
-    //         })
-    //         .catch(() => {
-    //             const errorMessage = createBotList(
-    //                 "Sorry, something went wrong. Please try again.",
-    //                 "incoming error"
-    //             );
-    //             setMessages((prevMessages) => [...prevMessages, errorMessage]);
-    //         });
-    // };
+        fetch(OpenAIApi, messageRequestOptions)
+            .then((res) => res.json())
+            .then((data) => {
+                const botMessage = createBotList(
+                    data.choices[0].message.content,
+                    "incoming"
+                );
+                setMessages((prevMessages) => [...prevMessages, botMessage]);
+            })
+            .catch(() => {
+                const errorMessage = createBotList(
+                    "Sorry, something went wrong. Please try again.",
+                    "incoming error"
+                );
+                setMessages((prevMessages) => [...prevMessages, errorMessage]);
+            });
+    };
 
     const handleSend = () => {
         if (!userInput.trim()) return;

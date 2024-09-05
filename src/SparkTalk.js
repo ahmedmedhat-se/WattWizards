@@ -7,7 +7,7 @@ const SparkTalk = () => {
         { content: "Welcome, mate :) \nHow Can I help You?", className: "incoming" },
     ]);
 
-    const API_KEY = "sk-proj-H593UuAYWP93ZRzVC28gT3BlbkFJpJE6y7hBP5NcSif4JZxS";
+    const API_KEY = "";
 
     const createBotList = (message, className) => ({
         content: message,

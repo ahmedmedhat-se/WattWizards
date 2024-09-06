@@ -370,10 +370,131 @@ function Programs() {
     };
     // Ampere TO Watt (Program) Ends
 
+
+    // CoulombsLaw (Program) Starts
+    const [forceResult, setForceResult] = useState('');
+    const [areChargesEqual, setAreChargesEqual] = useState(false);
+
+    const charge1Ref = useRef(null);
+    const charge2Ref = useRef(null);
+    const distanceRef = useRef(null);
+
+    const handleCalculateClick = (e) => {
+        e.preventDefault();
+
+        const q1 = parseFloat(charge1Ref.current.value);
+        const q2 = areChargesEqual ? q1 : parseFloat(charge2Ref.current.value); // If equal, use q1 for q2
+        const r = parseFloat(distanceRef.current.value);
+
+        const k = 8.9875 * (10 ** 9); // Coulomb's constant
+        const force = k * ((Math.abs(q1 * q2)) / (r * r));
+
+        setForceResult(force.toFixed(2));
+    };
+    // CoulombsLaw (Program) Ends
+
+    // Ohm's Law (Program) Starts
+    const [voltaResult, setVoltaResult] = useState('');
+
+    const currentRef = useRef(null);
+    const resistanceRef = useRef(null);
+    const voltageRef = useRef(null);
+    const [calcType, setCalcType] = useState('Voltage'); // Options: Voltage, Current, Resistance
+
+    const handleVoltaCalculateClick = (e) => {
+        e.preventDefault();
+
+        let V = parseFloat(voltageRef.current?.value);
+        let I = parseFloat(currentRef.current?.value);
+        let R = parseFloat(resistanceRef.current?.value);
+
+        let calculatedValue;
+        if (calcType === 'Voltage') {
+            if (!I || !R) return alert('Please provide both Current and Resistance');
+            calculatedValue = I * R;
+        } else if (calcType === 'Current') {
+            if (!V || !R) return alert('Please provide both Voltage and Resistance');
+            calculatedValue = V / R;
+        } else if (calcType === 'Resistance') {
+            if (!V || !I) return alert('Please provide both Voltage and Current');
+            calculatedValue = V / I;
+        }
+
+        setVoltaResult(calculatedValue.toFixed(2));
+    };
+    // Ohm's Law (Program) Ends
+
+    // Volta's Law (Program) Starts
+    const [newResult, setNewResult] = useState('');
+    const [newCalcType, setNewCalcType] = useState('Voltage'); // Default to Voltage
+    const workRef = useRef(null);
+    const chargeRef = useRef(null);
+    const newVoltageRef = useRef(null);
+
+    const handleVoltlaAllCalculateClick = (e) => {
+        e.preventDefault();
+
+        const W = workRef.current ? parseFloat(workRef.current.value) : null;
+        const Q = chargeRef.current ? parseFloat(chargeRef.current.value) : null;
+        const V = newVoltageRef.current ? parseFloat(newVoltageRef.current.value) : null;
+
+        let newCalculatedValue;
+
+        if (newCalcType === 'Voltage') {
+            if (W !== null && Q !== null && !isNaN(W) && !isNaN(Q) && Q !== 0) {
+                newCalculatedValue = W / Q;
+                setNewResult(`Electric Potential Difference: ${newCalculatedValue.toFixed(2)} volts`);
+            } else {
+                setNewResult('Please provide valid work and charge values.');
+            }
+        } else if (newCalcType === 'Work') {
+            if (V !== null && Q !== null && !isNaN(V) && !isNaN(Q)) {
+                newCalculatedValue = V * Q;
+                setNewResult(`Work Done: ${newCalculatedValue.toFixed(2)} joules`);
+            } else {
+                setNewResult('Please provide valid voltage and charge values.');
+            }
+        } else if (newCalcType === 'Charge') {
+            if (V !== null && W !== null && !isNaN(V) && !isNaN(W) && V !== 0) {
+                newCalculatedValue = W / V;
+                setNewResult(`Electric Charge: ${newCalculatedValue.toFixed(2)} coulombs`);
+            } else {
+                setNewResult('Please provide valid voltage and work done values.');
+            }
+        }
+    };
+    // Volta's Law (Program) Ends
+
+    // Kirchhoff's Law (Program) Starts
+    const [kResult, setKResult] = useState('');
+    const [lawType, setLawType] = useState('KCL'); // Options: KCL, KVL
+    const currentRefs = useRef([]);
+    const voltageRefs = useRef([]);
+
+    // Function to handle Kirchhoff's Law calculation
+    const handleKirchhoffCalculateClick = (e) => {
+        e.preventDefault();
+
+        if (lawType === 'KCL') {
+            // Kirchhoff's Current Law (KCL)
+            const currents = currentRefs.current.map(ref => parseFloat(ref.value) || 0);
+            const currentSum = currents.reduce((acc, curr) => acc + curr, 0);
+
+            setKResult(`Sum of currents (ΣI): ${currentSum.toFixed(2)} A`);
+        } else if (lawType === 'KVL') {
+            // Kirchhoff's Voltage Law (KVL)
+            const voltages = voltageRefs.current.map(ref => parseFloat(ref.value) || 0);
+            const voltageSum = voltages.reduce((acc, v) => acc + v, 0);
+
+            setKResult(`Sum of voltages (ΣV): ${voltageSum.toFixed(2)} V`);
+        }
+    };
+    // Kirchhoff's Law (Program) Ends
+
     const HeaderStyle = {
         color: "black",
         fontWeight: "bold",
-        fontSize : "18px"
+        fontSize: "18px"
     }
 
     const HeaderStyleH2 = {
@@ -388,7 +509,7 @@ function Programs() {
     }
 
     return (
-        // <!-- Programms Section Starts -->
+        // Programms Section Starts
         <section className="cards-lg-containers" id="Programs">
             <header className="section-header">
                 <div className="header-text">
@@ -808,7 +929,7 @@ function Programs() {
                                                     </div>
 
                                                     <input type="text"
-                                                        placeholder="The efficiency htmlFor (hp) % - (حصان) الكفائه" id="eff" ref={efficiencyRef}
+                                                        placeholder="The efficiency (hp) % - (حصان) الكفائه" id="eff" ref={efficiencyRef}
                                                         className="form-control" /><br />
 
                                                     <label htmlFor="pfOld" className="form-label">Old/New Power Factor - معامل
@@ -1613,6 +1734,7 @@ function Programs() {
                     </div>
                     <h2 className="course-title">Coulomb's Law</h2>
                     <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Coulomb">View</button>
+                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#coulomb-program">Program</button>
                 </div>
                 <div className="modal fade" id="Coulomb" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1679,6 +1801,48 @@ function Programs() {
                         </div>
                     </div>
                 </div>
+                <div className="modal fade" id="coulomb-program" tabIndex="-1" role="dialog">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Coulomb's Law</h5>
+                                <button type="button" className="btn close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="charge1">Charge 1 (q1 in Coulombs)</label>
+                                        <input type="number" id="charge1" ref={charge1Ref} className="form-control" required />
+                                    </div>
+                                    {!areChargesEqual && (
+                                        <div className="form-group">
+                                            <label htmlFor="charge2">Charge 2 (q2 in Coulombs)</label>
+                                            <input type="number" id="charge2" ref={charge2Ref} className="form-control" required />
+                                        </div>
+                                    )}
+                                    <div className="form-group">
+                                        <label htmlFor="distance">Distance (r in meters)</label>
+                                        <input type="number" id="distance" ref={distanceRef} className="form-control" required />
+                                    </div>
+                                    <div className="form-group form-check mt-2">
+                                        <input type="checkbox" id="equalCharges" className="form-check-input" checked={areChargesEqual} onChange={() => setAreChargesEqual(!areChargesEqual)} />
+                                        <label htmlFor="equalCharges" className="form-check-label">Are Charges Equal?</label>
+                                    </div>
+                                    <button type="button" className="btn btn-success mb-2 mt-2 w-100 d-block" onClick={handleCalculateClick}>Calculate</button>
+                                    <div className="form-group">
+                                        <label htmlFor="force">Force (N)</label>
+                                        <input type="number" id="force" value={forceResult} readOnly className="form-control" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {/* <!-- Coulomb's Law Program Ends --> */}
                 {/* <!-- Ohm's Law Program Starts --> */}
                 <div className="cards-lg-containers-card">
@@ -1691,6 +1855,7 @@ function Programs() {
                     </div>
                     <h2 className="course-title">Ohm's Law</h2>
                     <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Ohm">View</button>
+                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#ohm-program">Program</button>
                 </div>
                 <div className="modal fade" id="Ohm" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1754,6 +1919,77 @@ function Programs() {
                         </div>
                     </div>
                 </div>
+                <div className="modal fade" id="ohm-program" tabIndex="-1" role="dialog">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Ohm's Law</h5>
+                                <button type="button" className="btn close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="calcType">Calculate</label>
+                                        <select id="calcType" value={calcType} onChange={(e) => setCalcType(e.target.value)} className="form-control">
+                                            <option value="Voltage">Voltage (V = I * R)</option>
+                                            <option value="Current">Current (I = V / R)</option>
+                                            <option value="Resistance">Resistance (R = V / I)</option>
+                                        </select>
+                                    </div>
+                                    {calcType === 'Voltage' && (
+                                        <>
+                                            <div className="form-group">
+                                                <label htmlFor="current">Current (I in Amperes)</label>
+                                                <input type="number" id="current" ref={currentRef} className="form-control" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="resistance">Resistance (R in Ohms)</label>
+                                                <input type="number" id="resistance" ref={resistanceRef} className="form-control" required />
+                                            </div>
+
+                                        </>
+                                    )}
+                                    {calcType === 'Current' && (
+                                        <>
+                                            <div className="form-group">
+                                                <label htmlFor="voltage">Voltage (V in Volts)</label>
+                                                <input type="number" id="voltage" ref={voltageRef} className="form-control" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="resistance">Resistance (R in Ohms)</label>
+                                                <input type="number" id="resistance" ref={resistanceRef} className="form-control" required />
+                                            </div>
+                                        </>
+                                    )}
+                                    {calcType === 'Resistance' && (
+                                        <>
+                                            <div className="form-group">
+                                                <label htmlFor="voltage">Voltage (V in Volts)</label>
+                                                <input type="number" id="voltage" ref={voltageRef} className="form-control" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="current">Current (I in Amperes)</label>
+                                                <input type="number" id="current" ref={currentRef} className="form-control" required />
+                                            </div>
+                                        </>
+                                    )}
+                                    <button type="button" className="btn btn-success mb-2 mt-2 w-100 d-block" onClick={handleVoltaCalculateClick}>
+                                        Calculate
+                                    </button>
+                                    <div className="form-group">
+                                        <label htmlFor="voltaResult">Result</label>
+                                        <input type="number" id="voltaResult" value={voltaResult} readOnly className="form-control" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {/* <!-- Ohm's Law Ends --> */}
                 {/* <!-- Kirchhoff's Law Program Starts --> */}
                 <div className="cards-lg-containers-card">
@@ -1766,6 +2002,7 @@ function Programs() {
                     </div>
                     <h2 className="course-title">Kirchhoff's Law</h2>
                     <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Kirchhoff">View</button>
+                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#kirchhoff-program">Program</button>
                 </div>
                 <div className="modal fade" id="Kirchhoff" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1841,6 +2078,76 @@ function Programs() {
                         </div>
                     </div>
                 </div>
+                <div className="modal fade" id="kirchhoff-program" tabIndex="-1" role="dialog">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Kirchhoff's Law</h5>
+                                <button type="button" className="btn close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="lawType">Select Law</label>
+                                        <select id="lawType" value={lawType} onChange={(e) => setLawType(e.target.value)} className="form-control">
+                                            <option value="KCL">Kirchhoff's Current Law (KCL)</option>
+                                            <option value="KVL">Kirchhoff's Voltage Law (KVL)</option>
+                                        </select>
+                                    </div>
+
+                                    {lawType === 'KCL' && (
+                                        <>
+                                            <div className="form-group">
+                                                <label htmlFor="current1">Enter Current 1 (in Amperes)</label>
+                                                <input type="number" id="current1" ref={el => currentRefs.current[0] = el} className="form-control" />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="current2">Enter Current 2 (in Amperes)</label>
+                                                <input type="number" id="current2" ref={el => currentRefs.current[1] = el} className="form-control" />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="current3">Enter Current 3 (in Amperes)</label>
+                                                <input type="number" id="current3" ref={el => currentRefs.current[2] = el} className="form-control" />
+                                            </div>
+                                        </>
+                                    )}
+
+                                    {lawType === 'KVL' && (
+                                        <>
+                                            <div className="form-group">
+                                                <label htmlFor="voltage1">Enter Voltage 1 (in Volts)</label>
+                                                <input type="number" id="voltage1" ref={el => voltageRefs.current[0] = el} className="form-control" />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="voltage2">Enter Voltage 2 (in Volts)</label>
+                                                <input type="number" id="voltage2" ref={el => voltageRefs.current[1] = el} className="form-control" />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="voltage3">Enter Voltage 3 (in Volts)</label>
+                                                <input type="number" id="voltage3" ref={el => voltageRefs.current[2] = el} className="form-control" />
+                                            </div>
+                                        </>
+                                    )}
+
+                                    <button type="button" className="btn btn-success mb-2 mt-3 w-100 d-block" onClick={handleKirchhoffCalculateClick}>
+                                        Calculate
+                                    </button>
+
+                                    <div className="form-group">
+                                        <label htmlFor="kResult">Result</label>
+                                        <input type="text" id="kResult" value={kResult} readOnly className="form-control" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* <!-- Kirchhoff's Law Ends --> */}
                 {/* <!-- Alessandro Volta's Law Program Starts --> */}
                 <div className="cards-lg-containers-card">
@@ -1853,6 +2160,7 @@ function Programs() {
                     </div>
                     <h2 className="course-title">Alessandro Volta's Law</h2>
                     <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Volta">View</button>
+                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#volta-program">Program</button>
                 </div>
                 <div className="modal fade" id="Volta" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1900,6 +2208,114 @@ function Programs() {
                                     target="_blank">Scientific Papers
                                     <FontAwesomeIcon icon={faLink} />
                                 </a>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="modal fade" id="volta-program" tabIndex="-1" role="dialog">
+                    <div className="modal-dialog modal-dialog-centered" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Alessandro Volta's Law</h5>
+                                <button type="button" className="btn close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="newcalcType">Calculate</label>
+                                        <select id="newcalcType" value={newCalcType} onChange={(e) => setNewCalcType(e.target.value)} className="form-control">
+                                            <option value="Voltage">Voltage (V = W / Q)</option>
+                                            <option value="Work">Work Done (W = V * Q)</option>
+                                            <option value="Charge">Electric Charge (Q = W / V)</option>
+                                        </select>
+                                    </div>
+
+                                    {newCalcType === 'Voltage' && (
+                                        <>
+                                            <div className="form-group">
+                                                <label htmlFor="work">Work Done (W in joules)</label>
+                                                <input
+                                                    type="number"
+                                                    id="work"
+                                                    ref={workRef}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="charge">Electric Charge (Q in coulombs)</label>
+                                                <input
+                                                    type="number"
+                                                    id="charge"
+                                                    ref={chargeRef}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                        </>
+                                    )}
+                                    {newCalcType === 'Work' && (
+                                        <>
+                                            <div className="form-group">
+                                                <label htmlFor="voltage">Voltage (V in volts)</label>
+                                                <input
+                                                    type="number"
+                                                    id="voltage"
+                                                    ref={newVoltageRef}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="charge">Electric Charge (Q in coulombs)</label>
+                                                <input
+                                                    type="number"
+                                                    id="charge"
+                                                    ref={chargeRef}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                        </>
+                                    )}
+                                    {newCalcType === 'Charge' && (
+                                        <>
+                                            <div className="form-group">
+                                                <label htmlFor="voltage">Voltage (V in volts)</label>
+                                                <input
+                                                    type="number"
+                                                    id="voltage"
+                                                    ref={newVoltageRef}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="work">Work Done (W in joules)</label>
+                                                <input
+                                                    type="number"
+                                                    id="work"
+                                                    ref={workRef}
+                                                    className="form-control"
+                                                    required
+                                                />
+                                            </div>
+                                        </>
+                                    )}
+
+                                    <button type="button" className="btn btn-success mb-2 mt-3 w-100 d-block" onClick={handleVoltlaAllCalculateClick}>
+                                        Calculate
+                                    </button>
+                                    <div className="form-group">
+                                        <label htmlFor="newresult">Result :</label>
+                                        <input type="text" id="newresult" value={newResult} readOnly className="form-control" />
+                                    </div>
+                                </form>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

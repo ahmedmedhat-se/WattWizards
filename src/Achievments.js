@@ -17,7 +17,6 @@ function Achievments() {
     return (
         <>
             <section className="cards-lg-containers" id="cards-lg-containers">
-                {/* <!-- Programms Header Starts --> */}
                 <header className="section-header">
                     <div className="header-text">
                         <h1>Our Achievments</h1>
@@ -36,8 +35,6 @@ function Achievments() {
                         Certificates
                     </a>
                 </header>
-                {/* <!-- Programms Header Ends --> */}
-                {/* <!-- Programms Contents Starts --> */}
                 <div className="cards-lg-containers-contents">
                     {/* <!-- BASEF24 Program Starts --> */}
                     <div className="cards-lg-containers-card">
@@ -183,7 +180,6 @@ function Achievments() {
                     </div>
                     {/* <!-- SRTA Program Ends --> */}
                 </div>
-                {/* <!-- Programms Contents Ends --> */}
             </section>
 
             {/* <!-- Consultations Area Starts --> */}
@@ -226,7 +222,7 @@ function Achievments() {
                                                 <label><input type="radio" name="rating" /><span
                                                     className="border rounded px-3 py-2">10</span></label>
                                             </div>
-                                            <div className="rating-labels d-flex justify-content-between mt-1">
+                                            <div className="rating-labels d-flex justify-content-between mt-3 mb-3">
                                                 <label>Very unlikely</label>
                                                 <label>Very likely</label>
                                             </div>
@@ -242,8 +238,8 @@ function Achievments() {
                                     </form>
                                 </div>
                                 <div className="modal-footer">
-                                    <input type="submit" value="Submit" className="btn btn-success" />
-                                    <input type="submit" data-bs-dismiss="modal" value="Close" className="btn btn-danger" />
+                                    <input type="submit" value="Submit" className="btn btn-success"/>
+                                    <input type="submit" data-bs-dismiss="modal" value="Close" className="btn btn-danger"/>
                                 </div>
                             </div>
                         </div>

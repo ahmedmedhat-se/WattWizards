@@ -23,6 +23,7 @@ html {
   --light-heading-clr: #fff;
   --light-text-clr: #fff;
 }
+
 /* End Of Styling The Root Node Of The Document */
 
 /* Allow scrolling but hide scrollbar for "Chrome, Safari, Edge" Strt */
@@ -42,6 +43,7 @@ body {
 body {
   -ms-overflow-style: none;
 }
+
 /* Allow scrolling but hide scrollbar for "Chrome, Safari, Edge" End */
 
 /* Styling The Body Section  */
@@ -91,6 +93,58 @@ nav .navbar-toggler {
   font-size: 20px;
 }
 /* Header Component Styling Ends */
+
+/* UserInfo Section Styling Starts */
+.userInfo-container {
+  width: 400px;
+  margin: 50px auto;
+  margin-top: 150px;
+  padding: 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: #071324;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.userInfo-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.userInfo-container label {
+  font-size: 18px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.userInfo-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 0 0 10px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+.userInfo-container button {
+  padding: 10px;
+  margin-top: 5px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.userInfo-container p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 18px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+/* UserInfo Section Styling Ends */
 
 /* SparkTalk Component Styling Starts */
 /* Styles for the chatbot */
@@ -227,19 +281,9 @@ section.home {
   background-color: #ececec;
 }
 
-a {
-  font-size: 14px;
-  font-weight: 700
-}
-
-.form-control {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
 @media screen and (max-width:540px) {
   .centerOnMobile {
-      text-align: center
+    text-align: center
   }
 }
 
@@ -370,13 +414,13 @@ section h2 {
 
 @keyframes animate {
   0% {
-      transform: scale(0) translateY(0) rotate(0);
-      opacity: 1;
+    transform: scale(0) translateY(0) rotate(0);
+    opacity: 1;
   }
 
   100% {
-      transform: scale(1.3) translateY(-90px) rotate(360deg);
-      opacity: 0;
+    transform: scale(1.3) translateY(-90px) rotate(360deg);
+    opacity: 0;
   }
 }
 
@@ -420,7 +464,7 @@ section.features {
   width: 100%;
   padding: 100px 8% 20px;
   background: rgb(30, 0, 36);
-  background: linear-gradient(90deg,rgb(15, 4, 45) 0%, rgb(44, 1, 53) 100%);
+  background: linear-gradient(90deg, rgb(15, 4, 45) 0%, rgb(44, 1, 53) 100%);
 }
 
 .features .section-header h1 {
@@ -503,6 +547,7 @@ section.features {
 .features-box:nth-child(3) .features-icon i {
   color: #5a49f3;
 }
+
 /* Features Section Styling Ends */
 /* Homepage Component Styling Ends */
 
@@ -602,6 +647,7 @@ section.cards-lg-containers {
   display: flex;
   justify-content: space-between;
 }
+
 /* Achievments/Programs Components Styling Ends */
 
 /* Feedback Area Styling Starts */
@@ -622,18 +668,93 @@ section.cards-lg-containers {
 }
 
 #feedback-form-wrapper .rating-input-wrapper input[type="radio"]:checked~span {
-  background-color: #4261dc;
+  background-color: #071324;
   color: #fff;
 }
 
 #feedback-form-wrapper .rating-labels>label {
   font-size: 14px;
-  color: #777;
+  color: #000;
 }
 /* Feedback Area Component Ends */
 
+/* Community Component Styling Starts */
+#community {
+  width: 100%;
+  margin: 50px auto;
+  margin-top: 150px;
+  padding: 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: #071324;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media(max-width: 768px) {
+  #community {
+    width: 90%;
+  }
+}
+
+#community h2 {
+  color: var(--light-heading-clr);
+  font-family: 'Orbitron', sans-serif;
+}
+
+#community form button {
+  background-color: #0f0845;
+}
+
+#community .card .card-body p,
+#community .card .card-body h5,
+#community .card .card-body ul li {
+  color: #000000;
+}
+/* Community Component Styling Ends */
+
+/* Workspace Component Styling Starts */
+#workspace {
+  width: 100%;
+  margin: 50px auto;
+  margin-top: 150px;
+  padding: 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: #071324;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media(max-width: 768px) {
+  #workspace {
+    width: 90%;
+  }
+}
+
+#workspace h2 {
+  color: var(--light-heading-clr);
+  font-family: 'Orbitron', sans-serif;
+}
+
+#workspace form button {
+  background-color: #0f0845;
+}
+
+#comments h4 {
+  color: var(--light-heading-clr);
+  font-family: 'Orbitron', sans-serif;
+} 
+#comments li {
+  color: var(--light-heading-clr);
+} 
+
+#workspace .btn {
+  background-color: #0f0845;
+  color: #fff;
+}
+/* Workspace Component Styling Ends */
+
 /* Footer Component Styling Starts */
-footer section{
+footer section {
   max-height: 100vh;
   background: url(https://wallpapercave.com/wp/wp10156212.jpg) no-repeat;
   background-size: cover;
@@ -641,7 +762,7 @@ footer section{
   background-attachment: fixed;
 }
 
-.container .row #social-icons a i{
+.container .row #social-icons a i {
   font-size: 20px;
 }
 
@@ -680,6 +801,7 @@ footer #div-footer {
   font-family: 'Orbitron', sans-serif;
   color: #fff;
 }
+
 /* Footer Component Styling Ends */
 
 /* Media Query Styling For The Variation Of Screens Starts */
@@ -687,62 +809,62 @@ footer #div-footer {
 
   /* Home Section */
   .home .CodeCrafters {
-      flex-direction: column-reverse;
-      justify-content: flex-start;
-      align-items: flex-start;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .home .CodeCrafters .CodeCrafters-desc,
   .home .CodeCrafters .CodeCrafters-img {
-      flex-basis: 100%;
+    flex-basis: 100%;
   }
 
   .home .CodeCrafters .CodeCrafters-img {
-      align-self: center;
-      margin-bottom: 50px;
+    align-self: center;
+    margin-bottom: 50px;
   }
 
   .sectionPart2 {
-      width: 100%;
-      min-height: 100vh;
-      padding: 100px 8% 70px;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 8% 70px;
   }
 
   /* Features Section */
   .features-contents .features-box {
-      flex-basis: calc(calc(100% / 2) - 2%);
+    flex-basis: calc(calc(100% / 2) - 2%);
   }
 
   .features-contents .features-box:not(:last-child) {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 
   /* cards-lg-containers Section */
   .cards-lg-containers .cards-lg-containers-contents .cards-lg-containers-card {
-      flex-basis: calc(calc(100% / 2) - 1.2%);
+    flex-basis: calc(calc(100% / 2) - 1.2%);
   }
 
   .cards-lg-containers .section-header {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .cards-lg-containers .section-header .cards-lg-containers-btn {
-      position: relative;
-      align-self: flex-start;
-      margin-top: 20px;
+    position: relative;
+    align-self: flex-start;
+    margin-top: 20px;
   }
 }
 
 @media(max-width: 768px) {
   .sectionPart2 {
-      background: #000;
-      width: 100%;
-      min-height: 100vh;
-      padding: 100px 8% 70px;
+    background: #000;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 8% 70px;
   }
 
   .CodeCrafters .CodeCrafters-desc h2 {
-      font-size: 42px;
+    font-size: 42px;
   }
 }
 
@@ -750,33 +872,34 @@ footer #div-footer {
 
   /* Features Section */
   .features-contents .features-box {
-      flex-basis: 100%;
+    flex-basis: 100%;
   }
 
   /* cards-lg-containers Section */
   .cards-lg-containers .cards-lg-containers-contents .cards-lg-containers-card {
-      flex-basis: 100%;
+    flex-basis: 100%;
   }
 }
 
 @media(max-width: 576px) {
   section.Comments {
-      margin: 50px;
+    margin: 50px;
   }
 }
 
 @media(max-width: 468px) {
   .CodeCrafters-img .CodeCrafters-img-container {
-      width: 100%;
+    width: 100%;
   }
 
   .CodeCrafters .CodeCrafters-desc .search-bar {
-      width: 100%;
+    width: 100%;
   }
 
   .CodeCrafters .CodeCrafters-desc h2 {
-      font-size: 32px;
+    font-size: 32px;
   }
 }
+
 /* Media Query Ends */
 /* Styling Section Ends */

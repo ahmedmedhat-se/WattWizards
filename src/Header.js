@@ -29,10 +29,6 @@ function Header() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link mx-2 text-uppercase"
-                                    to='/community'>Community</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link mx-2 text-uppercase"
                                     to='/workspace'>Workspace</Link>
                             </li>
                             <li className="nav-item">

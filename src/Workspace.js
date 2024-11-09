@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // For navigation
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Workspace = () => {
@@ -8,12 +8,8 @@ const Workspace = () => {
   const [fileInput, setFileInput] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
   const [editFileName, setEditFileName] = useState("");
-  const [fileContent, setFileContent] = useState("");
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
-  const [invites, setInvites] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
 
-  // Handle file upload
   const handleFileUpload = (e) => {
     e.preventDefault();
     if (fileInput && fileInput.files.length > 0) {
@@ -24,17 +20,18 @@ const Workspace = () => {
           newFiles.push({
             name: file.name,
             content: fileReader.result,
-            originalName: file.name
+            originalName: file.name,
+            category: selectedOption
           });
           setFiles(newFiles);
         };
         fileReader.readAsText(file);
       });
-      setFileInput(null); // Clear the file input after upload
+      setFileInput(null);
+      setSelectedOption("");
     }
   };
 
-  // Handle file rename
   const handleRename = (index) => {
     if (editFileName.trim()) {
       const updatedFiles = [...files];
@@ -45,42 +42,38 @@ const Workspace = () => {
     }
   };
 
-  // Handle file delete
   const handleDelete = (index) => {
     const updatedFiles = files.filter((_, i) => i !== index);
     setFiles(updatedFiles);
   };
 
-  // Handle content editing
   const handleContentChange = (e, index) => {
     const updatedFiles = [...files];
     updatedFiles[index].content = e.target.value;
     setFiles(updatedFiles);
   };
 
-  // Handle comment submission
-  const handleCommentSubmit = (e) => {
-    e.preventDefault();
-    if (newComment.trim()) {
-      setComments([...comments, newComment]);
-      setNewComment("");
-    }
-  };
-
-  // Handle invite submission
-  const handleInviteSubmit = (e) => {
-    e.preventDefault();
-    if (invites.length > 0) {
-      console.log("Invites sent to:", invites);
-      setInvites([]);
-    }
-  };
-
   return (
     <div id='workspace' className="container">
-      <h2>Collaboration Workspace</h2>
+      <h2>Workspace</h2>
 
       <form onSubmit={handleFileUpload} className="mb-4">
+        <div className="mb-3">
+          <label htmlFor="fileCategory" className="form-label text-light">Select Your Operation</label>
+          <select
+            id="fileCategory"
+            className="form-select"
+            value={selectedOption}
+            onChange={(e) => setSelectedOption(e.target.value)}
+          >
+            <option value="Circuit-Breaker-Size">Circuit Breaker Size (Program)</option>
+            <option value="Power-Factor-Correction">Power-Factor-Correction (Program)</option>
+            <option value="Electrical-Consumption">Electrical-Consumption (Program)</option>
+            <option value="Horse-Power-2-Ampere">Horse-Power TO Ampere (Program)</option>
+          </select>
+        </div>
+
+        {/* File Input */}
         <div className="mb-3">
           <input
             type="file"
@@ -108,6 +101,7 @@ const Workspace = () => {
                 ) : (
                   file.name
                 )}</h5>
+                <p>Category: {file.category || "Not specified"}</p>
                 <textarea
                   className="form-control"
                   rows="5"
@@ -145,45 +139,6 @@ const Workspace = () => {
           ))}
         </div>
       )}
-
-      <form onSubmit={handleCommentSubmit} className="mb-4">
-        <div className="mb-3">
-          <textarea
-            className="form-control"
-            rows="3"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Add a comment..."
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className="btn btn-primary">Add Comment</button>
-      </form>
-
-      {comments.length > 0 && (
-        <div id='comments'>
-          <h4>Comments</h4>
-          <ul className="list-unstyled">
-            {comments.map((comment, index) => (
-              <li key={index} className="border-bottom pb-2">{comment}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <form onSubmit={handleInviteSubmit} className="mb-4">
-        <div className="mb-3">
-          <input
-            type="email"
-            value={invites}
-            onChange={(e) => setInvites(e.target.value.split(",").map(email => email.trim()))}
-            placeholder="Enter emails to teammates and invite them"
-            className="form-control"
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Send Invites</button>
-      </form>
     </div>
   );
 };

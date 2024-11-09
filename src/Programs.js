@@ -518,7 +518,7 @@ function Programs() {
                         These programs that we designed,
                         you can now view our scientific and research documents
                         under each program to obtain knowledge of these programs,
-                        and you can download the phone application to try these programs.
+                        and you can download your specified calculation files according to your statement!.
                     </p>
                 </div>
             </header>

@@ -3,6 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Footer = () => {
+    {var date = new Date();}
     return (
         <footer className="text-center text-lg-start bg-body-tertiary">
             <section>
@@ -11,16 +12,8 @@ const Footer = () => {
                         <div className='mt-4 mb-4' id='social-icons'>
                             <a
                                 className="btn btn-primary btn-floating m-1"
-                                style={{ backgroundColor: '#0082ca', border: 'none' }}
-                                href="https://www.linkedin.com/in/ahmed-medhat-ramadan-4061b7263?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target='_blank'
-                                role="button"
-                            >
-                                <i className="fab fa-linkedin-in"></i>
-                            </a>
-                            <a
-                                className="btn btn-primary btn-floating m-1"
-                                style={{ backgroundColor: '#333333', border: 'none' }}
-                                href="https://github.com/ahmedmedhat-se" target='_blank'
+                                style={{ backgroundColor: '#333333', border: 'none', fontSize: '20px'}}
+                                href="https://github.com/ahmedmedhat-se/WattWizards" target='_blank'
                                 role="button"
                             >
                                 <i className="fab fa-github"></i>
@@ -40,14 +33,14 @@ const Footer = () => {
                                 <i className="fa-brands fa-teamspeak me-3"></i>Team Members
                             </h4>
                             <p>
-                                <a href="#!">Ahmed Medhat</a>
-                                <a href="#!">Loucas Monir</a>               
+                                <a href="https://www.linkedin.com/in/ahmed-medhat-ramadan-4061b7263?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target='_blank'>Ahmed Medhat</a>
+                                <a href="https://www.linkedin.com/in/loucas-monir-b0a50b2b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target='_blank'>Loucas Monir</a>               
                             </p>
                         </div>
                     </div>
                 </div>
                 <div className="text-center p-4" id='div-footer'>
-                    © 2024 Copyright: CodeCrafters
+                    © {date.getFullYear()} Copyright: CodeCrafters
                 </div>
             </section>
         </footer>

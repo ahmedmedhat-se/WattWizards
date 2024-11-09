@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/WattWizards/static/css/main.572f1da8.css",
-    "main.js": "/WattWizards/static/js/main.f24055dd.js",
+    "main.js": "/WattWizards/static/js/main.8f1aa424.js",
     "static/js/453.6e446ef5.chunk.js": "/WattWizards/static/js/453.6e446ef5.chunk.js",
     "static/media/fa-solid-900.ttf": "/WattWizards/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
     "static/media/fa-brands-400.ttf": "/WattWizards/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
@@ -13,11 +13,11 @@
     "static/media/fa-v4compatibility.woff2": "/WattWizards/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/WattWizards/index.html",
     "main.572f1da8.css.map": "/WattWizards/static/css/main.572f1da8.css.map",
-    "main.f24055dd.js.map": "/WattWizards/static/js/main.f24055dd.js.map",
+    "main.8f1aa424.js.map": "/WattWizards/static/js/main.8f1aa424.js.map",
     "453.6e446ef5.chunk.js.map": "/WattWizards/static/js/453.6e446ef5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.572f1da8.css",
-    "static/js/main.f24055dd.js"
+    "static/js/main.8f1aa424.js"
   ]
 }

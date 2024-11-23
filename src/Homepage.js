@@ -1,6 +1,5 @@
 import Features from "./Features.js";
 import Programs from './Programs';
-import Achievments from './Achievments';
 import SparkTalk from "./SparkTalk.js";
 
 function Homepage() {

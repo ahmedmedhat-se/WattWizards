@@ -83,7 +83,7 @@ nav .navbar-brand strong {
 
 nav #nav-conatiner .navbar-nav .nav-item .nav-link {
   color: #fff;
-  font-size: 18px;
+  font-size: 15px;
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -122,7 +122,7 @@ nav .navbar-toggler {
 .userInfo-container input {
   width: 100%;
   padding: 10px;
-  margin: 0 0 10px 0;
+  margin: 0 0 20px 0;
   border: none;
   border-radius: 5px;
 }
@@ -162,9 +162,9 @@ nav .navbar-toggler {
   color: white;
   border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -175,7 +175,7 @@ nav .navbar-toggler {
 .SparkTalk {
   background-color: #fff;
   width: 90%;
-  max-height: 500px;
+  max-height: 400px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   padding: 15px;
@@ -197,7 +197,7 @@ nav .navbar-toggler {
 }
 
 .SparkTalk header h2 {
-  font-size: 25px;
+  font-size: 22px;
   margin: 5px;
   font-family: 'Orbitron', sans-serif;
 }
@@ -206,7 +206,7 @@ nav .navbar-toggler {
 .close-chat-btn {
   background-color: transparent;
   border: none;
-  font-size: 25px;
+  font-size: 22px;
   cursor: pointer;
   color: #fff;
 }
@@ -878,6 +878,17 @@ footer #div-footer {
   /* cards-lg-containers Section */
   .cards-lg-containers .cards-lg-containers-contents .cards-lg-containers-card {
     flex-basis: 100%;
+  }
+
+  .userInfo-container {
+    width: 250px;
+    margin: 50px auto;
+    margin-top: 150px;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: #071324;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
 }
 

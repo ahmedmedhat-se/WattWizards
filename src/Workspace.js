@@ -70,6 +70,8 @@ const Workspace = () => {
             <option value="Power-Factor-Correction">Power-Factor-Correction (Program)</option>
             <option value="Electrical-Consumption">Electrical-Consumption (Program)</option>
             <option value="Horse-Power-2-Ampere">Horse-Power TO Ampere (Program)</option>
+            <option value="Ampere-2-Watt">Ampere TO Watt (Program)</option>
+            <option value="Watt-2-Ampere">Watt TO Ampere (Program)</option>
           </select>
         </div>
 

@@ -521,6 +521,9 @@ function Programs() {
                         and you can download your specified calculation files according to your statement!.
                     </p>
                 </div>
+                <button className="cards-lg-containers-btn btn" type="button" data-bs-toggle="modal" data-bs-target="#downloadModal">
+                        Download .xlsx sheets
+                </button>
             </header>
             {/* <!-- Programms Contents Starts -->
             <!-- CB/Cable Program Content Starts --> */}
@@ -2382,6 +2385,42 @@ function Programs() {
                 </div>
                 {/* <!-- Andre-Marie Ampere's Law Program Ends --> */}
             </div>
+
+            {/* <!-- Download Sheets Area Starts --> */}
+            <div id="feedback-form-wrapper">
+                <div id="feedback-form-modal">
+                    <div className="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Download Form</h5>
+                                    <button type="button" className="btn btn-danger close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div className="modal-body">
+                                    <form>
+                                        <select id="selectDownloadFile" className="form-select">
+                                            <option value="Circuit-Breaker-Size">Circuit Breaker Size (Program)</option>
+                                            <option value="Power-Factor-Correction">Power-Factor-Correction (Program)</option>
+                                            <option value="Electrical-Consumption">Electrical-Consumption (Program)</option>
+                                            <option value="Horse-Power-2-Ampere">Horse-Power TO Ampere (Program)</option>
+                                            <option value="Ampere-2-Watt">Ampere TO Watt (Program)</option>
+                                            <option value="Watt-2-Ampere">Watt TO Ampere (Program)</option>
+                                        </select>
+                                    </form>
+                                </div>
+                                <div className="modal-footer">
+                                    <input type="submit" value="Download" className="btn btn-success"/>
+                                    <input type="submit" data-bs-dismiss="modal" value="Close" className="btn btn-danger"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <!-- Consultations Area Ends --> */}
         </section >
     );
 }

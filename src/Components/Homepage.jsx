@@ -1,6 +1,6 @@
-import Features from "./Features.js";
-import Programs from './Programs';
-import SparkTalk from "./SparkTalk.js";
+import Features from "./Features.jsx";
+import Programs from "./Programs.jsx";
+import SparkTalk from "./SparkTalk.jsx";
 
 function Homepage() {
     return (

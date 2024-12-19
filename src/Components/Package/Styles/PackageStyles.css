@@ -1,0 +1,11 @@
+/* Global Styles For Programs */
+.HeaderStyleH2 {
+    color: #7170d7;
+    font-weight: bold;
+}
+
+.HeaderStyleH2Arabic {
+    color: #7170d7;
+    font-weight: bold;
+    text-align: right;
+}

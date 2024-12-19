@@ -23,7 +23,6 @@ html {
   --light-heading-clr: #fff;
   --light-text-clr: #fff;
 }
-
 /* End Of Styling The Root Node Of The Document */
 
 /* Allow scrolling but hide scrollbar for "Chrome, Safari, Edge" Strt */
@@ -43,8 +42,34 @@ body {
 body {
   -ms-overflow-style: none;
 }
-
 /* Allow scrolling but hide scrollbar for "Chrome, Safari, Edge" End */
+
+/* Global CSS Styles Section Starts*/
+.go-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.top-button {
+  background-color: #071324;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.top-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+/* Global CSS Styles Section Ends*/
 
 /* Styling The Body Section  */
 body {
@@ -71,11 +96,11 @@ button.btn:hover {
 }
 
 /* Header Component Styling Starts */
-nav {
+nav, .navbar .offcanvas-end {
   background: #071324;
 }
 
-nav .navbar-brand strong {
+nav .navbar-brand strong, .navbar .offcanvas-end .offcanvas-title {
   color: #fff;
   font-size: 20px;
   font-family: 'Orbitron', sans-serif;
@@ -91,6 +116,36 @@ nav .navbar-toggler {
   background-color: #ffffff;
   border: none;
   font-size: 20px;
+}
+
+nav .nav-link {
+  margin-right: 15px;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+}
+
+nav .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #420d43;
+  transition: width 0.3s ease-in-out;
+}
+
+nav .nav-link:hover::before {
+  width: 100%;
+}
+
+nav .nav-link:hover {
+  color: #420d43;
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
 /* Header Component Styling Ends */
 
@@ -272,6 +327,7 @@ nav .navbar-toggler {
   width: 100%;
   min-height: 100vh;
   margin: 70px auto;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 section.home {
@@ -547,7 +603,6 @@ section.features {
 .features-box:nth-child(3) .features-icon i {
   color: #5a49f3;
 }
-
 /* Features Section Styling Ends */
 /* Homepage Component Styling Ends */
 
@@ -647,7 +702,6 @@ section.cards-lg-containers {
   display: flex;
   justify-content: space-between;
 }
-
 /* Achievments/Programs Components Styling Ends */
 
 /* Feedback Area Styling Starts */
@@ -726,7 +780,7 @@ section.cards-lg-containers {
 
 @media(max-width: 768px) {
   #workspace {
-    width: 90%;
+    width: 350px;
   }
 }
 
@@ -801,8 +855,28 @@ footer #div-footer {
   font-family: 'Orbitron', sans-serif;
   color: #fff;
 }
-
 /* Footer Component Styling Ends */
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 /* Media Query Styling For The Variation Of Screens Starts */
 @media(max-width: 968px) {
@@ -881,7 +955,7 @@ footer #div-footer {
   }
 
   .userInfo-container {
-    width: 250px;
+    width: 350px;
     margin: 50px auto;
     margin-top: 150px;
     padding: 30px;

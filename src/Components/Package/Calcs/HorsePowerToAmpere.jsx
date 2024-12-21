@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import image from '../Images/horsepower_to_ampere_conversion_program.jpg';
 
 function HorsePower2Ampere() {
     // Horse-Power-TO-Ampere (Program) Starts
@@ -37,7 +38,7 @@ function HorsePower2Ampere() {
         <>
             <div className="cards-lg-containers-card">
                 <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Imperial_Horsepower.svg/1200px-Imperial_Horsepower.svg.png" />
+                    src={image} />
                 <div className="category">
                     <div className="subject">
                         <h3>Software/Electricity</h3>

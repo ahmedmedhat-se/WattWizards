@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import image from '../Images/Volt-Ampere_to_Watt_Conversion_Program.jpg';
 
 function VoltAmpere2Watt() {
     // Volt Ampere (VA) TO Watts (Program) Starts
@@ -30,7 +31,7 @@ function VoltAmpere2Watt() {
     return (
         <>
             <div className="cards-lg-containers-card">
-                <img src="https://musicproductionglossary.com/wp-content/uploads/2023/10/volt-amperes.jpg" />
+                <img src={image}/>
                 <div className="category">
                     <div className="subject">
                         <h3>Software/Electricity</h3>

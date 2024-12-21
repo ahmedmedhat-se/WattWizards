@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import image from '../Images/Ampere_to_Watt_Conversion_Program.jpg';
 
 
 const TonToHpConverter = () => {
@@ -30,7 +31,7 @@ const TonToHpConverter = () => {
     return (
         <>
             <div className="cards-lg-containers-card">
-                <img src="https://iqrorwxhqjlqlo5p-static.micyjz.com/cloud/jiBpiKqiljSRikloqiljio/4003e9c3fe02910d3d9080899c3ce75.png" />
+                <img src={image}/>
                 <div className="category">
                     <div className="subject">
                         <h3>Software/Electricity</h3>

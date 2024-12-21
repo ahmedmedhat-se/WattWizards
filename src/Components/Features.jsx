@@ -1,4 +1,4 @@
-import { faMobile, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faMobile, faProjectDiagram, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faPaperclip } from "@fortawesome/free-solid-svg-icons/faPaperclip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import features from "../Env/features.json";
@@ -34,11 +34,11 @@ function Features() {
 
                 <div className="features-box">
                     <div className="features-icon">
-                        <FontAwesomeIcon icon={faMobile} />
+                        <FontAwesomeIcon icon={faProjectDiagram} />
                     </div>
                     <div className="features-desc">
-                        <h2>{features.mobile.title}</h2>
-                        <p>{features.mobile.description}</p>
+                        <h2>{features.platform.title}</h2>
+                        <p>{features.platform.description}</p>
                     </div>
                 </div>
             </div>

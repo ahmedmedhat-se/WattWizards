@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import image from '../Images/Watt_to_Ampere_Conversion_Program.jpg';
 
 function Watt2Ampere() {
     // Watt TO Ampere (Program) Starts
@@ -35,7 +36,7 @@ function Watt2Ampere() {
     return (
         <>
             <div className="cards-lg-containers-card">
-                <img src="https://blog.ecoflow.com/us/wp-content/uploads/2023/08/image5.png" />
+                <img src={image}/>
                 <div className="category">
                     <div className="subject">
                         <h3>Software/Electricity</h3>

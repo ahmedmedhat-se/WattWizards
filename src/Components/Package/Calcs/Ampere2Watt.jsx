@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import image from '../Images/Ampere_to_Watt_Conversion_Program.jpg';
 
 function Ampere2Watt() {
     // Ampere TO Watt (Program) Starts
@@ -39,7 +40,7 @@ function Ampere2Watt() {
     return (
         <>
             <div className="cards-lg-containers-card">
-                <img src="https://www.inchcalculator.com/wp-content/uploads/2020/02/amps-to-watts.png" />
+                <img src={image}/>
                 <div className="category">
                     <div className="subject">
                         <h3>Software/Electricity</h3>

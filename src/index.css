@@ -53,7 +53,7 @@ body {
 }
 
 .top-button {
-  background-color: #071324;
+  background-color: #0f0845;
   border: none;
   color: white;
   border-radius: 50%;
@@ -212,7 +212,7 @@ nav .nav-link:hover {
 
 /* Button to open the chat */
 .open-chat-btn {
-  background-color: #071324;
+  background-color: #0f0845;
   box-shadow: 0 5px 15px rgba(18, 5, 63, 0.5);
   color: white;
   border: none;
@@ -243,7 +243,7 @@ nav .nav-link:hover {
 
 .SparkTalk header {
   display: flex;
-  background-color: #071324;
+  background-color: #0f0845;
   color: #fff;
   justify-content: space-between;
   border-radius: 10px;
@@ -291,7 +291,7 @@ nav .nav-link:hover {
 }
 
 .message.outgoing p {
-  background-color: #071324;
+  background-color: #0f0845;
   color: white;
   font-weight: bold;
   overflow: hidden;
@@ -313,7 +313,7 @@ nav .nav-link:hover {
 }
 
 .bot-input #send-btn {
-  background-color: #071324;
+  background-color: #0f0845;
   color: white;
   padding: 10px;
   border-radius: 5px;
@@ -810,50 +810,15 @@ section.cards-lg-containers {
 /* Footer Component Styling Starts */
 footer section {
   max-height: 100vh;
-  background: url(https://wallpapercave.com/wp/wp10156212.jpg) no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: #071324;
 }
 
-.container .row #social-icons a i {
-  font-size: 20px;
-}
-
-.container .row #company h4 {
+footer h6 {
   font-family: 'Orbitron', sans-serif;
-  font-size: 25px;
-  color: #fff;
 }
 
-.container .row #company p {
-  font-family: 'Orbitron', sans-serif;
-  color: #fff;
-}
-
-.container .row #team-members h4 {
-  font-family: 'Orbitron', sans-serif;
-  color: #fff;
-  font-size: 25px;
-}
-
-.container .row #team-members p a {
-  color: #fff;
-  display: block;
+footer .links a{
   text-decoration: none;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 18px;
-  transition: 1s;
-}
-
-.container .row #team-members p a:hover {
-  color: #6a6177;
-}
-
-footer #div-footer {
-  font-size: 20px;
-  font-family: 'Orbitron', sans-serif;
-  color: #fff;
 }
 /* Footer Component Styling Ends */
 

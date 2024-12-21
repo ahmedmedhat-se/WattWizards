@@ -1,50 +1,86 @@
-import React from 'react';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import data from '../Env/data.json';
+import { Link, useLocation } from 'react-router-dom';
 
-const Footer = () => {
-    {var date = new Date();}
+function Footer() {
+    const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]); 
+
     return (
-        <footer className="text-center text-lg-start bg-body-tertiary">
+        <footer className="text-center text-lg-start bg-body-tertiary text-muted">
             <section>
-                <div className="container text-center">
+                <div className="container text-center text-md-start p-5">
                     <div className="row">
-                        <div className='mt-4 mb-4' id='social-icons'>
-                            <a
-                                className="btn btn-primary btn-floating m-1"
-                                style={{ backgroundColor: '#333333', border: 'none', fontSize: '20px'}}
-                                href="https://github.com/ahmedmedhat-se/WattWizards" target='_blank'
-                                role="button"
-                            >
-                                <i className="fab fa-github"></i>
-                            </a>
+                        <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-light">
+                            <h6 className="mb-4 d-flex justify-content-center">
+                                <img src={`${process.env.PUBLIC_URL}/logo.png`} alt=""
+                                    width={100} height={100} />
+                            </h6>
+                            <p>{data.company.description}</p>
                         </div>
-                        <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" id='company'>
-                            <h4 className="text-uppercase fw-bold mb-2">
-                                <i className="fa-solid fa-globe me-3"></i>CodeCrafters
-                            </h4>
+                        <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 text-light">
+                            <h6 className="text-uppercase fw-bold mb-4">Services</h6>
                             <p>
-                                We are composed of experts in the field of software team systems and electrical systems.
-                                We present to you a summary of our clear scientific experiments in a simplified form.
+                                <Link to="/workspace">
+                                    {data.services['electrical-circuit-analysis']}
+                                </Link>
+                            </p>
+                            <p>
+                                <Link to="/vault">
+                                    {data.services['energy-consumption-monitoring']}
+                                </Link>
+                            </p>
+                            <p>
+                                <Link to="/programs">
+                                    {data.services['power-factor-correction']}
+                                </Link>
+                            </p>
+                            <p>
+                                <Link to="/achievments">
+                                    {data.services['achievments']}
+                                </Link>
                             </p>
                         </div>
-                        <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" id='team-members'>
-                            <h4 className="text-uppercase fw-bold mb-2">
-                                <i className="fa-brands fa-teamspeak me-3"></i>Team Members
-                            </h4>
-                            <p>
-                                <a href="https://www.linkedin.com/in/ahmed-medhat-ramadan-4061b7263?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target='_blank'>Ahmed Medhat</a>
-                                <a href="https://www.linkedin.com/in/loucas-monir-b0a50b2b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target='_blank'>Loucas Monir</a>               
-                            </p>
+
+                        <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-light">
+                            <h6 className="text-uppercase fw-bold mb-5">Contact</h6>
+                            <p><FontAwesomeIcon icon={faHome} className="me-3" />{data.company.contact.address}</p>
+                            <p><FontAwesomeIcon icon={faPhone} className="me-3" />{data.company.contact['phone']}</p>
                         </div>
+
                     </div>
                 </div>
-                <div className="text-center p-4" id='div-footer'>
-                    © {date.getFullYear()} Copyright: CodeCrafters
+            </section>
+
+            <section className="d-flex justify-content-center justify-content-lg-between p-5 border-bottom text-light">
+                <div className="me-5 d-none d-lg-block">
+                    <span>Get connected with us on social networks:</span>
                 </div>
+
+                <div className='links'>
+                    <a href="https://www.linkedin.com/in/ahmed-medhat-ramadan-4061b7263?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        className="me-4 text-light" target='_blank'>
+                        <FontAwesomeIcon icon={faLinkedin} /> {data.authors['ahmed-medhat']}
+                    </a>
+                    <a href="https://www.linkedin.com/in/loucas-monir-b0a50b2b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                        className="me-4 text-light" target='_blank'>
+                        <FontAwesomeIcon icon={faLinkedin} /> {data.authors['loucas-monir']}
+                    </a>
+                    <a href="https://github.com/ahmedmedhat-se/WattWizards" className="me-4 text-light"
+                    target='_blank'>
+                        <FontAwesomeIcon icon={faGithub} />
+                    </a>
+                </div>
+                © {new Date().getFullYear()} Copyright: {data.company.name}
             </section>
         </footer>
     );
-};
+}
 
 export default Footer;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const SparkTalk = () => {
     const [isChatVisible, setIsChatVisible] = useState(false);
@@ -8,7 +8,7 @@ const SparkTalk = () => {
     ]);
 
     const predefinedCommands = {
-        help: "Here are the available commands: \n1. 'help' - Get list of commands \n2. 'about' - Information about this bot \n3. 'contact' - Contact details \n4. 'exit' - Close the chat \n5. 'project' - Information about the WattWizards project \n6. 'objectives' - Project objectives \n7. 'methodology' - Methodology used in the project \n8. 'features' - Key features of the application \n9. 'testing' - Information about testing \n10. 'results' - Project results \n11. 'conclusion' - Conclusion and future work \n12. 'references' - References related to the project.",
+        help: "Here are the available commands: 'help', 'about', 'contact', 'exit', 'project', 'objectives', 'methodology', 'features', 'testing', 'results', 'conclusion', 'references'.",
         about: "I am SparkTalk, your friendly assistant. I can help you with various tasks. Just type one of the available commands.",
         contact: "You can contact us via email at support@example.com or call us at 123-456-7890.",
         exit: "Thanks for chatting with me! Have a great day!",
@@ -60,6 +60,13 @@ const SparkTalk = () => {
         setIsChatVisible(!isChatVisible);
     };
 
+    const chatContainerRef = useRef(null);
+    useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [messages]);
+
     return (
         <div className="bot-container">
             {!isChatVisible && (
@@ -76,7 +83,8 @@ const SparkTalk = () => {
                             &#10005;
                         </button>
                     </header>
-                    <ul className="electrochat">
+
+                    <ul className="electrochat" ref={chatContainerRef}>
                         {messages.map((msg, index) => (
                             <li key={index} className={`message ${msg.className}`}>
                                 {msg.className === "incoming" && <span className="far fa-comment-alt"></span>}

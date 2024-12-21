@@ -1,9 +1,15 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
+    // Hook to get the current location (route)
+    const location = useLocation();
+
+    // Scroll to top whenever the route changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);  // Dependency on location ensures this runs on route change
+
     return (
         <>
             <nav className="navbar navbar-expand-lg fixed-top navbar-light p-4 shadow-sm">
@@ -22,20 +28,19 @@ function Header() {
                         <div className="offcanvas-body">
                             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                                 <li className="nav-item">
-                                    <Link className="nav-link mx-2 text-light text-uppercase"
-                                        to='/programs'>Programs</Link>
+                                    <Link className="nav-link mx-2 text-light text-uppercase" to='/programs'>Programs</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link mx-2 text-light text-uppercase"
-                                        to='/achievments'>Achievments</Link>
+                                    <Link className="nav-link mx-2 text-light text-uppercase" to='/achievments'>Achievments</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link mx-2 text-light text-uppercase"
-                                        to='/workspace'>Workspace</Link>
+                                    <Link className="nav-link mx-2 text-light text-uppercase" to='/workspace'>Workspace</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link mx-2 text-light text-uppercase"
-                                        to='/login'>Login</Link>
+                                    <Link className="nav-link mx-2 text-light text-uppercase" to='/vault'>CircuitVault</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link mx-2 text-light text-uppercase" to='/login'>Login</Link>
                                 </li>
                             </ul>
                         </div>
@@ -45,4 +50,5 @@ function Header() {
         </>
     );
 }
-export default Header
+
+export default Header;

@@ -1,23 +1,15 @@
 {
   "files": {
-    "main.css": "/WattWizards/static/css/main.be6a86db.css",
-    "main.js": "/WattWizards/static/js/main.31d384d6.js",
+    "main.css": "/WattWizards/static/css/main.90796650.css",
+    "main.js": "/WattWizards/static/js/main.acc999dc.js",
     "static/js/453.6e446ef5.chunk.js": "/WattWizards/static/js/453.6e446ef5.chunk.js",
-    "static/media/fa-solid-900.ttf": "/WattWizards/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
-    "static/media/fa-brands-400.ttf": "/WattWizards/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
-    "static/media/fa-solid-900.woff2": "/WattWizards/static/media/fa-solid-900.93f719f4d62bfa3e748c.woff2",
-    "static/media/fa-brands-400.woff2": "/WattWizards/static/media/fa-brands-400.bb8d5a145e22822103fb.woff2",
-    "static/media/fa-regular-400.ttf": "/WattWizards/static/media/fa-regular-400.17a6e1aebccdbaa39e78.ttf",
-    "static/media/fa-regular-400.woff2": "/WattWizards/static/media/fa-regular-400.bc3722686635b5f86132.woff2",
-    "static/media/fa-v4compatibility.ttf": "/WattWizards/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
-    "static/media/fa-v4compatibility.woff2": "/WattWizards/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/WattWizards/index.html",
-    "main.be6a86db.css.map": "/WattWizards/static/css/main.be6a86db.css.map",
-    "main.31d384d6.js.map": "/WattWizards/static/js/main.31d384d6.js.map",
+    "main.90796650.css.map": "/WattWizards/static/css/main.90796650.css.map",
+    "main.acc999dc.js.map": "/WattWizards/static/js/main.acc999dc.js.map",
     "453.6e446ef5.chunk.js.map": "/WattWizards/static/js/453.6e446ef5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.be6a86db.css",
-    "static/js/main.31d384d6.js"
+    "static/css/main.90796650.css",
+    "static/js/main.acc999dc.js"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/WattWizards/static/css/main.90796650.css",
-    "main.js": "/WattWizards/static/js/main.7975ec4e.js",
+    "main.css": "/WattWizards/static/css/main.c44b6291.css",
+    "main.js": "/WattWizards/static/js/main.9196cf85.js",
     "static/js/453.6e446ef5.chunk.js": "/WattWizards/static/js/453.6e446ef5.chunk.js",
     "static/media/Volt-Ampere_to_Watt_Conversion_Program.jpg": "/WattWizards/static/media/Volt-Ampere_to_Watt_Conversion_Program.427bdc706cdbe58480f2.jpg",
     "static/media/Watt_to_Ampere_Conversion_Program.jpg": "/WattWizards/static/media/Watt_to_Ampere_Conversion_Program.31fa9cbe0f5b4700572b.jpg",
@@ -9,12 +9,12 @@
     "static/media/horsepower_to_kilowatt_conversion_program.jpg": "/WattWizards/static/media/horsepower_to_kilowatt_conversion_program.7070efa7b15ba2fbb07a.jpg",
     "static/media/horsepower_to_ampere_conversion_program.jpg": "/WattWizards/static/media/horsepower_to_ampere_conversion_program.733336f8555396632088.jpg",
     "index.html": "/WattWizards/index.html",
-    "main.90796650.css.map": "/WattWizards/static/css/main.90796650.css.map",
-    "main.7975ec4e.js.map": "/WattWizards/static/js/main.7975ec4e.js.map",
+    "main.c44b6291.css.map": "/WattWizards/static/css/main.c44b6291.css.map",
+    "main.9196cf85.js.map": "/WattWizards/static/js/main.9196cf85.js.map",
     "453.6e446ef5.chunk.js.map": "/WattWizards/static/js/453.6e446ef5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.90796650.css",
-    "static/js/main.7975ec4e.js"
+    "static/css/main.c44b6291.css",
+    "static/js/main.9196cf85.js"
   ]
 }

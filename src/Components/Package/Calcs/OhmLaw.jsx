@@ -9,7 +9,7 @@ function Ohm() {
     const currentRef = useRef(null);
     const resistanceRef = useRef(null);
     const voltageRef = useRef(null);
-    const [calcType, setCalcType] = useState('Voltage'); // Options: Voltage, Current, Resistance
+    const [calcType, setCalcType] = useState('Voltage');
 
     const handleVoltaCalculateClick = (e) => {
         e.preventDefault();
@@ -42,7 +42,7 @@ function Ohm() {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src="https://images.credly.com/images/d30e23c4-60cb-4a5d-b826-b0cd4a9cb0bc/profile_img.jpg" />
+                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
                 </div>
                 <h2 className="course-title">Ohm's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Ohm">View</button>

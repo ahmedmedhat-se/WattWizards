@@ -5,7 +5,7 @@ import SparkTalk from "./SparkTalk.jsx";
 function Homepage() {
     return (
         <>
-            <div className='home-landing'>
+            <div className='home-landing p-3'>
                 <section className='home' id='home'>
                     <div className='CodeCrafters'>
                         <div className='CodeCrafters-desc'>
@@ -17,8 +17,7 @@ function Homepage() {
                         </div>
                         <div className="CodeCrafters-img">
                             <div className="CodeCrafters-img-container">
-                                <img
-                                    src="https://img.freepik.com/premium-photo/electrical-engineer-hd-image_1012565-6359.jpg"/>
+                                <img src="https://img.freepik.com/premium-photo/electrical-engineer-hd-image_1012565-6359.jpg"/>
                             </div>
                         </div>
                         <div className="box">

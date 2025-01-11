@@ -63,8 +63,7 @@ function ElectricalConsumption() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img
-                        src="https://images.credly.com/images/d30e23c4-60cb-4a5d-b826-b0cd4a9cb0bc/profile_img.jpg" />
+                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
                 </div>
                 <h2 className="course-title">Electrical-Consumption (Program)</h2>
                 <button type="button" data-bs-toggle="modal" data-bs-target="#ECCView" className="btn btn-success">View</button>

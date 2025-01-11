@@ -149,7 +149,7 @@ nav .nav-link:hover {
 }
 /* Header Component Styling Ends */
 
-/* UserInfo Section Styling Starts */
+/* User-in Component Styling Starts */
 .userInfo-container {
   width: 400px;
   margin: 50px auto;
@@ -199,7 +199,32 @@ nav .nav-link:hover {
   color: #fff;
   font-family: 'Orbitron', sans-serif;
 }
-/* UserInfo Section Styling Ends */
+
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 35px;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.password-toggle-btn i {
+  font-size: 1.2rem;
+  color: #000;
+}
+/* User-in Component Styling Ends */
 
 /* SparkTalk Component Styling Starts */
 /* Styles for the chatbot */
@@ -325,15 +350,13 @@ nav .nav-link:hover {
 /* Homepage Component Styling Starts */
 .home-landing {
   width: 100%;
-  min-height: 100vh;
-  margin: 70px auto;
+  margin: 0 auto;
   animation: fadeIn 0.8s ease-in-out;
 }
 
 section.home {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   background-color: #ececec;
 }
 
@@ -345,8 +368,7 @@ section.home {
 
 .home .CodeCrafters {
   width: 100%;
-  min-height: 100vh;
-  padding: 50px 8% 0;
+  padding: 100px 8% 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -807,13 +829,18 @@ section.cards-lg-containers {
 }
 /* Workspace Component Styling Ends */
 
+/* Profile Component Styling Starts */
+.user-profile h4, .user-profile h5 {
+  font-family: 'Orbitron', sans-serif;
+}
+/* Profile Component Styling Starts */
+
 /* Footer Component Styling Starts */
-footer section {
-  max-height: 100vh;
+footer {
   background-color: #071324;
 }
 
-footer h6 {
+footer h5 {
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -950,6 +977,5 @@ footer .links a{
     font-size: 32px;
   }
 }
-
 /* Media Query Ends */
 /* Styling Section Ends */

@@ -1,18 +1,18 @@
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
-    // Hook to get the current location (route)
     const location = useLocation();
 
-    // Scroll to top whenever the route changes
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [location]);  // Dependency on location ensures this runs on route change
+    }, [location]);
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg fixed-top navbar-light p-4 shadow-sm">
+            <nav className="navbar navbar-expand-lg navbar-light p-4 fixed-top shadow-sm">
                 <div className="container">
                     <Link className='navbar-brand' to='/wattwizards'>
                         <strong>WattWizards</strong>
@@ -31,9 +31,6 @@ function Header() {
                                     <Link className="nav-link mx-2 text-light text-uppercase" to='/programs'>Programs</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link mx-2 text-light text-uppercase" to='/achievments'>Achievments</Link>
-                                </li>
-                                <li className="nav-item">
                                     <Link className="nav-link mx-2 text-light text-uppercase" to='/workspace'>Workspace</Link>
                                 </li>
                                 <li className="nav-item">
@@ -41,6 +38,10 @@ function Header() {
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link mx-2 text-light text-uppercase" to='/login'>Login</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link mx-2 text-light text-uppercase" to='/profile'>
+                                        <FontAwesomeIcon icon={faUserCircle} /> Profile</Link>
                                 </li>
                             </ul>
                         </div>

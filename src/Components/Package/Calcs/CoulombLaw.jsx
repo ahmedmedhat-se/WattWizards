@@ -15,10 +15,10 @@ function Coulomb() {
         e.preventDefault();
 
         const q1 = parseFloat(charge1Ref.current.value);
-        const q2 = areChargesEqual ? q1 : parseFloat(charge2Ref.current.value); // If equal, use q1 for q2
+        const q2 = areChargesEqual ? q1 : parseFloat(charge2Ref.current.value);
         const r = parseFloat(distanceRef.current.value);
 
-        const k = 8.9875 * (10 ** 9); // Coulomb's constant
+        const k = 8.9875 * (10 ** 9);
         const force = k * ((Math.abs(q1 * q2)) / (r * r));
 
         setForceResult(force.toFixed(2));
@@ -33,7 +33,7 @@ function Coulomb() {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src="https://images.credly.com/images/d30e23c4-60cb-4a5d-b826-b0cd4a9cb0bc/profile_img.jpg" />
+                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
                 </div>
                 <h2 className="course-title">Coulomb's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Coulomb">View</button>

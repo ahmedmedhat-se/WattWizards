@@ -5,22 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Kirchhoff() {
     // Kirchhoff's Law (Program) Starts
     const [kResult, setKResult] = useState('');
-    const [lawType, setLawType] = useState('KCL'); // Options: KCL, KVL
+    const [lawType, setLawType] = useState('KCL');
     const currentRefs = useRef([]);
     const voltageRefs = useRef([]);
 
-    // Function to handle Kirchhoff's Law calculation
     const handleKirchhoffCalculateClick = (e) => {
         e.preventDefault();
 
         if (lawType === 'KCL') {
-            // Kirchhoff's Current Law (KCL)
             const currents = currentRefs.current.map(ref => parseFloat(ref.value) || 0);
             const currentSum = currents.reduce((acc, curr) => acc + curr, 0);
 
             setKResult(`Sum of currents (ΣI): ${currentSum.toFixed(2)} A`);
         } else if (lawType === 'KVL') {
-            // Kirchhoff's Voltage Law (KVL)
             const voltages = voltageRefs.current.map(ref => parseFloat(ref.value) || 0);
             const voltageSum = voltages.reduce((acc, v) => acc + v, 0);
 
@@ -37,7 +34,7 @@ function Kirchhoff() {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src="https://images.credly.com/images/d30e23c4-60cb-4a5d-b826-b0cd4a9cb0bc/profile_img.jpg" />
+                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
                 </div>
                 <h2 className="course-title">Kirchhoff's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Kirchhoff">View</button>

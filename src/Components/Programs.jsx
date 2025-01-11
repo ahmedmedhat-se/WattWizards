@@ -35,11 +35,8 @@ function Programs() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const programsPerPage = 6;
-
-    // Create a ref for the Programs section
     const programsRef = useRef(null);
 
-    // Calculate pagination
     const totalPages = Math.ceil(programsList.length / programsPerPage);
     const startIndex = (currentPage - 1) * programsPerPage;
     const currentPrograms = programsList.slice(startIndex, startIndex + programsPerPage);
@@ -47,7 +44,6 @@ function Programs() {
     const handlePageChange = (page) => {
         setCurrentPage(page);
         
-        // Scroll to the top of the Programs section smoothly
         programsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 

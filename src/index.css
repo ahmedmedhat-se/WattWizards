@@ -102,20 +102,21 @@ nav, .navbar .offcanvas-end {
 
 nav .navbar-brand strong, .navbar .offcanvas-end .offcanvas-title {
   color: #fff;
-  font-size: 20px;
+  font-size: 22px;
   font-family: 'Orbitron', sans-serif;
 }
 
-nav #nav-conatiner .navbar-nav .nav-item .nav-link {
+nav .offcanvas-body .navbar-nav .nav-item .nav-link {
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
   font-family: 'Orbitron', sans-serif;
 }
 
 nav .navbar-toggler {
-  background-color: #ffffff;
+  background: rgb(30, 0, 36);
+  background: linear-gradient(90deg, rgb(44, 10, 136) 0%, rgb(83, 3, 99) 100%);
   border: none;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 nav .nav-link {

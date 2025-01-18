@@ -17,12 +17,14 @@ function Footer() {
             <div className="row p-4 justify-content-center">
                 <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <div className="text-center text-md-start">
+                        <Link to="/">
                         <img
                             src={`${process.env.PUBLIC_URL}/logo.png`}
                             alt="Logo"
                             className="img-fluid mb-3"
                             style={{ maxWidth: '100px' }}
                         />
+                        </Link>
                         <p className="text-light">{data.company.description}</p>
                     </div>
                 </div>

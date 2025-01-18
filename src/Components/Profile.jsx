@@ -96,7 +96,7 @@ function Profile() {
               {/* Change Image */}
               {editing && (
                 <div className="mt-3">
-                  <input type="file" onChange={handleImageChange} />
+                  <input type="file" className='form-control' onChange={handleImageChange} />
                 </div>
               )}
             </div>
@@ -122,7 +122,7 @@ function Profile() {
               <hr />
 
               {/* Recent Repositories Section */}
-              <h5>Recent Repositories</h5>
+              <h5>Recent Files</h5>
               <ul className="list-group">
                 {files.length > 0 ? (
                   files.map((file, index) => (

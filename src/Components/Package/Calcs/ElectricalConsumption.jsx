@@ -69,7 +69,7 @@ function ElectricalConsumption() {
                 <button type="button" data-bs-toggle="modal" data-bs-target="#ECCView" className="btn btn-success">View</button>
                 <button type="button" data-bs-toggle="modal" data-bs-target="#ECCProg" className="btn btn-success">Program</button>
             </div>
-            <div className="modal fade" id="ECCView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div className="modal fade" id="ECCView" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -107,7 +107,7 @@ function ElectricalConsumption() {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="ECCProg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div className="modal fade" id="ECCProg" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -120,7 +120,7 @@ function ElectricalConsumption() {
                             <div className="container-fluid">
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-10 p-2 mt-2">
-                                        <form action="#" autocomplete="on">
+                                        <form action="#" autoComplete="on">
                                             <span>
                                                 <label htmlFor="powerConsumption" className="form-label">Power - القدره</label>
                                                 <input type="text" placeholder="القدره" id="powerConsumption" ref={powerConsumptionRef} required
@@ -176,16 +176,16 @@ function ElectricalConsumption() {
                                                 <label className="form-label">Current in kW/Watts - التيار
                                                     بالكيلووات/الوات</label>
                                                 <div className="input-group">
-                                                    <input readonly type="text" id="CurrentLoadDefinedKW"
+                                                    <input readOnly type="text" id="CurrentLoadDefinedKW"
                                                         className="form-control"
                                                         placeholder="Kilowatts - كيلووات" value={results.currentLoadKW} /><br />
-                                                    <input readonly type="text" id="CurrentLoadDefinedW" value={results.currentLoadW}
+                                                    <input readOnly type="text" id="CurrentLoadDefinedW" value={results.currentLoadW}
                                                         className="form-control" placeholder="Watts - وات" /><br />
                                                 </div><br />
 
                                                 <label htmlFor="kWHour" className="form-label">Load in kWh - (ساعه) الحمل
                                                     بالكيلووات</label>
-                                                <input readonly type="text" id="kWHour" value={results.kWh} className="form-control"
+                                                <input readOnly type="text" id="kWHour" value={results.kWh} className="form-control"
                                                     placeholder="Load in kWh - (ساعه) الحمل بالكيلووات" /><br />
 
                                                 <label htmlFor="avgConsumption" className="form-label">Average consumption
@@ -193,7 +193,7 @@ function ElectricalConsumption() {
                                                     month - (كيلووات
                                                     ساعة/شهر) متوسط
                                                     الاستهلاك شهريا</label>
-                                                <input readonly type="text" id="avgConsumption" value={results.avgConsumption} className="form-control"
+                                                <input readOnly type="text" id="avgConsumption" value={results.avgConsumption} className="form-control"
                                                     placeholder="Average consumption per month - متوسط ​​الاستهلاك شهريا" />
                                             </span>
                                         </form>

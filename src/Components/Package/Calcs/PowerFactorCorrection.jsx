@@ -77,11 +77,11 @@ function PowerFactorCorrection() {
                     </div>
                     <img src={`${process.env.PUBLIC_URL}/logo.png`} />
                 </div>
-                <h2 class="course-title">Power-Factor-Correction (Program)</h2>
+                <h2 className="course-title">Power-Factor-Correction (Program)</h2>
                 <button data-bs-toggle="modal" data-bs-target="#PFCView" className="btn btn-success">View</button>
                 <button data-bs-toggle="modal" data-bs-target="#PFCProgram" className="btn btn-success">Program</button>
             </div>
-            <div className="modal fade" id="PFCView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div className="modal fade" id="PFCView" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -187,7 +187,7 @@ function PowerFactorCorrection() {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="PFCProgram" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div className="modal fade" id="PFCProgram" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -200,7 +200,7 @@ function PowerFactorCorrection() {
                             <div className="container-fluid">
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-10 p-2 mt-2">
-                                        <form action="#" autocomplete="on">
+                                        <form action="#" autoComplete="on">
                                             <span>
                                                 <label htmlFor="power" className="form-label">Power - القدره</label>
                                                 <div className="input-group mb-3">
@@ -258,23 +258,23 @@ function PowerFactorCorrection() {
 
                                                 <label htmlFor="active" className="form-label">Active Power (kw) - القدره
                                                     الفعاله</label>
-                                                <input type="number" readonly id="active" value={resultsPF.active} className="form-control"
+                                                <input type="number" readOnly id="active" value={resultsPF.active} className="form-control"
                                                     placeholder="Active Power (kw) - القدره الفعاله :" /><br />
 
                                                 <label htmlFor="apparent" className="form-label">Apparent Power (kVA) - القدره
                                                     الظاهره</label>
-                                                <input type="number" readonly id="apparent" value={resultsPF.apparent} className="form-control"
+                                                <input type="number" readOnly id="apparent" value={resultsPF.apparent} className="form-control"
                                                     placeholder="Apparent Power (kVA) - القدره الظاهره :" /><br />
 
                                                 <label htmlFor="reactive" className="form-label">Reactive Power (kVAR) - القدره الغير
                                                     فعاله</label>
-                                                <input type="number" readonly id="reactive" value={resultsPF.reactive} className="form-control"
+                                                <input type="number" readOnly id="reactive" value={resultsPF.reactive} className="form-control"
                                                     placeholder="Reactive Power (kVAR) - القدره الغير فعاله :" /><br />
 
                                                 <label htmlFor="microFarad" className="form-label">The capacitance of the
                                                     capacitor is in microfarads µF
                                                     - سعة المكثف بوحدة الميكروفاراد</label>
-                                                <input type="number" readonly id="microFarad" value={resultsPF.microFarad} className="form-control"
+                                                <input type="number" readOnly id="microFarad" value={resultsPF.microFarad} className="form-control"
                                                     placeholder="The capacitance of the capacitor is in microfarads µF - سعة المكثف بوحدة الميكروفاراد μF :" /><br />
                                             </span>
                                         </form>

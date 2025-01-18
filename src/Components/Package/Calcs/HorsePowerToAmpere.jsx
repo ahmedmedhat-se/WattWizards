@@ -51,7 +51,7 @@ function HorsePower2Ampere() {
                 <button type="button" className="btn btn-success" data-bs-toggle="modal"
                     data-bs-target="#HP2AProgram">Program</button>
             </div>
-            <div className="modal fade" id="HP2A" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div className="modal fade" id="HP2A" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -97,7 +97,7 @@ function HorsePower2Ampere() {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="HP2AProgram" tabindex="-1" role="dialog"
+            <div className="modal fade" id="HP2AProgram" tabIndex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
@@ -111,7 +111,7 @@ function HorsePower2Ampere() {
                             <div className="container-fluid">
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-10 p-2 mt-2">
-                                        <form action="#" autocomplete="on">
+                                        <form action="#" autoComplete="on">
                                             <span>
                                                 <label htmlFor="horsepower" className="form-label">Type Of Voltage - نوع
                                                     الجهد</label>
@@ -145,7 +145,7 @@ function HorsePower2Ampere() {
 
                                                 <label htmlFor="CurrentAmpere" className="form-label">Ampere (A) -
                                                     الأمبير</label>
-                                                <input type="text" readonly id="CurrentAmpere" className="form-control"
+                                                <input type="text" readOnly id="CurrentAmpere" className="form-control"
                                                     placeholder="The Ampere - الأمبير" value={currentAmpere} /><br />
                                             </span>
                                         </form>

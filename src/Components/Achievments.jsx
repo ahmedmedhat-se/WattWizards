@@ -42,7 +42,7 @@ function Achievments() {
                         <h2 className="course-title">BASEF 2024</h2>
                         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#BASEF24">View</button>
                     </div>
-                    <div className="modal fade" id="BASEF24" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal fade" id="BASEF24" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -76,7 +76,7 @@ function Achievments() {
                         <h2 className="course-title">IEEE YESIST12 Junior Einstein</h2>
                         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#IEEE">View</button>
                     </div>
-                    <div className="modal fade" id="IEEE" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal fade" id="IEEE" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -111,7 +111,7 @@ function Achievments() {
                         <h2 className="course-title">NCCSI 2024</h2>
                         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#NCCSI">View</button>
                     </div>
-                    <div className="modal fade" id="NCCSI" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal fade" id="NCCSI" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -149,7 +149,7 @@ function Achievments() {
                         <h2 className="course-title">City of Scientific Research and Technological Applications - Approval Of Scientific Research</h2>
                         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#SRTA">View</button>
                     </div>
-                    <div className="modal fade" id="SRTA" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div className="modal fade" id="SRTA" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -185,7 +185,7 @@ function Achievments() {
             {/* <!-- Consultations Area Starts --> */}
             <div id="feedback-form-wrapper">
                 <div id="feedback-form-modal">
-                    <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">

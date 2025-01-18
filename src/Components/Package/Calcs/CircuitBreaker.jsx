@@ -144,12 +144,12 @@ function CircuitBreaker() {
                     </div>
                     <img src={`${process.env.PUBLIC_URL}/logo.png`} />
                 </div>
-                <h2 className="course-title">Circuit-Breaker (Program)</h2>
+                <h2 className="course-title">Circuit-Breaker Size (Program)</h2>
                 <button className="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#CBModal">View</button>
                 <button className="btn btn-success" type="button" data-bs-toggle="modal"
                     data-bs-target="#CBModalProj">Program</button>
             </div>
-            <div className="modal fade" id="CBModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            <div className="modal fade" id="CBModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
                 aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -225,12 +225,12 @@ function CircuitBreaker() {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="CBModalProj" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            <div className="modal fade" id="CBModalProj" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
                 aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLongTitle">Circuit-Breaker (Program)</h5>
+                            <h5 className="modal-title" id="exampleModalLongTitle">Circuit-Breaker Size (Program)</h5>
                             <button type="button" className="btn close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -288,7 +288,6 @@ function CircuitBreaker() {
                                                 </div><br />
 
                                                 <label htmlFor="voltage" className="form-label">Voltage - الفولت :</label>
-                                                <a href="#" target="_blank">Need Any Help?</a>
                                                 <input
                                                     type="text"
                                                     placeholder="Volat - الفولت"

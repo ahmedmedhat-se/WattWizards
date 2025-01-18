@@ -16,7 +16,7 @@ function Ampere() {
                 <h2 className="course-title">Andre-Marie Ampere's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#AMA">View</button>
             </div>
-            <div className="modal fade" id="AMA" tabindex="-1" role="dialog"
+            <div className="modal fade" id="AMA" tabIndex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">

@@ -42,7 +42,7 @@ function VoltAmpere2Watt() {
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#VA2W">View</button>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#VA2WProgram">Program</button>
             </div>
-            <div className="modal fade" id="VA2W" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            <div className="modal fade" id="VA2W" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
                 aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -99,7 +99,7 @@ function VoltAmpere2Watt() {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="VA2WProgram" tabindex="-1" role="dialog"
+            <div className="modal fade" id="VA2WProgram" tabIndex="-1" role="dialog"
                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
@@ -113,7 +113,7 @@ function VoltAmpere2Watt() {
                             <div className="container-fluid">
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-10 p-2 mt-2">
-                                        <form action="#" autocomplete="on">
+                                        <form action="#" autoComplete="on">
                                             <span>
                                                 <label htmlFor="VATOWATTS" className="form-label">Volt Ampere - فولت
                                                     أمبير</label>
@@ -134,11 +134,11 @@ function VoltAmpere2Watt() {
 
                                                 <label htmlFor="WATTAFTERVA" className="form-label">Load In Watts
                                                     (W)</label>
-                                                <input readonly type="text" id="WATTAFTERVA" value={wattsAfterVA} className="form-control"
+                                                <input readOnly type="text" id="WATTAFTERVA" value={wattsAfterVA} className="form-control"
                                                     placeholder="(W - وات) الحمل بالوات" /><br />
                                                 <label htmlFor="KILOWATTAFTERVA" className="form-label">Load In Kilowatts
                                                     (kW)</label>
-                                                <input readonly type="text" id="KILOWATTAFTERVA"
+                                                <input readOnly type="text" id="KILOWATTAFTERVA"
                                                     className="form-control" value={kilowattsAfterVA}
                                                     placeholder="(kW - كيلووات) الحمل بالكيلووات" /><br />
                                             </span>

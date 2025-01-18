@@ -42,7 +42,7 @@ const TonToHpConverter = () => {
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Ton2Hp">View</button>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Ton2HpProgram">Program</button>
             </div>
-            <div className="modal fade" id="Ton2Hp" tabindex="-1" role="dialog"
+            <div className="modal fade" id="Ton2Hp" tabIndex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
@@ -89,7 +89,7 @@ const TonToHpConverter = () => {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="Ton2HpProgram" tabindex="-1" role="dialog" aria-labelledby="TonToHPModalTitle" aria-hidden="true">
+            <div className="modal fade" id="Ton2HpProgram" tabIndex="-1" role="dialog" aria-labelledby="TonToHPModalTitle" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -102,7 +102,7 @@ const TonToHpConverter = () => {
                             <div className="container-fluid">
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-10 p-2 mt-2">
-                                        <form action="#" autocomplete="on">
+                                        <form action="#" autoComplete="on">
                                             <div className="form-group">
                                                 <label htmlFor="tonInput" className="form-label">Enter Ton Value:</label>
                                                 <input
@@ -130,7 +130,7 @@ const TonToHpConverter = () => {
                                                     <label htmlFor="hpResult" className="form-label">Equivalent Horsepower:</label>
                                                     <input
                                                         type="text"
-                                                        readonly
+                                                        readOnly
                                                         id="hpResult"
                                                         value={`${hpValue} HP`}
                                                         className="form-control"

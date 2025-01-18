@@ -390,7 +390,8 @@ section h2 {
 
 .CodeCrafters .CodeCrafters-desc h2 {
   font-size: 48px;
-  color: var(--dark-heading-clr);
+  color: #7170d7;
+  font-weight: bold;
   letter-spacing: 1px;
   line-height: 1.4;
   margin-bottom: 10px;
@@ -427,8 +428,8 @@ section h2 {
   width: 50px;
   height: 50px;
   background-color: transparent;
-  border: 5px solid rgba(9, 5, 70, 0.6);
-  border-radius: 20px;
+  border: 3px solid rgba(9, 5, 70, 0.5);
+  border-radius: 50%;
 }
 
 .CodeCrafters .box div:nth-child(1) {
@@ -639,6 +640,11 @@ section.cards-lg-containers {
   position: relative;
   display: flex;
   justify-content: space-between;
+}
+
+.cards-lg-containers .section-header .header-text h1{
+  color: #7170d7;
+  font-weight: bold;
 }
 
 .cards-lg-containers .section-header .cards-lg-containers-btn {

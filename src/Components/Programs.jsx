@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import CircuitBreaker from "./Package/Calcs/CircuitBreaker";
+import DataSetProgram from './Package/Calcs/DataSetProgram';
 import PowerFactorCorrection from "./Package/Calcs/PowerFactorCorrection";
 import ElectricalConsumption from "./Package/Calcs/ElectricalConsumption";
 import HorsePower2Ampere from "./Package/Calcs/HorsePowerToAmpere";
@@ -18,6 +19,7 @@ import TonToHpConverter from './Package/Calcs/Ton2Hp';
 function Programs() {
     const programsList = [
         <CircuitBreaker />,
+        <DataSetProgram />,
         <PowerFactorCorrection />,
         <ElectricalConsumption />,
         <HorsePower2Ampere />,
@@ -56,7 +58,7 @@ function Programs() {
                         These programs that we designed,
                         you can now view our scientific and research documents
                         under each program to obtain knowledge of these programs,
-                        and you can download your specified calculation files according to your statement!..
+                        and you can download your specified calculation files according to your statement!.
                     </p>
                 </div>
                 <button

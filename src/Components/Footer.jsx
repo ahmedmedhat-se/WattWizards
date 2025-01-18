@@ -18,12 +18,12 @@ function Footer() {
                 <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <div className="text-center text-md-start">
                         <Link to="/">
-                        <img
-                            src={`${process.env.PUBLIC_URL}/logo.png`}
-                            alt="Logo"
-                            className="img-fluid mb-3"
-                            style={{ maxWidth: '100px' }}
-                        />
+                            <img
+                                src={`${process.env.PUBLIC_URL}/logo.png`}
+                                alt="Logo"
+                                className="img-fluid mb-3"
+                                style={{ maxWidth: '100px' }}
+                            />
                         </Link>
                         <p className="text-light">{data.company.description}</p>
                     </div>
@@ -32,22 +32,22 @@ function Footer() {
                 <div className="col-lg-4 col-md-6 mb-4 mb-lg-0 text-center">
                     <h5 className="text-uppercase text-light mb-4">Services</h5>
                     <ul className="list-unstyled">
-                        <li className='mb-2'>
+                        <li className='mb-3'>
+                            <Link to="/programs">
+                                {data.services['available-programs']}
+                            </Link>
+                        </li>
+                        <li className='mb-3'>
                             <Link to="/workspace">
                                 {data.services['electrical-circuit-analysis']}
                             </Link>
                         </li>
-                        <li className='mb-2'>
+                        <li className='mb-3'>
                             <Link to="/vault">
                                 {data.services['energy-consumption-monitoring']}
                             </Link>
                         </li>
-                        <li className='mb-2'>
-                            <Link to="/programs">
-                                {data.services['power-factor-correction']}
-                            </Link>
-                        </li>
-                        <li className='mb-2'>
+                        <li className='mb-3'>
                             <Link to="/achievments">
                                 {data.services['achievments']}
                             </Link>

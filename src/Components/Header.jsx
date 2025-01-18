@@ -67,7 +67,7 @@ function Header() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark p-4 fixed-top shadow-sm">
             <div className="container">
-                <Link className='navbar-brand text-light' to='/wattwizards'>
+                <Link className='navbar-brand text-light' to='/'>
                     <strong>WattWizards</strong>
                 </Link>
                 <button 

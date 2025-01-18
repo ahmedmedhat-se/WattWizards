@@ -51,7 +51,7 @@ function Ampere2Watt() {
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#A2W">View</button>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#A2WProgram">Program</button>
             </div>
-            <div className="modal fade" id="A2W" tabindex="-1" role="dialog"
+            <div className="modal fade" id="A2W" tabIndex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
@@ -155,7 +155,7 @@ function Ampere2Watt() {
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="A2WProgram" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div className="modal fade" id="A2WProgram" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -168,7 +168,7 @@ function Ampere2Watt() {
                             <div className="container-fluid">
                                 <div className="row d-flex justify-content-center align-items-center">
                                     <div className="col-10 p-2 mt-2">
-                                        <form action="#" autocomplete="on">
+                                        <form action="#" autoComplete="on">
                                             <span>
                                                 <label htmlFor="AmpereToWattInp" className="form-label">Type Of Current -
                                                     نوع
@@ -203,13 +203,13 @@ function Ampere2Watt() {
                                                 <label htmlFor="WattAfterAmpereConversion" className="form-label">Watt (W)
                                                     -
                                                     وات</label>
-                                                <input type="number" readonly id="WattAfterAmpereConversion" value={wattResult}
+                                                <input type="number" readOnly id="WattAfterAmpereConversion" value={wattResult}
                                                     className="form-control" placeholder="Watts - وات" /><br />
 
                                                 <label htmlFor="kWattAfterAmpereConversion" className="form-label">Kilowatts (kW)
                                                     -
                                                     وات</label>
-                                                <input type="number" readonly id="kWattAfterAmpereConversion" value={kwattResult}
+                                                <input type="number" readOnly id="kWattAfterAmpereConversion" value={kwattResult}
                                                     className="form-control" placeholder="Kilowatts - كيلووات" /><br />
                                             </span>
                                         </form>

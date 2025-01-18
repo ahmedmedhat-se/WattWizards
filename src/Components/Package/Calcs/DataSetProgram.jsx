@@ -19,15 +19,46 @@ function DataSetProgram() {
     { size: "120", conduit: { current: 235, breaker: 200 }, multiCore: { current: 292, breaker: 250 }, singleCore: { current: 344, breaker: 315 } },
   ];
 
+  // Copper Cable Loads Table Data
+  const copperCableData = [
+    { size: 1.5, A1: 13.5, A2: 13, B1: 15.5, B2: 15, C: 17.5, D1: 18, D2: 19 },
+    { size: 2.5, A1: 18, A2: 17.5, B1: 21, B2: 20, C: 24, D1: 24, D2: 24 },
+    { size: 4, A1: 24, A2: 23, B1: 28, B2: 27, C: 32, D1: 30, D2: 33 },
+    { size: 6, A1: 31, A2: 29, B1: 36, B2: 34, C: 41, D1: 38, D2: 41 },
+    { size: 10, A1: 42, A2: 39, B1: 50, B2: 46, C: 57, D1: 50, D2: 54 },
+    { size: 16, A1: 56, A2: 52, B1: 68, B2: 62, C: 76, D1: 64, D2: 70 },
+    { size: 25, A1: 73, A2: 68, B1: 89, B2: 80, C: 96, D1: 82, D2: 92 },
+    { size: 35, A1: 89, A2: 83, B1: 110, B2: 99, C: 119, D1: 98, D2: 110 },
+    { size: 50, A1: 108, A2: 99, B1: 134, B2: 118, C: 144, D1: 116, D2: 130 },
+    { size: 70, A1: 136, A2: 125, B1: 171, B2: 149, C: 184, D1: 143, D2: 162 },
+    { size: 95, A1: 164, A2: 150, B1: 207, B2: 179, C: 223, D1: 169, D2: 193 },
+    { size: 120, A1: 188, A2: 172, B1: 239, B2: 206, C: 259, D1: 192, D2: 220 },
+  ];
+
+  // Aluminum Cable Loads Table Data
+  const aluminumCableData = [
+    { size: 2.5, A1: 14, A2: 13.5, B1: 16.5, B2: 15.5, C: 18.5, D1: 18.5, D2: '-' },
+    { size: 4, A1: 18.5, A2: 17.5, B1: 22, B2: 21, C: 25, D1: 24, D2: '-' },
+    { size: 6, A1: 24, A2: 23, B1: 28, B2: 27, C: 32, D1: 30, D2: '-' },
+    { size: 10, A1: 32, A2: 31, B1: 39, B2: 36, C: 44, D1: 39, D2: '-' },
+    { size: 16, A1: 43, A2: 41, B1: 53, B2: 48, C: 59, D1: 50, D2: 53 },
+    { size: 25, A1: 57, A2: 53, B1: 70, B2: 62, C: 73, D1: 64, D2: 69 },
+    { size: 35, A1: 70, A2: 65, B1: 86, B2: 77, C: 90, D1: 77, D2: 83 },
+    { size: 50, A1: 84, A2: 78, B1: 104, B2: 92, C: 110, D1: 91, D2: 99 },
+    { size: 70, A1: 107, A2: 98, B1: 133, B2: 116, C: 140, D1: 112, D2: 122 },
+    { size: 95, A1: 129, A2: 118, B1: 161, B2: 139, C: 170, D1: 132, D2: 148 },
+    { size: 120, A1: 149, A2: 135, B1: 186, B2: 160, C: 197, D1: 150, D2: 169 },
+  ];
+
   return (
     <>
       <div className="cards-lg-containers-card">
-        <img src={image} />
+        <img src={image} alt="Circuit Breaker Data Set" />
         <div className="category">
           <div className="subject">
             <h3>Software/Electricity</h3>
           </div>
-          <img src={`${process.env.PUBLIC_URL}/logo.png`} />
+          <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Logo" />
         </div>
         <h2 className="course-title">Circuit-Breaker/Cable (Data Sets)</h2>
         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#BreakerData">Breaker Data</button>
@@ -47,43 +78,42 @@ function DataSetProgram() {
             <div className="modal-body">
               <div className="container-fluid">
                 <div className="row d-flex justify-content-center align-items-center">
-                  <div className="col-10 p-2 mt-2">
+                  <div className="col-12 p-2 mt-2">
                     <h3 className="HeaderStyleH2">Household load breakers table</h3>
-                    <p className="text-center">The following table shows the cable cross-section,
-                      the amount of current it can withstand, and the breaker value
-                      Suitable according to the extension method for household installations and wiring circuits
-                    </p>
-                    <table className="table table-bordered table-hover text-center">
-                      <thead className="thead-dark">
-                        <tr>
-                          <th rowSpan="2">Cross-sectional area of ​​copper wire mm<sup>2</sup></th>
-                          <th colSpan="2">One ​​or more cables lying in pipes</th>
-                          <th colSpan="2">Multi-core cables</th>
-                          <th colSpan="2">Single core cables lying in the air</th>
-                        </tr>
-                        <tr>
-                          <th>Cable current (A)</th>
-                          <th>The value of the cutter (A)</th>
-                          <th>Cable current (A)</th>
-                          <th>The value of the cutter (A)</th>
-                          <th>Cable current (A)</th>
-                          <th>The value of the cutter (A)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {tableData.map((row, index) => (
-                          <tr key={index}>
-                            <td>{row.size}</td>
-                            <td>{row.conduit.current}</td>
-                            <td>{row.conduit.breaker}</td>
-                            <td>{row.multiCore.current}</td>
-                            <td>{row.multiCore.breaker}</td>
-                            <td>{row.singleCore.current}</td>
-                            <td>{row.singleCore.breaker}</td>
+                    <p className="text-center">The following table shows the cable cross-section, the amount of current it can withstand, and the breaker value suitable for household installations and wiring circuits.</p>
+                    <div className="table-responsive">
+                      <table className="table table-bordered table-hover text-center">
+                        <thead className="thead-dark">
+                          <tr>
+                            <th rowSpan="2">Cross-sectional area of copper wire mm<sup>2</sup></th>
+                            <th colSpan="2">One or more cables lying in pipes</th>
+                            <th colSpan="2">Multi-core cables</th>
+                            <th colSpan="2">Single core cables lying in the air</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                          <tr>
+                            <th>Cable current (A)</th>
+                            <th>The value of the cutter (A)</th>
+                            <th>Cable current (A)</th>
+                            <th>The value of the cutter (A)</th>
+                            <th>Cable current (A)</th>
+                            <th>The value of the cutter (A)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {tableData.map((row, index) => (
+                            <tr key={index}>
+                              <td>{row.size}</td>
+                              <td>{row.conduit.current}</td>
+                              <td>{row.conduit.breaker}</td>
+                              <td>{row.multiCore.current}</td>
+                              <td>{row.multiCore.breaker}</td>
+                              <td>{row.singleCore.current}</td>
+                              <td>{row.singleCore.breaker}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -108,86 +138,83 @@ function DataSetProgram() {
             <div className="modal-body">
               <div className="container-fluid">
                 <div className="row d-flex justify-content-center align-items-center">
-                  <div className="col-10 p-2 mt-2">
+                  <div className="col-12 p-2 mt-2">
                     <h2 className="HeaderStyleH2">Cable Loads Table</h2>
 
                     {/* Copper Cables Table */}
                     <div className="mb-5">
                       <h2 className="HeaderStyleH2">Copper Cable Loads Table</h2>
-                      <table className="table table-bordered table-hover text-center">
-                        <thead className="thead-dark">
-                          <tr>
-                            <th rowSpan="2">Wire cross-sectional area (mm2)</th>
-                            <th colSpan="7">Cable extension method</th>
-                          </tr>
-                          <tr>
-                            <th>A1</th>
-                            <th>A2</th>
-                            <th>B1</th>
-                            <th>B2</th>
-                            <th>C</th>
-                            <th>D1</th>
-                            <th>D2</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr><td>1.5</td><td>13.5</td><td>13</td><td>15.5</td><td>15</td><td>17.5</td><td>18</td><td>19</td></tr>
-                          <tr><td>2.5</td><td>18</td><td>17.5</td><td>21</td><td>20</td><td>24</td><td>24</td><td>24</td></tr>
-                          <tr><td>4</td><td>24</td><td>23</td><td>28</td><td>27</td><td>32</td><td>30</td><td>33</td></tr>
-                          <tr><td>6</td><td>31</td><td>29</td><td>36</td><td>34</td><td>41</td><td>38</td><td>41</td></tr>
-                          <tr><td>10</td><td>42</td><td>39</td><td>50</td><td>46</td><td>57</td><td>50</td><td>54</td></tr>
-                          <tr><td>16</td><td>56</td><td>52</td><td>68</td><td>62</td><td>76</td><td>64</td><td>70</td></tr>
-                          <tr><td>25</td><td>73</td><td>68</td><td>89</td><td>80</td><td>96</td><td>82</td><td>92</td></tr>
-                          <tr><td>35</td><td>89</td><td>83</td><td>110</td><td>99</td><td>119</td><td>98</td><td>110</td></tr>
-                          <tr><td>50</td><td>108</td><td>99</td><td>134</td><td>118</td><td>144</td><td>116</td><td>130</td></tr>
-                          <tr><td>70</td><td>136</td><td>125</td><td>171</td><td>149</td><td>184</td><td>143</td><td>162</td></tr>
-                          <tr><td>95</td><td>164</td><td>150</td><td>207</td><td>179</td><td>223</td><td>169</td><td>193</td></tr>
-                          <tr><td>120</td><td>188</td><td>172</td><td>239</td><td>206</td><td>259</td><td>192</td><td>220</td></tr>
-                          <tr><td>150</td><td>216</td><td>196</td><td>262</td><td>225</td><td>299</td><td>217</td><td>246</td></tr>
-                          <tr><td>185</td><td>245</td><td>223</td><td>296</td><td>255</td><td>341</td><td>243</td><td>278</td></tr>
-                          <tr><td>240</td><td>286</td><td>261</td><td>346</td><td>297</td><td>403</td><td>280</td><td>320</td></tr>
-                          <tr><td>300</td><td>328</td><td>298</td><td>394</td><td>339</td><td>464</td><td>316</td><td>359</td></tr>
-                        </tbody>
-                      </table>
+                      <div className="table-responsive">
+                        <table className="table table-bordered table-hover text-center">
+                          <thead className="thead-dark">
+                            <tr>
+                              <th rowSpan="2">Wire cross-sectional area (mm2)</th>
+                              <th colSpan="7">Cable extension method</th>
+                            </tr>
+                            <tr>
+                              <th>A1</th>
+                              <th>A2</th>
+                              <th>B1</th>
+                              <th>B2</th>
+                              <th>C</th>
+                              <th>D1</th>
+                              <th>D2</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {copperCableData.map((row, index) => (
+                              <tr key={index}>
+                                <td>{row.size}</td>
+                                <td>{row.A1}</td>
+                                <td>{row.A2}</td>
+                                <td>{row.B1}</td>
+                                <td>{row.B2}</td>
+                                <td>{row.C}</td>
+                                <td>{row.D1}</td>
+                                <td>{row.D2}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
 
                     {/* Aluminum Cables Table */}
                     <div className="mb-5">
-                      <h2 className="HeaderStyleH2">Aluminum cable loads table</h2>
-                      <table className="table table-bordered table-hover text-center">
-                        <thead className="thead-dark">
-                          <tr>
-                            <th rowSpan="2">Wire cross-sectional area (mm2)</th>
-                            <th colSpan="7">Cable extension method</th>
-                          </tr>
-                          <tr>
-                            <th>A1</th>
-                            <th>A2</th>
-                            <th>B1</th>
-                            <th>B2</th>
-                            <th>C</th>
-                            <th>D1</th>
-                            <th>D2</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr><td>2.5</td><td>14</td><td>13.5</td><td>16.5</td><td>15.5</td><td>18.5</td><td>18.5</td><td>-</td></tr>
-                          <tr><td>4</td><td>18.5</td><td>17.5</td><td>22</td><td>21</td><td>25</td><td>24</td><td>-</td></tr>
-                          <tr><td>6</td><td>24</td><td>23</td><td>28</td><td>27</td><td>32</td><td>30</td><td>-</td></tr>
-                          <tr><td>10</td><td>32</td><td>31</td><td>39</td><td>36</td><td>44</td><td>39</td><td>-</td></tr>
-                          <tr><td>16</td><td>43</td><td>41</td><td>53</td><td>48</td><td>59</td><td>50</td><td>53</td></tr>
-                          <tr><td>25</td><td>57</td><td>53</td><td>70</td><td>62</td><td>73</td><td>64</td><td>69</td></tr>
-                          <tr><td>35</td><td>70</td><td>65</td><td>86</td><td>77</td><td>90</td><td>77</td><td>83</td></tr>
-                          <tr><td>50</td><td>84</td><td>78</td><td>104</td><td>92</td><td>110</td><td>91</td><td>99</td></tr>
-                          <tr><td>70</td><td>107</td><td>98</td><td>133</td><td>116</td><td>140</td><td>112</td><td>122</td></tr>
-                          <tr><td>95</td><td>129</td><td>118</td><td>161</td><td>139</td><td>170</td><td>132</td><td>148</td></tr>
-                          <tr><td>120</td><td>149</td><td>135</td><td>186</td><td>160</td><td>197</td><td>150</td><td>169</td></tr>
-                          <tr><td>150</td><td>170</td><td>155</td><td>204</td><td>176</td><td>227</td><td>169</td><td>189</td></tr>
-                          <tr><td>185</td><td>194</td><td>176</td><td>230</td><td>199</td><td>259</td><td>190</td><td>214</td></tr>
-                          <tr><td>240</td><td>227</td><td>207</td><td>269</td><td>232</td><td>305</td><td>218</td><td>250</td></tr>
-                          <tr><td>300</td><td>261</td><td>237</td><td>306</td><td>265</td><td>351</td><td>247</td><td>282</td></tr>
-                        </tbody>
-                      </table>
+                      <h2 className="HeaderStyleH2">Aluminum Cable Loads Table</h2>
+                      <div className="table-responsive">
+                        <table className="table table-bordered table-hover text-center">
+                          <thead className="thead-dark">
+                            <tr>
+                              <th rowSpan="2">Wire cross-sectional area (mm2)</th>
+                              <th colSpan="7">Cable extension method</th>
+                            </tr>
+                            <tr>
+                              <th>A1</th>
+                              <th>A2</th>
+                              <th>B1</th>
+                              <th>B2</th>
+                              <th>C</th>
+                              <th>D1</th>
+                              <th>D2</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {aluminumCableData.map((row, index) => (
+                              <tr key={index}>
+                                <td>{row.size}</td>
+                                <td>{row.A1}</td>
+                                <td>{row.A2}</td>
+                                <td>{row.B1}</td>
+                                <td>{row.B2}</td>
+                                <td>{row.C}</td>
+                                <td>{row.D1}</td>
+                                <td>{row.D2}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -201,6 +228,6 @@ function DataSetProgram() {
       </div>
     </>
   );
-};
+}
 
 export default DataSetProgram;

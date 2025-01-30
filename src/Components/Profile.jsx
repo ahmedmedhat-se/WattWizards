@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Profile() {
   // Initialize state for profile information
@@ -92,6 +93,7 @@ function Profile() {
                   profile.username
                 )}
               </p>
+              <Link to="/project" className='btn btn-primary'>DevSync</Link>
 
               {/* Change Image */}
               {editing && (
@@ -121,7 +123,7 @@ function Profile() {
               )}
               <hr />
 
-              {/* Recent Repositories Section */}
+              {/* Recent Files Section */}
               <h5>Recent Files</h5>
               <ul className="list-group">
                 {files.length > 0 ? (

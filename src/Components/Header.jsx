@@ -13,8 +13,7 @@ function Header() {
         { path: '/workspace', name: 'Workspace' },
         { path: '/vault', name: 'CircuitVault' },
         { path: '/login', name: 'Login' },
-        { path: '/profile', name: 'Profile' },
-        { path: '/project', name: 'DevSync' },
+        { path: '/profile', name: 'Profile' }
     ];
 
     useEffect(() => {

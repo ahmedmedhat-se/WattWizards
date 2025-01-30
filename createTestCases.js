@@ -283,6 +283,72 @@ function createElectricConsumptionTests() {
 //! =========== POWER FACTOR CORRECTION ==================
 //* =========== PREMIUM ==================
 
+// function createPowerFactorCorrectionTests() {
+//   let currentProcess = "PowerFactorCorrection";
+//   let outPut = join(__dirname, "public/test-cases/", currentProcess);
+//   let sheet1 = [
+//     [
+//       "power",
+//       "powerUnit",
+//       "Efficiency",
+//       "oldPF",
+//       "newPF",
+//       "frequency",
+//       "Voltage",
+//       "phases",
+//       "active power",
+//       "apparent power",
+//       "reactive power",
+//       "capacitor size",
+//     ],
+//   ];
+
+//   for (let rowNumber = 0; rowNumber < 100; rowNumber++) {
+//     let data = {
+//       power: (Math.random() * 100).toFixed(),
+//       Efficiency: 1,
+//       powerUnit: (Math.random() * 100).toFixed() % 2 == 0 ? "KW" : "A",
+//       Voltage: 220,
+//       phases:
+//         (Math.random() * 100).toFixed() % 2 == 0 ? "one phase" : "three phases",
+//       newPF: (Math.random() * 10).toFixed(1),
+//       oldPF: (Math.random() * 10).toFixed(1),
+//       frequency: (Math.random() * 100).toFixed(),
+//     };
+
+//     powerFactorCorrectionFunction(
+//       data,
+//       (activePower, apparentPower, reactivePower, microCapacitor) => {
+//         data["active power"] = activePower;
+//         data["apparent power"] = apparentPower;
+//         data["reactive power"] = reactivePower;
+//         data["capacitor size"] = microCapacitor;
+//       }
+//     );
+
+//     sheet1.push([
+//       data["power"],
+//       data["powerUnit"],
+//       data["Efficiency"],
+//       data["oldPF"],
+//       data["newPF"],
+//       data["frequency"],
+//       data["Voltage"],
+//       data["phases"],
+//       data["active power"],
+//       data["apparent power"],
+//       data["reactive power"],
+//       data["capacitor size"],
+//     ]);
+//   }
+//   var worksheet = XLSX.utils.aoa_to_sheet(sheet1);
+//   var workbook = XLSX.utils.book_new();
+
+//   XLSX.utils.book_append_sheet(workbook, worksheet, `sheet1`);
+//   XLSX.writeFile(workbook, outPut + ".xlsx");
+//   console.log("file created");
+// }
+
 function createPowerFactorCorrectionTests() {
   let currentProcess = "PowerFactorCorrection";
   let outPut = join(__dirname, "public/test-cases/", currentProcess);
@@ -348,7 +414,6 @@ function createPowerFactorCorrectionTests() {
   XLSX.writeFile(workbook, outPut + ".xlsx");
   console.log("file created");
 }
-
 // createHorseToAmpereTests();
 // createAmpereToWattTests();
 // createVoltToAmpereTests();

@@ -1,5 +1,5 @@
 const express = require("express");
-const { default: helmet } = require("helmet");
+const helmet = require("helmet");
 const multer = require("multer");
 const { unlinkSync } = require("fs");
 const { join, extname } = require("path");
@@ -12,20 +12,49 @@ const { HorseToAmpereConversionFunction } = require("./HorseToAmpere");
 const { AmpereToWattFunction } = require("./AmpereToWatt");
 const { WattToAmpereFunction } = require("./WattToAmpere");
 const { VoltAmpereToWattFunction } = require("./VoltAmpereToWatt");
-const { createHash } = require("crypto");
+const { createHash, timingSafeEqual } = require("crypto");
 const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 const app = express();
 const port = 8086;
+require("dotenv").config();
+let dotenv = process.env;
 
 // prepare database connection
-// let connection = createConnection({
-//   database: "wattwizard",
-//   user: "root",
-//   password: "",
+let connection = createConnection({
+  host: dotenv.DB_HOST,
+  database: "test",
+  user: "root",
+  password: "",
+});
+
+// connection.connect((err) => {
+//   if (!err) {
+//     connection.query(
+//       "CREATE TABLE IF NOT EXIST `token` (`id` INT NOT NULL AUTO_INCREMENT , `token` TEXT NOT NULL , `userID` INT NOT NULL , PRIMARY KEY (`id`))"
+//     );
+//     connection.query(
+//       "CREATE TABLE IF NOT EXIST `users1` (`id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , `email` TEXT NOT NULL , `password` TEXT NOT NULL , PRIMARY KEY (`id`))"
+//     );
+//     return console.log("connected to db");
+//   }
+//   console.error(err.message);
 // });
+
 // set upload file save in memory until use it
 const encrypt = (text) => createHash("sha256").update(text).digest("hex");
-// console.log(encrypt("lol"));
+
+const CreateToken = (data) => {
+  return jwt.sign(data, dotenv.JWT_SECRET, { expiresIn: "1d" });
+};
+
+const verifyToken = (token) => {
+  try {
+    return jwt.verify(token, dotenv.JWT_SECRET);
+  } catch (error) {
+    return false;
+  }
+};
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "public/process_files"),
@@ -53,8 +82,9 @@ app.use(
 );
 
 app.use((MReq, MRes, next) => {
-  MRes.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  MRes.setHeader("Access-Control-Alow-Credentials", "true");
+  // MRes.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  MRes.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  MRes.header("Access-Control-Allow-Credentials", "true");
   MRes.setHeader("xss-filter", true);
   MRes.setHeader("Access-Control-Allow-Headers", "*");
   next();
@@ -83,78 +113,98 @@ app.use(express.urlencoded({ extended: true }));
 //   }
 // }
 
-function createPowerFactorCorrectionTests() {
-  let currentProcess = "PowerFactorCorrection";
-  let outPut = join(__dirname, "public/test-cases/", currentProcess);
-  let sheet1 = [
-    [
-      "power",
-      "powerUnit",
-      "Efficiency",
-      "oldPF",
-      "newPF",
-      "frequency",
-      "Voltage",
-      "phases",
-      "active power",
-      "apparent power",
-      "reactive power",
-      "capacitor size",
-    ],
-  ];
-
-  for (let rowNumber = 0; rowNumber < 100; rowNumber++) {
-    let data = {
-      power: (Math.random() * 100).toFixed(),
-      Efficiency: 1,
-      powerUnit: (Math.random() * 100).toFixed() % 2 == 0 ? "KW" : "A",
-      Voltage: 220,
-      phases:
-        (Math.random() * 100).toFixed() % 2 == 0 ? "one phase" : "three phases",
-      newPF: (Math.random() * 10).toFixed(1),
-      oldPF: (Math.random() * 10).toFixed(1),
-      frequency: (Math.random() * 100).toFixed(),
-    };
-
-    powerFactorCorrectionFunction(
-      data,
-      (activePower, apparentPower, reactivePower, microCapacitor) => {
-        data["active power"] = activePower;
-        data["apparent power"] = apparentPower;
-        data["reactive power"] = reactivePower;
-        data["capacitor size"] = microCapacitor;
-      }
-    );
-
-    sheet1.push([
-      data["power"],
-      data["powerUnit"],
-      data["Efficiency"],
-      data["oldPF"],
-      data["newPF"],
-      data["frequency"],
-      data["Voltage"],
-      data["phases"],
-      data["active power"],
-      data["apparent power"],
-      data["reactive power"],
-      data["capacitor size"],
-    ]);
-  }
-  var worksheet = XLSX.utils.aoa_to_sheet(sheet1);
-  var workbook = XLSX.utils.book_new();
-
-  XLSX.utils.book_append_sheet(workbook, worksheet, `sheet1`);
-  XLSX.writeFile(workbook, outPut + ".xlsx");
-  console.log("file created");
-}
-
-//createPowerFactorCorrectionTests();
-
 // handle root
 
 app.get("/", (req, res) => {
   res.send(`done`);
+});
+
+// user actions handle
+
+app.post("/signup", multer().none(), (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    if (!email || !isValidEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format!" });
+    }
+
+    // Password Validation
+    if (!password || typeof password !== "string" || password.length < 8) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 8 characters!" });
+    }
+
+    // Check if the user already exists
+    connection.query(
+      "select * from users1 where email = ?",
+      [email],
+      (err, result) => {
+        console.log(err, result);
+        if (result.length >= 1) {
+          return res.status(409).json({ message: "User already exists!" });
+        }
+
+        let hashedPassword = encrypt(password);
+
+        connection.query(
+          "INSERT INTO users1 VALUES (null , ?, ?)",
+          [email, hashedPassword],
+          (err, result2) => {
+            let token = CreateToken({ email, password });
+            connection.query(
+              "INSERT INTO token VALUES (null , ?, ?)",
+              [token, result2.insertId],
+              (err, result3) => {
+                console.log("we here");
+
+                res.status(200).json({
+                  message: "User created successfully!",
+                  token: token,
+                });
+              }
+            );
+          }
+        );
+      }
+    );
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.post("/login", multer().none(), (req, res) => {
+  const { email, password } = req.body;
+
+  connection.query(
+    "select * from users1 where email = ?",
+    [email],
+    (err, result) => {
+      if (result.length >= 1) {
+        console.log("here1");
+        if (
+          timingSafeEqual(
+            Buffer.from(result[0].password),
+            Buffer.from(encrypt(password))
+          )
+        ) {
+          console.log("here2");
+          return res.status(200).send({ token: CreateToken(result[0]) });
+        }
+        console.log("here3");
+        return res.status(404).send({ message: "password didn't match" });
+      }
+      console.log("here4");
+      return res.status(404).send({ message: "user not exist" });
+    }
+  );
 });
 
 // handle Circuit Breaker Calculation
@@ -167,15 +217,9 @@ app.post("/CalculateFile", mainUpload.single("file"), (MReq, MRes) => {
 
   // set file name that will be used across all the process
   let fileName = "results_" + MReq.file.originalname;
-  // let fileName = "results_" + ".xlsx";
 
   // set file path and read it
   const filePath = join(__dirname, "public/process_files", MReq.fileName);
-  // const filePath = join(
-  //   __dirname,
-  //   "public/process_files/CircuitBreakerCalculateSample.xlsx"
-  // );
-  // return console.log(encrypt("ty"));
   const workbook = XLSX.readFile(filePath);
 
   // loop for sheets

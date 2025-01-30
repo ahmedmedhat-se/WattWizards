@@ -142,7 +142,7 @@ function CircuitBreaker() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
                 </div>
                 <h2 className="course-title">Circuit-Breaker Size (Program)</h2>
                 <button className="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#CBModal">View</button>

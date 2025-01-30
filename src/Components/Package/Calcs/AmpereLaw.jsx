@@ -11,7 +11,7 @@ function Ampere() {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src={`/logo.png`}/>
+                    <img src={`${process.env.PUBLIC_URL}/logo.png`}/>
                 </div>
                 <h2 className="course-title">Andre-Marie Ampere's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#AMA">View</button>

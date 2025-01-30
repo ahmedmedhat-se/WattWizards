@@ -58,7 +58,7 @@ function DataSetProgram() {
           <div className="subject">
             <h3>Software/Electricity</h3>
           </div>
-          <img src={`/logo.png`} alt="Logo" />
+          <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Logo" />
         </div>
         <h2 className="course-title">Circuit-Breaker/Cable (Data Sets)</h2>
         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#BreakerData">Breaker Data</button>

@@ -1,0 +1,53 @@
+/*#projectManager styling sheet */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Moontime&family=Now:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Styling The Root Node Of The Document */
+html {
+    scroll-behavior: smooth;
+    /* Variables For Using Different RGB Colors All Over The Webpage */
+    --primary-clr: #071324;
+    --primary-medium-clr: #fff;
+    --primary-light-clr: #fff;
+    --bg-clr-1: #ffffff;
+    --dark-heading-clr: #071324;
+    --dark-text-clr: #fff;
+    --light-heading-clr: #fff;
+    --light-text-clr: #fff;
+}
+
+/* End Of Styling The Root Node Of The Document */
+
+#projectManager {
+    width: 100%;
+    width: 100%;
+    margin: 50px auto;
+    margin-top: 150px;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: #071324;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media(max-width: 768px) {
+    #projectManager {
+      width: 350px;
+    }
+  }
+
+#projectManager h2 {
+    color: var(--light-heading-clr);
+    font-family: 'Orbitron', sans-serif;
+}
+
+#projectManager button {
+    background-color: #0f0845;
+}
+
+#projectManager p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
+}

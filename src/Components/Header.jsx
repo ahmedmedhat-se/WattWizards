@@ -1,5 +1,3 @@
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
@@ -15,7 +13,8 @@ function Header() {
         { path: '/workspace', name: 'Workspace' },
         { path: '/vault', name: 'CircuitVault' },
         { path: '/login', name: 'Login' },
-        { path: '/profile', name: 'Profile' }
+        { path: '/profile', name: 'Profile' },
+        { path: '/project', name: 'DevSync' },
     ];
 
     useEffect(() => {

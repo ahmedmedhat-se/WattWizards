@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,28 +24,41 @@ function Userin() {
     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
     return password.length >= minLength && regex.test(password);
   };
-
+  
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email.");
-      return;
-    }
-
-    if (!validatePasswordStrength(password)) {
-      setError("Password must be at least 8 characters long and contain both letters and numbers.");
-      return;
-    }
-
-    if (!isLogin && password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    // Clear error and proceed
-    setError("");
+    
+    const endpoint = isLogin ? "http://localhost:8086/login" : "http://localhost:8086/signup";
+    const formData = new FormData(document.forms[0]);
+  
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", endpoint, true);
+    xhr.withCredentials = true;
+  
+    // Set up a listener for when the request completes
+    xhr.onload = function () {
+      const response = JSON.parse(xhr.responseText);
+      console.log(response.token);
+      if (xhr.status === 200) {
+  
+        if (response.token) {
+          document.cookie += `token=${response.token}; path=/; expires=${new Date(Date.now() + 60*60*24*3).toUTCString()};`;
+          navigate("/home");
+        }
+      } else {
+        console.log("Error:", xhr.statusText);
+      }
+    };
+  
+    // Handle network errors
+    xhr.onerror = function () {
+      console.log("Request failed");
+      setError("An error occurred while processing your request.");
+    };
+  
+    // Send the request
+    xhr.send(formData);
   };
 
   const toggleForm = () => {
@@ -66,6 +80,7 @@ function Userin() {
         <label htmlFor="email" className="form-label">Email</label>
         <input className="form-control"
           type="email"
+          name="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -77,6 +92,7 @@ function Userin() {
           <input className="form-control"
             type={passwordVisible ? "text" : "password"}  // Toggle password visibility
             id="password"
+            name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"

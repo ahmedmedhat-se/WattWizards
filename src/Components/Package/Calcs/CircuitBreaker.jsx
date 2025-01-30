@@ -142,7 +142,7 @@ function CircuitBreaker() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
+                    <img src={`/logo.png`} />
                 </div>
                 <h2 className="course-title">Circuit-Breaker Size (Program)</h2>
                 <button className="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#CBModal">View</button>
@@ -175,7 +175,7 @@ function CircuitBreaker() {
                                 High electrical current may pass through an electrical circuit<br />
                                 either as a result of a fault in the circuit or as a result of an additional external
                                 factor
-                                such as lightning.<br /><br />
+                                such as lightning.<br /><br />
 
                                 <br /><br /> .قاطع التيار أو قاطع الدائرة (وجمعها القواطع الكهربائية)
                                 <br /> هو مفتاح أمان كهربائي يعمل تلقائيٌا لحماية الدوائر الكهربائية
@@ -214,7 +214,7 @@ function CircuitBreaker() {
                                 <br /><br /> 1.25 * سعة القاطع المناسب= تيار الحمل الكهربائى
 
                                 <br />ثالثاً: اختيار مساحة مقطع الكابل المناسب
-                                <br /><br /> 1.2 * سعة الكابل المناسب= تيار القاطع
+                                <br /><br /> 1.2 * سعة الكابل المناسب= تيار القاطع
                             </p>
                             <a href="https://drive.google.com/drive/folders/1mp6H1NPinYgFm1RCAa1NNhMQuP8g7LUR"
                                 target="_blank">Scientific Papers <i className="fas fa-link"></i></a>

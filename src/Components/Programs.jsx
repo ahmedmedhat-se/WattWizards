@@ -1,5 +1,3 @@
-import React, { useState, useRef } from 'react';
-
 import CircuitBreaker from "./Package/Calcs/CircuitBreaker";
 import DataSetProgram from './Package/Calcs/DataSetProgram';
 import PowerFactorCorrection from "./Package/Calcs/PowerFactorCorrection";
@@ -15,6 +13,8 @@ import Kirchhoff from "./Package/Calcs/KirchhoffLaw";
 import Volta from "./Package/Calcs/VoltaLaw";
 import Ampere from "./Package/Calcs/AmpereLaw";
 import TonToHpConverter from './Package/Calcs/Ton2Hp';
+import axios from "axios";
+import { useRef, useState } from "react";
 
 function Programs() {
     const programsList = [
@@ -49,6 +49,50 @@ function Programs() {
         programsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
+    let handleSubmit = (e)=>{
+      e.preventDefault()
+      const selectedValue = document.getElementById('selectDownloadFile').value;
+      let url = 'http://localhost:8086/download/';
+      if (selectedValue === 'Circuit-Breaker-Size') {
+        url += 'CircuitBreakerSampleFile';
+      } else if (selectedValue === 'Power-Factor-Correction') {
+        url = 'PowerFactorCorrectionSampleFile';
+      } else if (selectedValue === 'Electrical-Consumption') {
+        url = 'ElectricConsumptionSampleFile';
+      } else if (selectedValue === 'Horse-Power-2-Ampere') {
+        url = 'HorseToAmpereSampleFile';
+      } else if (selectedValue === 'Ampere-2-Watt') {
+        url = 'AmpereToWattSampleFile';
+      } else if (selectedValue === 'Watt-2-Ampere') {
+        url = 'WattToAmpereSampleFile';
+      } else if (selectedValue === 'VoltAmpere-2-Watt') {
+        url = 'VoltAmpereToWattSampleFile';
+      } else {
+        return;
+      }
+
+      axios({
+          url: url,
+          method: 'GET',
+          responseType: 'arraybuffer'
+      })
+      .then(response => {
+          const blob = new Blob([response.data], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+            // console.log(response.data , response.headers['content-type']);
+            
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.setAttribute('download', `${selectedValue}.xlsx`);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+      })
+      .catch(error => {
+          console.error('Error downloading the file:', error);
+          alert('Failed to download the file.');
+      });
+    }
+
     return (
         <section className="cards-lg-containers" id="Programs" ref={programsRef}>
             <header className="section-header">
@@ -71,7 +115,7 @@ function Programs() {
                 </button>
             </header>
 
-            {/* Programms Contents */}
+            {/* Programs Contents */}
             <div className="cards-lg-containers-contents">
                 {currentPrograms}
             </div>
@@ -107,7 +151,7 @@ function Programs() {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <form>
+                                    <form onSubmit={handleSubmit}>
                                         <select id="selectDownloadFile" className="form-select">
                                             <option value="Circuit-Breaker-Size">Circuit Breaker Size (Program)</option>
                                             <option value="Power-Factor-Correction">Power-Factor-Correction (Program)</option>
@@ -115,12 +159,13 @@ function Programs() {
                                             <option value="Horse-Power-2-Ampere">Horse-Power TO Ampere (Program)</option>
                                             <option value="Ampere-2-Watt">Ampere TO Watt (Program)</option>
                                             <option value="Watt-2-Ampere">Watt TO Ampere (Program)</option>
+                                            <option value="VoltAmpere-2-Watt">Volt Ampere TO Watt (Program)</option>
                                         </select>
+                                        <div className="modal-footer">
+                                            <input type="submit" value="Download" className="btn btn-success" />
+                                            <input type="reset" data-bs-dismiss="modal" value="Close" className="btn btn-danger" />
+                                        </div>
                                     </form>
-                                </div>
-                                <div className="modal-footer">
-                                    <input type="submit" value="Download" className="btn btn-success" />
-                                    <input type="submit" data-bs-dismiss="modal" value="Close" className="btn btn-danger" />
                                 </div>
                             </div>
                         </div>

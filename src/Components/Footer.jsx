@@ -19,7 +19,7 @@ function Footer() {
                     <div className="text-center text-md-start">
                         <Link to="/">
                             <img
-                                src={`${process.env.PUBLIC_URL}/logo.png`}
+                                src={`/logo.png`}
                                 alt="Logo"
                                 className="img-fluid mb-3"
                                 style={{ maxWidth: '100px' }}

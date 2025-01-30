@@ -75,7 +75,7 @@ function PowerFactorCorrection() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
+                    <img src={`/logo.png`} />
                 </div>
                 <h2 className="course-title">Power-Factor-Correction (Program)</h2>
                 <button data-bs-toggle="modal" data-bs-target="#PFCView" className="btn btn-success">View</button>

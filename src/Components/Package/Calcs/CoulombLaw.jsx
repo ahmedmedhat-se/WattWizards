@@ -33,7 +33,7 @@ function Coulomb() {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
+                    <img src={`/logo.png`} />
                 </div>
                 <h2 className="course-title">Coulomb's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Coulomb">View</button>

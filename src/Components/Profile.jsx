@@ -93,6 +93,11 @@ function Profile() {
                   profile.username
                 )}
               </p>
+
+              <a href="/Documents/WattWizards - User Manual.pdf" download
+              className='d-block'>
+                <button className='btn mb-2 justify-content-center'>User Manual</button>
+              </a>
               <Link to="/project" className='btn btn-primary'>DevSync</Link>
 
               {/* Change Image */}

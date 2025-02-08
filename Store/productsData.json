@@ -1,0 +1,177 @@
+[
+    {
+        "id": 1,
+        "name": "Circuit Breaker 10A",
+        "category": "Circuit Breakers",
+        "price": 15.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Circuit Breaker 20A",
+        "category": "Circuit Breakers",
+        "price": 18.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Copper Cable 2.5mm",
+        "category": "Copper Cables",
+        "price": 25.50,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Copper Cable 4mm",
+        "category": "Copper Cables",
+        "price": 30.75,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Capacitor 100uF",
+        "category": "Capacitors",
+        "price": 5.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Capacitor 220uF",
+        "category": "Capacitors",
+        "price": 7.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Aluminum Cable 10mm",
+        "category": "Aluminum Cables",
+        "price": 40.00,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Aluminum Cable 16mm",
+        "category": "Aluminum Cables",
+        "price": 55.00,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Power Factor Correction Capacitor 5kVAr",
+        "category": "Power Factor Correction Capacitors",
+        "price": 60.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 10,
+        "name": "Transformer 1kVA",
+        "category": "Transformers",
+        "price": 150.00,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Electric Motor 0.5HP",
+        "category": "Electric Motors",
+        "price": 180.00,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 12,
+        "name": "Wall Outlet - Single",
+        "category": "Outlets",
+        "price": 6.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 13,
+        "name": "Light Switch - Double",
+        "category": "Switches",
+        "price": 7.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 14,
+        "name": "Battery 12V",
+        "category": "Batteries",
+        "price": 89.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 15,
+        "name": "Power Strip 6-Outlet",
+        "category": "Power Strips",
+        "price": 19.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 16,
+        "name": "Voltage Regulator 5V",
+        "category": "Voltage Regulators",
+        "price": 3.49,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 17,
+        "name": "Resistor 1K Ohm",
+        "category": "Resistors",
+        "price": 0.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 18,
+        "name": "LED Light Bulb 10W",
+        "category": "Lighting",
+        "price": 6.49,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 19,
+        "name": "Extension Cord 10ft",
+        "category": "Cables & Accessories",
+        "price": 12.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 20,
+        "name": "Screwdriver Set 6pc",
+        "category": "Tools",
+        "price": 14.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 21,
+        "name": "Multimeter Digital",
+        "category": "Tools",
+        "price": 35.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 22,
+        "name": "Soldering Iron 60W",
+        "category": "Tools",
+        "price": 24.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 23,
+        "name": "Electric Fan 12-inch",
+        "category": "Appliances",
+        "price": 49.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 24,
+        "name": "Power Inverter 1000W",
+        "category": "Power Equipment",
+        "price": 129.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    },
+    {
+        "id": 25,
+        "name": "Energy Meter Digital",
+        "category": "Meters",
+        "price": 39.99,
+        "image": "https://img.freepik.com/premium-photo/electrical-equipment-various-electric-products-store-shelve_106035-315.jpg"
+    }
+]

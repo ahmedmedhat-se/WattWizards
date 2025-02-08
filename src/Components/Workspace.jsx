@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Workspace = () => {
   const navigate = useNavigate();
@@ -54,7 +54,10 @@ const Workspace = () => {
 
   return (
     <div id='workspace' className="container">
-      <h2>Workspace</h2>
+      <div className="container-fluid p-0 m-0 d-flex justify-content-between">
+        <h2>Workspace</h2>
+        <Link className='btn btn-primary' to="/online-sheets">Online Sheets</Link>
+      </div>
 
       <form onSubmit={handleFileUpload} className="mb-4">
         <div className="mb-3">
@@ -84,6 +87,7 @@ const Workspace = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">Upload Files</button>
+        <Link className='btn btn-primary' to="/vault">Archive</Link>
       </form>
 
       {files.length > 0 && (

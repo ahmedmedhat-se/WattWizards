@@ -11,7 +11,7 @@ function Header() {
     const routes = [
         { path: '/programs', name: 'Programs' },
         { path: '/workspace', name: 'Workspace' },
-        { path: '/vault', name: 'CircuitVault' },
+        { path: '/products', name: 'Products' },
         { path: '/login', name: 'Login' },
         { path: '/profile', name: 'Profile' }
     ];

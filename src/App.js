@@ -11,6 +11,10 @@ import Profile from "./Components/Profile.jsx";
 
 // Premium Components Starts
 import ProjectManager from "./Components/Dev/ProjectManager.jsx";
+import OnlineSheets from "./Components/OnlineSheets.jsx";
+import Products from "./Components/Store/Products.jsx";
+import { ProductProvider } from "./Components/Store/ProductContext.jsx";
+import Cart from "./Components/Store/Cart.jsx";
 // Premium Components Ends
 
 import NotFound from "./Components/NotFound.jsx";
@@ -21,28 +25,33 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
-      <Header />
-      <SparkTalk />
-      <Routes>
-        <Route path="/" element={<Homepage />}></Route>
-        <Route path="/WattWizards" element={<Homepage />}></Route>
-        <Route path="/homepage" element={<Homepage />}></Route>
-        <Route path="/programs" element={<Programs />}></Route>
-        <Route path="/achievments" element={<Achievments />}></Route>
-        <Route path="/workspace" element={<Workspace />}></Route>
-        <Route path="/vault" element={<CircuitVault />}></Route>
-        <Route path="/login" element={<Userin />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+      <ProductProvider>
+        <Header />
+        <SparkTalk />
+        <Routes>
+          <Route path="/" element={<Homepage />}></Route>
+          <Route path="/WattWizards" element={<Homepage />}></Route>
+          <Route path="/homepage" element={<Homepage />}></Route>
+          <Route path="/programs" element={<Programs />}></Route>
+          <Route path="/achievments" element={<Achievments />}></Route>
+          <Route path="/workspace" element={<Workspace />}></Route>
+          <Route path="/vault" element={<CircuitVault />}></Route>
+          <Route path="/login" element={<Userin />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
 
-        {/* Premium Routes Starts */}
-        <Route path="/project" element={<ProjectManager />}></Route>
-        {/* Premium Routes Ends */}
+          {/* Premium Routes Starts */}
+          <Route path="/online-sheets" element={<OnlineSheets />}></Route>
+          <Route path="/project" element={<ProjectManager />}></Route>
+          <Route path="/products" element={<Products />} />
+          <Route path='/cart' element={<Cart />} />
+          {/* Premium Routes Ends */}
 
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
-      <Footer />
-      <GoToTop />
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+        <Footer />
+        <GoToTop />
+      </ProductProvider>
     </>
   );
 }
-export default App
+export default App;

@@ -1,9 +1,10 @@
-Project Title: WattWizards
-Under the supervision of: Engineer Muhammed Rushdy / Mr. Sherief Ragab
-Authors: Ahmed Medhat – Loucas Monir
+*WattWizards - Software Abstract*
+* Project Title: WattWizards
+* Under the supervision of: Engineer Muhammed Rushdy / Mr. Sherief Ragab
+* Authors: Ahmed Medhat – Loucas Monir
 
 Introduction:
-Electrical engineers and technicians often face challenges in achieving precision and efficiency in calculations, particularly in industrial settings. This research introduces WattWizards, a software platform designed to streamline electrical circuit analysis and computations. The application reduces errors, and incorporates features like online/offline workspaces, inventory and project management. 
+Electrical engineers and technicians often face challenges in achieving precision and efficiency in calculations, particularly in industrial settings. This research introduces *WattWizards*, a software platform designed to streamline electrical circuit analysis and computations. The application reduces errors, and incorporates features like online/offline workspaces, inventory and project management. 
 
 Procedures:
 The development of WattWizards followed a structured multi-phase approach. 

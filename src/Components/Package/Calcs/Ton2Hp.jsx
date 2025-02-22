@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import image from '../Images/Ampere_to_Watt_Conversion_Program.jpg';
-
+import image from '../assets/Ampere_to_Watt_Conversion_Program.jpg';
+import logo from '../assets/logo.png';
 
 const TonToHpConverter = () => {
     // Ton 2 Hp (Program) Starts
@@ -36,7 +36,7 @@ const TonToHpConverter = () => {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Ton TO Horse-power (Program)</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Ton2Hp">View</button>

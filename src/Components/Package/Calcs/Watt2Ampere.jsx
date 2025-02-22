@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import image from '../Images/Watt_to_Ampere_Conversion_Program.jpg';
+import image from '../assets/Watt_to_Ampere_Conversion_Program.jpg';
+import logo from '../assets/logo.png';
 
 function Watt2Ampere() {
     // Watt TO Ampere (Program) Starts
@@ -41,7 +42,7 @@ function Watt2Ampere() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Watt TO Ampere (Program)</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#W2A">View</button>

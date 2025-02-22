@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import logo from '../assets/logo.png';
 
 function CircuitBreaker() {
     // Circuit-Breaker-Size (Program) Starts
@@ -142,7 +143,7 @@ function CircuitBreaker() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Circuit-Breaker Size (Program)</h2>
                 <button className="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#CBModal">View</button>

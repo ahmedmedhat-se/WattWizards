@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import data from '../Env/data.json';
+import logo from '../assets/logo.png';
 import { Link, useLocation } from 'react-router-dom';
 
 function Footer() {
@@ -19,7 +20,7 @@ function Footer() {
                     <div className="text-center text-md-start">
                         <Link to="/">
                             <img
-                                src={`/logo.png`}
+                                src={logo}
                                 alt="Logo"
                                 className="img-fluid mb-3"
                                 style={{ maxWidth: '100px' }}

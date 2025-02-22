@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import image from '../Images/horsepower_to_kilowatt_conversion_program.jpg';
+import image from '../assets/horsepower_to_kilowatt_conversion_program.jpg';
+import logo from '../assets/logo.png';
 
 const HP_TO_KW = 0.746;
 
@@ -38,7 +39,7 @@ const HP2KWConverter = () => {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Horse-power TO Kilowatts (program)</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#HP2KW">View</button>

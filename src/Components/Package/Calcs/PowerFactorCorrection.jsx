@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from '../assets/logo.png';
 
 function PowerFactorCorrection() {
     // Power-Fcator-Correction (Program) Starts
@@ -75,7 +76,7 @@ function PowerFactorCorrection() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Power-Factor-Correction (Program)</h2>
                 <button data-bs-toggle="modal" data-bs-target="#PFCView" className="btn btn-success">View</button>

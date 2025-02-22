@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from '../assets/logo.png';
 
 function Ohm() {
     // Ohm's Law (Program) Starts
@@ -42,7 +43,7 @@ function Ohm() {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Ohm's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Ohm">View</button>

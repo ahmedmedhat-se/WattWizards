@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from '../assets/logo.png';
 
 function Ampere() {
     return (
@@ -11,7 +12,7 @@ function Ampere() {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src={`/logo.png`}/>
+                    <img src={logo}/>
                 </div>
                 <h2 className="course-title">Andre-Marie Ampere's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#AMA">View</button>

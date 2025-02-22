@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from '../assets/logo.png';
 
 function ElectricalConsumption() {
     // Electric-Consumption (Program) Starts
@@ -63,7 +64,7 @@ function ElectricalConsumption() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Electrical-Consumption (Program)</h2>
                 <button type="button" data-bs-toggle="modal" data-bs-target="#ECCView" className="btn btn-success">View</button>

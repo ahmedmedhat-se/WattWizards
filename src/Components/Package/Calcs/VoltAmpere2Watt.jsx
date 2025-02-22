@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import image from '../Images/Volt-Ampere_to_Watt_Conversion_Program.jpg';
+import image from '../assets/Volt-Ampere_to_Watt_Conversion_Program.jpg';
+import logo from '../assets/logo.png';
 
 function VoltAmpere2Watt() {
     // Volt Ampere (VA) TO Watts (Program) Starts
@@ -36,7 +37,7 @@ function VoltAmpere2Watt() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Volt-Ampere TO Watt (Program)</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#VA2W">View</button>

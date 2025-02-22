@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import logo from '../assets/logo.png';
 
 function Kirchhoff() {
     // Kirchhoff's Law (Program) Starts
@@ -34,7 +35,7 @@ function Kirchhoff() {
                     <div className="subject">
                         <h3>Software/Physics</h3>
                     </div>
-                    <img src={`/logo.png`} />
+                    <img src={logo} />
                 </div>
                 <h2 className="course-title">Kirchhoff's Law</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#Kirchhoff">View</button>

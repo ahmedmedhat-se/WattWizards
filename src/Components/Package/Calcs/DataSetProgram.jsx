@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import image from '../Images/circuit_breaker_dataset.jpg';
+import image from '../assets/circuit_breaker_dataset.jpg';
+import logo from '../assets/logo.png';
 
 function DataSetProgram() {
   // Circuit-Breaker Data Set
@@ -58,7 +59,7 @@ function DataSetProgram() {
           <div className="subject">
             <h3>Software/Electricity</h3>
           </div>
-          <img src={`/logo.png`} alt="Logo" />
+          <img src={logo} alt="Logo" />
         </div>
         <h2 className="course-title">Circuit-Breaker/Cable (Data Sets)</h2>
         <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#BreakerData">Breaker Data</button>

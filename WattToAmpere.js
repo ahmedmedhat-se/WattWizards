@@ -1,19 +1,22 @@
 module.exports.WattToAmpereFunction = (row, callable) => {
-  let Watt = parseFloat(row["Watt"]);
-  const CurrentType = row["CurrentType"].trim();
+  let Watt = parseFloat(row["Power"]);
+  const CurrentType = row["Current type"].trim();
   const Voltage = parseFloat(row["Voltage"]);
-  const Phases = row["phases"].trim();
+  const Phases = row["Phases"].trim();
   const PF =
-    parseFloat(row["powerFactor"]) > 1
-      ? parseFloat(row["powerFactor"]) / 10
-      : parseFloat(row["powerFactor"]);
+    parseFloat(row["Power factor"]) > 1
+      ? parseFloat(row["Power factor"]) / 10
+      : parseFloat(row["Power factor"]);
   let ampere;
 
-  if (CurrentType === "DC") {
+  if (CurrentType.toUpperCase() === "DC") {
     ampere = Watt / Voltage;
-  } else if (CurrentType === "AC" && Phases == "three phases") {
+  } else if (
+    CurrentType.toUpperCase() === "AC" &&
+    Phases.toLowerCase() == "three phases"
+  ) {
     ampere = Watt / (Voltage * PF * 1.732);
-  } else if (CurrentType === "AC") {
+  } else if (CurrentType.toUpperCase() === "AC") {
     ampere = Watt / (PF * Voltage);
   }
 

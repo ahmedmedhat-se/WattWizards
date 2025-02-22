@@ -1,12 +1,18 @@
 module.exports.powerFactorCorrectionFunction = (row, callable) => {
-  let Power = +row["power"];
+  let Power = +row["Power"];
   let Efficiency = row["Efficiency"] / 100;
-  let powerUnit = row["powerUnit"].trim();
-  let oldPF = parseFloat(row["oldPF"]);
-  let newPF = parseFloat(row["newPF"]);
+  let powerUnit = row["Power unit"].trim();
+  let oldPF =
+    parseFloat(row["oldPF"]) > 1
+      ? parseFloat(row["oldPF"]) / 10
+      : parseFloat(row["oldPF"]);
+  let newPF =
+    parseFloat(row["newPF"]) > 1
+      ? parseFloat(row["newPF"]) / 10
+      : parseFloat(row["newPF"]);
   let Voltage = +row["Voltage"];
-  let frequency = +row["frequency"];
-  let Phase = row["phases"].trim();
+  let frequency = +row["Frequency"];
+  let Phase = row["Phases"].trim();
   let VoltageSquare = Math.pow(row["Voltage"], 2);
 
   console.log(
@@ -23,21 +29,33 @@ module.exports.powerFactorCorrectionFunction = (row, callable) => {
 
   let power2 = Power;
 
-  if (powerUnit === "KW" && Phase === "three phases") {
+  if (
+    powerUnit.toUpperCase() === "KW" &&
+    Phase.toLowerCase() === "three phases"
+  ) {
     power2 = (Power * 1000) / (Voltage * oldPF * 1.732);
-  } else if (powerUnit === "HP" && Phase === "three phases") {
+  } else if (
+    powerUnit.toUpperCase() === "HP" &&
+    Phase.toLowerCase() === "three phases"
+  ) {
     power2 = (Power * 746) / (Voltage * Efficiency * oldPF * 1.732);
-  } else if (powerUnit === "MW" && Phase === "three phases") {
+  } else if (
+    powerUnit.toUpperCase() === "MW" &&
+    Phase.toLowerCase() === "three phases"
+  ) {
     power2 = (Power * 1000000) / (Voltage * oldPF * 1.732);
-  } else if (powerUnit === "milliWatt" && Phase === "three phases") {
+  } else if (
+    powerUnit === "milliWatt" &&
+    Phase.toLowerCase() === "three phases"
+  ) {
     power2 = Power / 1000 / (Voltage * oldPF * 1.732);
-  } else if (powerUnit === "KW") {
+  } else if (powerUnit.toUpperCase() === "KW") {
     power2 = (Power * 1000) / (Voltage * oldPF);
-  } else if (powerUnit === "HP") {
+  } else if (powerUnit.toUpperCase() === "HP") {
     power2 = (Power * 746) / (Voltage * oldPF * Efficiency);
-  } else if (powerUnit === "MW") {
+  } else if (powerUnit.toUpperCase() === "MW") {
     power2 = (Power * 1000000) / (Voltage * oldPF);
-  } else if (powerUnit === "milliWatt") {
+  } else if (powerUnit.toLowerCase() === "milli watt") {
     power2 = Power / 1000 / (Voltage * oldPF);
   }
 

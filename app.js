@@ -1,24 +1,28 @@
 const express = require("express");
 const helmet = require("helmet");
 const multer = require("multer");
-const { unlinkSync } = require("fs");
 const { join, extname } = require("path");
-const XLSX = require("xlsx");
 const { createConnection } = require("mysql2");
-const { CircuitBreakerFunction } = require("./CircuitBreakerApp");
-const { powerFactorCorrectionFunction } = require("./powerFactorCorrection");
-const { electricConsumptionFunction } = require("./electricConsumption");
-const { HorseToAmpereConversionFunction } = require("./HorseToAmpere");
-const { AmpereToWattFunction } = require("./AmpereToWatt");
-const { WattToAmpereFunction } = require("./WattToAmpere");
-const { VoltAmpereToWattFunction } = require("./VoltAmpereToWatt");
-const { createHash, timingSafeEqual } = require("crypto");
+const { createHash, timingSafeEqual, randomBytes } = require("crypto");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
+const { login, signup, profile, DownloadFile } = require("./userProfile");
+const { MainMiddleware } = require("./middlewares");
+const {
+  MainSheetCalculation,
+  OnlineSheetCalculation,
+} = require("./CalculateSheets");
+const { CircuitVaultArchive } = require("./CircuitVaultArchive");
+const {
+  mainProjectRout,
+  mainProjectRoutUpload,
+  downloadProject,
+  deleteProject,
+} = require("./ProjectManagement");
 const app = express();
-const port = 8086;
 require("dotenv").config();
 let dotenv = process.env;
+const port = dotenv.APP_PORT;
 
 // prepare database connection
 let connection = createConnection({
@@ -28,24 +32,28 @@ let connection = createConnection({
   password: "",
 });
 
-// connection.connect((err) => {
-//   if (!err) {
-//     connection.query(
-//       "CREATE TABLE IF NOT EXIST `token` (`id` INT NOT NULL AUTO_INCREMENT , `token` TEXT NOT NULL , `userID` INT NOT NULL , PRIMARY KEY (`id`))"
-//     );
-//     connection.query(
-//       "CREATE TABLE IF NOT EXIST `users1` (`id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , `email` TEXT NOT NULL , `password` TEXT NOT NULL , PRIMARY KEY (`id`))"
-//     );
-//     return console.log("connected to db");
-//   }
-//   console.error(err.message);
-// });
+connection.connect((err) => {
+  if (!err) {
+    // connection.query(
+    //   "CREATE TABLE IF NOT EXIST `token` (`id` INT NOT NULL AUTO_INCREMENT , `token` TEXT NOT NULL , `userID` INT NOT NULL , PRIMARY KEY (`id`))"
+    // );
+    // connection.query(
+    //   "CREATE TABLE IF NOT EXIST `users1` (`id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , `email` TEXT NOT NULL , `password` TEXT NOT NULL , PRIMARY KEY (`id`))"
+    // );
+    return console.log("connected to db");
+  }
+  console.log(err.message);
+});
 
 // set upload file save in memory until use it
 const encrypt = (text) => createHash("sha256").update(text).digest("hex");
 
 const CreateToken = (data) => {
-  return jwt.sign(data, dotenv.JWT_SECRET, { expiresIn: "1d" });
+  return jwt.sign(
+    { randomness: randomBytes(10).toString("hex"), ...data },
+    dotenv.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
 };
 
 const verifyToken = (token) => {
@@ -69,6 +77,32 @@ const mainUpload = multer({
   storage: storage,
 });
 
+const vaultStorage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "./public/main_storage"),
+  filename: (req, file, cb) => {
+    req.fileName = encrypt(file.originalname) + extname(file.originalname);
+    return cb(null, req.fileName);
+  },
+});
+
+const VaultUpload = multer({
+  storage: vaultStorage,
+});
+
+const ProjectStorage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "./public/project_storage"),
+  filename: (req, file, cb) => {
+    req.fileName =
+      encrypt(randomBytes(10).toString("hex") + file.originalname) +
+      extname(file.originalname);
+    return cb(null, req.fileName);
+  },
+});
+
+const ProjectUpload = multer({
+  storage: ProjectStorage,
+});
+
 // set security headers
 
 app.use(express.static(__dirname + "\\public"));
@@ -86,7 +120,10 @@ app.use((MReq, MRes, next) => {
   MRes.header("Access-Control-Allow-Origin", "http://localhost:5173");
   MRes.header("Access-Control-Allow-Credentials", "true");
   MRes.setHeader("xss-filter", true);
-  MRes.setHeader("Access-Control-Allow-Headers", "*");
+  MRes.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Content-Length, X-Requested-With, *"
+  );
   next();
 });
 
@@ -112,42 +149,6 @@ app.use(express.urlencoded({ extended: true }));
 //     next();
 //   }
 // }
-
-const MainMiddleware = (req, res, next) => {
-  try {
-    if (req.cookies && req.cookies.token) {
-      const user = verifyToken(req.cookies.token);
-      if (user) {
-        connection.query(
-          "SELECT * FROM users1 WHERE email = ? AND password = ?",
-          [user.email, user.password],
-          (err, result) => {
-            if (err) {
-              console.error("Database query error:", err.message);
-              return res.status(500).send({ message: "Internal server error" });
-            }
-            if (result.length >= 1) {
-              req.user = user;
-              return next();
-            } else {
-              return res
-                .status(401)
-                .send({ message: "User not found or unauthorized" });
-            }
-          }
-        );
-      } else {
-        return res.status(401).send({ message: "Invalid token" });
-      }
-    } else {
-      return res.status(401).send({ message: "No token provided" });
-    }
-  } catch (err) {
-    console.error("Error verifying token:", err.message);
-    return res.status(401).send({ message: "Unauthorized" });
-  }
-};
-
 // handle root
 
 app.get("/", (req, res) => {
@@ -156,191 +157,94 @@ app.get("/", (req, res) => {
 
 // user actions handle
 
-app.post("/signup", multer().none(), MainMiddleware, (req, res) => {
+app.post("/signup", multer().none(), signup);
+
+app.post("/login", multer().none(), login);
+
+app.get("/profile", multer().none(), MainMiddleware, profile);
+
+app.get("/check", multer().none(), (req, res) => {
   try {
-    const { email, password } = req.body;
-
-    function isValidEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).json({ message: "No authentication token found" });
     }
 
-    if (!email || !isValidEmail(email)) {
-      return res.status(400).json({ message: "Invalid email format!" });
-    }
+    const decoded = verifyToken(token);
 
-    // Password Validation
-    if (!password || typeof password !== "string" || password.length < 8) {
-      return res
-        .status(400)
-        .json({ message: "Password must be at least 8 characters!" });
-    }
-
-    // Check if the user already exists
     connection.query(
       "select * from users1 where email = ?",
-      [email],
+      [decoded.email],
       (err, result) => {
         if (result.length >= 1) {
-          return res.status(409).json({ message: "User already exists!" });
-        }
-
-        let hashedPassword = encrypt(password);
-
-        connection.query(
-          "INSERT INTO users1 VALUES (null , ?, ?)",
-          [email, hashedPassword],
-          (err, result2) => {
-            let token = CreateToken({ email, password });
-            connection.query(
-              "INSERT INTO token VALUES (null , ?, ?)",
-              [token, result2.insertId],
-              (err, result3) => {
-                res.status(200).json({
-                  message: "User created successfully!",
-                  token: token,
-                });
-              }
-            );
+          if (
+            timingSafeEqual(
+              Buffer.from(result[0].password),
+              Buffer.from(decoded.password)
+            )
+          ) {
+            return res.status(200).send({ token: CreateToken(result[0]) });
           }
-        );
+          return res.status(404).send({ message: "password didn't match" });
+        }
+        return res.status(404).send({ message: "user not exist" });
       }
     );
   } catch (err) {
-    console.log("Error:", err);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Authentication error:", err);
+    res.status(401).json({
+      message: "Invalid token",
+    });
   }
 });
 
-app.post("/login", multer().none(), MainMiddleware, (req, res) => {
-  const { email, password } = req.body;
-
-  connection.query(
-    "select * from users1 where email = ?",
-    [email],
-    (err, result) => {
-      if (result.length >= 1) {
-        if (
-          timingSafeEqual(
-            Buffer.from(result[0].password),
-            Buffer.from(encrypt(password))
-          )
-        ) {
-          return res.status(200).send({ token: CreateToken(result[0]) });
-        }
-        return res.status(404).send({ message: "password didn't match" });
-      }
-      return res.status(404).send({ message: "user not exist" });
-    }
-  );
-});
-
-// handle Circuit Breaker Calculation
+// handle Calculation routes
 
 app.post(
   "/CalculateFile",
   mainUpload.single("file"),
   MainMiddleware,
-  (MReq, MRes) => {
-    // return console.log(MReq.file.originalname);
-    if (!MReq.file) {
-      return MRes.status(400).send("error no file uploaded");
-    }
-
-    // set file name that will be used across all the process
-    let fileName = "results_" + MReq.file.originalname;
-
-    // set file path and read it
-    const filePath = join(__dirname, "public/process_files", MReq.fileName);
-    const workbook = XLSX.readFile(filePath);
-
-    // loop for sheets
-    const workSheets = {};
-    workbook.SheetNames.forEach((sheet) => {
-      let worksheet = workbook.Sheets[sheet];
-
-      // get data from the sheets
-      let data = XLSX.utils.sheet_to_json(worksheet);
-
-      let processedData = data.map((row) => {
-        if (MReq.body.type == "CircuitBreaker") {
-          CircuitBreakerFunction(
-            row,
-            (result, circuitBreaker, cableThickness) => {
-              row["Current Intensity"] = result;
-              row["circuit breaker"] = circuitBreaker;
-              row["cable thickness"] = cableThickness;
-            }
-          );
-        } else if (MReq.body.type == "PowerFactorCorrection") {
-          powerFactorCorrectionFunction(
-            row,
-            (activePower, apparentPower, reactivePower, microCapacitor) => {
-              row["active power"] = activePower;
-              row["apparent power"] = apparentPower;
-              row["reactive power"] = reactivePower;
-              row["capacitor size"] = microCapacitor;
-            }
-          );
-        } else if (MReq.body.type == "ElectricConsumption") {
-          electricConsumptionFunction(row, (power, KWperD, KWperM) => {
-            row["power"] = power;
-            row["KW per day"] = KWperD;
-            row["KW per month"] = KWperM;
-          });
-        } else if (MReq.body.type == "HorseToAmpere") {
-          HorseToAmpereConversionFunction(row, (result) => {
-            row["result"] = result;
-          });
-        } else if (MReq.body.type == "AmpereToWatt") {
-          AmpereToWattFunction(row, (KW) => {
-            row["result in KW"] = KW;
-          });
-        } else if (MReq.body.type == "WattToAmpere") {
-          WattToAmpereFunction(row, (Ampere) => {
-            row["ampere"] = Ampere;
-          });
-        } else if (MReq.body.type == "VoltAmpereToWatt") {
-          VoltAmpereToWattFunction(row, (watt) => {
-            row["Watt"] = watt;
-          });
-        }
-        return row;
-      });
-
-      workSheets[sheet] = data;
-      console.log(`${sheet}: `, workSheets[sheet], "\n");
-    });
-
-    const newWorkbook = XLSX.utils.book_new();
-
-    workbook.SheetNames.forEach((sheet) => {
-      var newWorksheet = XLSX.utils.json_to_sheet(workSheets[sheet]);
-      XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, sheet);
-    });
-
-    // MRes.setHeader(
-    //   "Content-Type",
-    //   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    // );
-    const outputFilePath = join(
-      __dirname,
-      "public/result_files",
-      `${fileName}`
-    );
-    XLSX.writeFile(newWorkbook, outputFilePath);
-    MRes.download(outputFilePath, (err) => {
-      if (err) {
-        console.error("Error sending the file: ", err);
-      }
-      unlinkSync(filePath);
-      // unlinkSync(outputFilePath);
-    });
-  }
+  MainSheetCalculation
 );
 
+app.post(
+  "/CircuitVault",
+  VaultUpload.array("file"),
+  MainMiddleware,
+  CircuitVaultArchive
+);
+
+app.post("/CalculateOnlineSheet", multer().none(), OnlineSheetCalculation);
+
+// handle project routes
+
+app.post(
+  "/project",
+  MainMiddleware,
+  ProjectUpload.array("projectFiles"),
+  mainProjectRoutUpload
+);
+
+app.get("/project", MainMiddleware, multer().none(), mainProjectRout);
+
+app.get("/delete/project/:projectID", MainMiddleware, deleteProject);
+
+// handle download project files
+
+app.get("/project/:projectLink", downloadProject);
+
+// handle download vault files
+
+app.get("/files/:fileName", MainMiddleware, DownloadFile);
+
+//download sample files
+
 app.get("/download/CircuitBreakerSampleFile", MainMiddleware, (MReq, MRes) => {
-  MRes.download(
+  MRes.setHeader(
+    "Content-Type",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  );
+  MRes.sendFile(
     join(__dirname, "public/samples/CircuitBreakerCalculateSample.xlsx")
   );
 });

@@ -2,9 +2,9 @@ module.exports.VoltAmpereToWattFunction = (row, callable) => {
   const Voltage = parseFloat(row["Voltage"]);
   let Ampere = parseFloat(row["Ampere"]);
   const PF =
-    parseFloat(row["powerFactor"]) > 1
-      ? parseFloat(row["powerFactor"]) / 10
-      : parseFloat(row["powerFactor"]);
+    parseFloat(row["Power factor"]) > 1
+      ? parseFloat(row["Power factor"]) / 10
+      : parseFloat(row["Power factor"]);
 
   let VoltAmpere = Voltage * Ampere;
 

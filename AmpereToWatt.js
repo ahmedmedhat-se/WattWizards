@@ -1,16 +1,22 @@
 module.exports.AmpereToWattFunction = (row, callable) => {
   let Ampere = +row["Ampere"];
-  const CurrentType = row["CurrentType"].trim();
+  const CurrentType = row["Current type"].trim();
   const Voltage = row["Voltage"];
-  const Phases = row["phases"].trim();
-  const PF = row["powerFactor"];
+  const Phases = row["Phases"].trim();
+  const PF =
+    parseFloat(row["Power factor"]) > 1
+      ? parseFloat(row["Power factor"]) / 10
+      : parseFloat(row["Power factor"]);
   let KW;
 
-  if (CurrentType === "DC") {
+  if (CurrentType.toUpperCase() === "DC") {
     KW = Ampere * Voltage;
-  } else if (CurrentType === "AC" && Phases === "three phases") {
+  } else if (
+    CurrentType.toUpperCase() === "AC" &&
+    Phases.toLowerCase() === "three phases"
+  ) {
     KW = Ampere * Voltage * PF * 1.732;
-  } else if (CurrentType === "AC") {
+  } else if (CurrentType.toUpperCase() === "AC") {
     KW = Ampere * PF * Voltage;
   }
 

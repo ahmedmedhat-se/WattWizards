@@ -2,36 +2,41 @@ module.exports.CircuitBreakerFunction = (row, callable) => {
   // set total values
   let AllWatt = 0;
   let AllPF = 0;
+  let powerUnit = row["Power unit"];
+  let PF =
+    parseFloat(row["Power factor"]) > 1
+      ? parseFloat(row["Power factor"]) / 10
+      : parseFloat(row["Power factor"]);
 
   //   set main values
   let current;
   let circuitBreaker;
   let cableThickness;
 
-  var CurrentWatt = row["watt"] * row["MachineNum"];
-  // console.log(row["WattUnit"], row["WattUnit"].trim() == "KW");
-  if (row["WattUnit"].trim() === "KW") {
+  var CurrentWatt = row["Power"] * row["Machines number"];
+  // console.log(PF, PF.trim() == "KW");
+  if (powerUnit.trim().toUpperCase() === "KW") {
     CurrentWatt = parseFloat(CurrentWatt) * 1000;
-  } else if (row["WattUnit"].trim() === "MW") {
+  } else if (powerUnit.trim().toUpperCase() === "MW") {
     CurrentWatt = parseFloat(CurrentWatt) * 1000000;
-  } else if (row["WattUnit"].trim() === "HP") {
+  } else if (powerUnit.trim().toUpperCase() === "HP") {
     CurrentWatt = parseFloat(CurrentWatt) * 746;
-  } else if (row["WattUnit"].trim() === "milliWatt") {
+  } else if (powerUnit.trim().toLowerCase() === "milli watt") {
     CurrentWatt = parseFloat(CurrentWatt) / 1000;
   }
 
   // set all values to add every time
   AllWatt += parseFloat(CurrentWatt);
 
-  AllPF += row["powerFactor"];
+  AllPF += PF;
 
   // calculate the current intensity
-  if (row["phases"] === "three phases") {
+  if (row["Phases"].toLowerCase() === "three phases") {
     console.log(CurrentWatt);
-    current = +CurrentWatt / (row["Voltage"] * row["powerFactor"] * 1.73);
+    current = +CurrentWatt / (row["Voltage"] * PF * 1.73);
     console.log(current);
   } else {
-    current = +CurrentWatt / (row["Voltage"] * row["powerFactor"]);
+    current = +CurrentWatt / (row["Voltage"] * PF);
   }
   // done current
 

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const OnlineSheets = () => {
     const [rows, setRows] = useState([
-        { Power: '', 'Unit of Power': '', 'Power Factor': '', Voltage: '' },
+        { "Machines number":"" ,'Power':"", 'Power unit':"", 'Power factor':"", 'Voltage':"" , "Phases":""},
     ]);
-    const [formType, setFormType] = useState('Circuit Breaker');
+    const [formType, setFormType] = useState('CircuitBreaker');
 
     const headers = {
-        'Circuit Breaker': ['Power', 'Unit of Power', 'Power Factor', 'Voltage'],
-        'Power Factor Correction': ['Power', 'Unit of Power', 'Old Power Factor', 'New Power Factor', 'VRMS', 'Frequency'],
-        'Electrical Consumption': ['Power', 'Unit of Power', 'Appliances', 'Hours', 'Days', 'Voltage', 'Power Factor'],
+        'CircuitBreaker': [ "Machines number" ,'Power', 'Power unit', 'Power factor', 'Voltage' , "Phases"],
+        'PowerFactorCorrection': ['Power', 'Power unit', 'oldPF', 'newPF', 'Voltage', 'frequency' , "Phases"],
+        'ElectricConsumption': ['Machines number', 'Power', 'Power unit', 'WorkingHours', 'WorkingDays', 'Voltage', 'Power factor' , "Phases"],
     };
 
     const handleFormTypeChange = (e) => {
@@ -20,7 +20,7 @@ const OnlineSheets = () => {
     const addRow = () => {
         setRows([
             ...rows,
-            { Power: '', 'Unit of Power': '', 'Power Factor': '', Voltage: '' }
+            { "Machines number":"" ,'Power':"", 'Power unit':"", 'Power factor':"", 'Voltage':"" , "Phases":""},
         ]);
     };
 
@@ -37,13 +37,46 @@ const OnlineSheets = () => {
     };
 
     const submitData = () => {
-        console.log(rows);
-        alert('Data submitted! Check the console for the output.');
+        try {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+              if (xhr.status === 200) {
+                console.log(xhr.response);
+                
+                const blob = new Blob([xhr.response], {
+                    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                });
+                
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = "result_" + formType;
+                
+                document.body.appendChild(link);
+                link.click();
+                
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(link.href);
+              }
+            };
+            
+            xhr.onerror = function() {
+            console.log("Error:", xhr.responseText);
+            };
+            
+            xhr.open('POST', 'http://localhost:8086/CalculateOnlineSheet', true);
+            xhr.withCredentials = true;            
+            xhr.responseType = "blob"
+            let y = new FormData()
+            y.append("data" , JSON.stringify(rows))
+            y.append("type" , formType)
+            xhr.send(y);
+          } catch (error) {
+            console.log('Authentication error:', error);
+          }
     };
 
     const saveData = () => {
         localStorage.setItem('formData', JSON.stringify(rows));
-        alert('Data saved to localStorage!');
     };
 
     const loadData = () => {
@@ -66,9 +99,9 @@ const OnlineSheets = () => {
 
             <div className="d-flex justify-content-center mb-4">
                 <select className="form-select w-100 w-md-50" onChange={handleFormTypeChange} value={formType}>
-                    <option value="Circuit Breaker">Circuit Breaker</option>
-                    <option value="Power Factor Correction">Power Factor Correction</option>
-                    <option value="Electrical Consumption">Electrical Consumption</option>
+                    <option value="CircuitBreaker">Circuit Breaker</option>
+                    <option value="PowerFactorCorrection">Power Factor Correction</option>
+                    <option value="ElectricConsumption">Electrical Consumption</option>
                 </select>
             </div>
 

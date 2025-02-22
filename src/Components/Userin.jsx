@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Userin() {
@@ -11,6 +11,35 @@ function Userin() {
   const [passwordVisible, setPasswordVisible] = useState(false); 
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false); 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          console.log(xhr.responseText);
+          
+          if (xhr.status === 200) {
+            navigate("/profile")
+          }
+        };
+        
+        xhr.onerror = function() {
+        console.log("Error:", xhr.responseText);
+        };
+        
+        xhr.open('GET', 'http://localhost:8086/check', true);
+        xhr.withCredentials = true;
+        
+        xhr.send();
+      } catch (error) {
+        console.log('Authentication error:', error);
+      }
+    };
+    if(document.cookie.indexOf('token=') !== -1){
+      checkToken();
+    }
+  }, []);
 
   // Function to validate email format
   const validateEmail = (email) => {
@@ -43,11 +72,12 @@ function Userin() {
       if (xhr.status === 200) {
   
         if (response.token) {
-          document.cookie += `token=${response.token}; path=/; expires=${new Date(Date.now() + 60*60*24*3).toUTCString()};`;
-          navigate("/home");
+          document.cookie += `token=${response.token}; path=/; expires=${new Date(Date.now() + 60*60*24*1000).toUTCString()};`;
+          navigate("/profile");
         }
       } else {
-        console.log("Error:", xhr.statusText);
+        console.log("Error:", xhr.responseText);
+        setError((JSON.parse(xhr.response)).message)
       }
     };
   

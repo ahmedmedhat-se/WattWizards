@@ -36,7 +36,7 @@ function VoltAmpere2Watt() {
                     <div className="subject">
                         <h3>Software/Electricity</h3>
                     </div>
-                    <img src={`${process.env.PUBLIC_URL}/logo.png`} />
+                    <img src={`/logo.png`} />
                 </div>
                 <h2 className="course-title">Volt-Ampere TO Watt (Program)</h2>
                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#VA2W">View</button>

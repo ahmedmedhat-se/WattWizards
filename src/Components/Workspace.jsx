@@ -1,56 +1,71 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Workspace = () => {
-  const navigate = useNavigate();
-  const [files, setFiles] = useState([]);
-  const [fileInput, setFileInput] = useState(null);
-  const [editIndex, setEditIndex] = useState(null);
-  const [editFileName, setEditFileName] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleFileUpload = (e) => {
     e.preventDefault();
-    if (fileInput && fileInput.files.length > 0) {
-      const newFiles = [...files];
-      Array.from(fileInput.files).forEach(file => {
-        const fileReader = new FileReader();
-        fileReader.onload = () => {
-          newFiles.push({
-            name: file.name,
-            content: fileReader.result,
-            originalName: file.name,
-            category: selectedOption
+    let type = "";
+    const selectedValue = document.getElementById('fileCategory').value;
+    if (selectedValue === 'Circuit-Breaker-Size') {
+      type = 'CircuitBreaker';
+    } else if (selectedValue === 'Power-Factor-Correction') {
+      type = 'PowerFactorCorrection';
+    } else if (selectedValue === 'Electrical-Consumption') {
+      type = 'ElectricConsumption';
+    } else if (selectedValue === 'Horse-Power-2-Ampere') {
+      type = 'HorseToAmpere';
+    } else if (selectedValue === 'Ampere-2-Watt') {
+      type = 'AmpereToWatt';
+    } else if (selectedValue === 'Watt-2-Ampere') {
+      type = 'WattToAmpere';
+    } else if (selectedValue === 'VoltAmpere-2-Watt') {
+      type = 'VoltAmpereToWatt';
+    } else {
+      return;
+    }
+    try {
+      let xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // Create a blob from the response
+          const blob = new Blob([xhr.response], {
+            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
           });
-          setFiles(newFiles);
-        };
-        fileReader.readAsText(file);
-      });
-      setFileInput(null);
-      setSelectedOption("");
+          
+          // Create a downloadable link
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = "result_" + document.getElementById("file1").files[0].name;
+          
+          // Trigger the download
+          document.body.appendChild(link);
+          link.click();
+          
+          // Clean up
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(link.href);
+        }
+      };
+      
+      xhr.onerror = function() {
+      console.log("Error:", xhr.responseText);
+      };
+      
+      xhr.open('POST', 'http://localhost:8086/CalculateFile', true);
+      xhr.withCredentials = true;
+      // xhr.setRequestHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+      
+      xhr.responseType = "blob"
+      let y = new FormData(document.forms[0])
+      y.append("type" , type)
+      xhr.send(y);
+    } catch (error) {
+      console.log('Authentication error:', error);
     }
   };
 
-  const handleRename = (index) => {
-    if (editFileName.trim()) {
-      const updatedFiles = [...files];
-      updatedFiles[index].name = editFileName;
-      setFiles(updatedFiles);
-      setEditIndex(null);
-      setEditFileName("");
-    }
-  };
-
-  const handleDelete = (index) => {
-    const updatedFiles = files.filter((_, i) => i !== index);
-    setFiles(updatedFiles);
-  };
-
-  const handleContentChange = (e, index) => {
-    const updatedFiles = [...files];
-    updatedFiles[index].content = e.target.value;
-    setFiles(updatedFiles);
-  };
 
   return (
     <div id='workspace' className="container">
@@ -81,69 +96,15 @@ const Workspace = () => {
         <div className="mb-3">
           <input
             type="file"
-            multiple
-            ref={input => setFileInput(input)}
+            name="file"
+            id="file1"
             className="form-control"
           />
         </div>
         <button type="submit" className="btn btn-primary">Upload Files</button>
+
         <Link className='btn btn-primary' to="/vault">Archive</Link>
       </form>
-
-      {files.length > 0 && (
-        <div>
-          {files.map((file, index) => (
-            <div key={index} className="card mb-3">
-              <div className="card-body">
-                <h5>{editIndex === index ? (
-                  <input
-                    type="text"
-                    value={editFileName}
-                    onChange={(e) => setEditFileName(e.target.value)}
-                    placeholder={file.originalName}
-                    className="form-control"
-                  />
-                ) : (
-                  file.name
-                )}</h5>
-                <p>Category: {file.category || "Not specified"}</p>
-                <textarea
-                  className="form-control"
-                  rows="5"
-                  value={file.content}
-                  onChange={(e) => handleContentChange(e, index)}
-                />
-                <div className="mt-2">
-                  {editIndex === index ? (
-                    <button
-                      className="btn btn-success"
-                      onClick={() => handleRename(index)}
-                    >
-                      Save
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => {
-                        setEditIndex(index);
-                        setEditFileName(file.name);
-                      }}
-                    >
-                      Rename
-                    </button>
-                  )}
-                  <button
-                    className="btn btn-danger ms-2"
-                    onClick={() => handleDelete(index)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };

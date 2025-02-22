@@ -1,5 +1,5 @@
 import axios from "axios";
-const { createContext, useState, useEffect } = require("react");
+import { createContext, useState, useEffect } from "react";
 
 export const ProductContext = createContext();
 

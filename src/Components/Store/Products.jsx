@@ -58,7 +58,7 @@ function Products() {
       {/* Products Grid */}
       <div className="row">
         {currentProducts.map((product) => (
-          <div className="col-md-3" key={product.id}>
+          <div className="col-md-3 p-3" key={product.id}>
             <div className="card p-3 h-100">
               <div className="card-header">
                 <img src={product.image} alt={product.name} className="card-img-top" />

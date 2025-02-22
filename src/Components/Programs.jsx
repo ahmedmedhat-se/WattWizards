@@ -13,7 +13,6 @@ import Kirchhoff from "./Package/Calcs/KirchhoffLaw";
 import Volta from "./Package/Calcs/VoltaLaw";
 import Ampere from "./Package/Calcs/AmpereLaw";
 import TonToHpConverter from './Package/Calcs/Ton2Hp';
-import axios from "axios";
 import { useRef, useState } from "react";
 
 function Programs() {
@@ -56,41 +55,49 @@ function Programs() {
       if (selectedValue === 'Circuit-Breaker-Size') {
         url += 'CircuitBreakerSampleFile';
       } else if (selectedValue === 'Power-Factor-Correction') {
-        url = 'PowerFactorCorrectionSampleFile';
+        url += 'PowerFactorCorrectionSampleFile';
       } else if (selectedValue === 'Electrical-Consumption') {
-        url = 'ElectricConsumptionSampleFile';
+        url += 'ElectricConsumptionSampleFile';
       } else if (selectedValue === 'Horse-Power-2-Ampere') {
-        url = 'HorseToAmpereSampleFile';
+        url += 'HorseToAmpereSampleFile';
       } else if (selectedValue === 'Ampere-2-Watt') {
-        url = 'AmpereToWattSampleFile';
+        url += 'AmpereToWattSampleFile';
       } else if (selectedValue === 'Watt-2-Ampere') {
-        url = 'WattToAmpereSampleFile';
+        url += 'WattToAmpereSampleFile';
       } else if (selectedValue === 'VoltAmpere-2-Watt') {
-        url = 'VoltAmpereToWattSampleFile';
+        url += 'VoltAmpereToWattSampleFile';
       } else {
         return;
       }
 
-      axios({
-          url: url,
-          method: 'GET',
-          responseType: 'arraybuffer'
-      })
-      .then(response => {
-          const blob = new Blob([response.data], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-            // console.log(response.data , response.headers['content-type']);
-            
-          const link = document.createElement('a');
-          link.href = window.URL.createObjectURL(blob);
-          link.setAttribute('download', `${selectedValue}.xlsx`);
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-      })
-      .catch(error => {
-          console.error('Error downloading the file:', error);
-          alert('Failed to download the file.');
-      });
+      try {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            const blob = new Blob([xhr.response], {
+              type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = document.getElementById("selectDownloadFile").value;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(link.href);
+          }
+        };
+        
+        xhr.onerror = function() {
+        console.log("Error:", xhr.responseText);
+        };
+        
+        xhr.open('GET', url, true);
+        xhr.withCredentials = true;        
+        xhr.responseType = "blob"
+        xhr.send();
+      } catch (error) {
+        console.log('Authentication error:', error);
+      }
     }
 
     return (

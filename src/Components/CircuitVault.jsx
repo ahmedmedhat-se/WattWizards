@@ -7,8 +7,6 @@ const CircuitVault = () => {
   const [fileInput, setFileInput] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
   const [editFileName, setEditFileName] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
-  const [pinnedFiles, setPinnedFiles] = useState([]);
 
   useEffect(() => {
     const storedFiles = JSON.parse(localStorage.getItem('files'));
@@ -26,25 +24,24 @@ const CircuitVault = () => {
   }, [files]);
 
   const handleFileUpload = (e) => {
-    e.preventDefault();
-    if (fileInput && fileInput.files.length > 0) {
-      const newFiles = [...files];
-      Array.from(fileInput.files).forEach(file => {
-        const fileReader = new FileReader();
-        fileReader.onload = () => {
-          newFiles.push({
-            name: file.name,
-            content: fileReader.result,
-            originalName: file.name,
-            category: selectedOption,
-            pinned: false,
-          });
-          setFiles(newFiles);
+    e.preventDefault()
+      try {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          console.log(xhr.response);
         };
-        fileReader.readAsText(file);
-      });
-      setFileInput(null);
-      setSelectedOption("");
+        
+        xhr.onerror = function() {
+        console.log("Error:", xhr.responseText);
+        };
+        
+        xhr.open('POST', 'http://localhost:8086/CircuitVault', true);
+        xhr.withCredentials = true;
+        xhr.responseType = "blob"
+        let y = new FormData(document.forms[0])
+        xhr.send(y);
+    } catch (error) {
+        console.log('Authentication error:', error);
     }
   };
 
@@ -86,6 +83,7 @@ const CircuitVault = () => {
         <div className="mb-3">
           <input
             type="file"
+            name="file"
             multiple
             ref={input => setFileInput(input)}
             className="form-control"

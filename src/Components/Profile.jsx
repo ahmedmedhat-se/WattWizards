@@ -5,7 +5,7 @@ function Profile() {
   // Initialize state for profile information
   const [profile, setProfile] = useState({
     name: 'User',
-    username: '@userhandle',
+    email: 'user@userhandle',
     image: 'https://via.placeholder.com/150',
     bio: 'Example Bio: Full-stack web developer specializing in React.js, Bootstrap, and modern JavaScript frameworks. Passionate about building interactive and scalable web applications.'
   });
@@ -14,13 +14,42 @@ function Profile() {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    const storedProfile = JSON.parse(localStorage.getItem('profile'));
-    const storedFiles = JSON.parse(localStorage.getItem('files'));
-    if (storedProfile) {
-      setProfile(storedProfile);
-    }
-    if (storedFiles) {
-      setFiles(storedFiles);
+    const checkToken = async () => {
+      try {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          console.log(xhr.responseText);
+          
+          if (xhr.status === 200) {
+            let userP = JSON.parse(xhr.response)
+            console.log(userP);
+            if(userP.token){
+              document.cookie = `token=${userP.token}; path=/; expires=${new Date(Date.now() + 60*60*24*1000).toUTCString()};`;
+            }
+            setProfile({
+              name: userP.email.replace("@gmail.com" , ""),
+              email: userP.email,
+              image: 'https://via.placeholder.com/150',
+              bio: 'Example Bio: Full-stack web developer specializing in React.js, Bootstrap, and modern JavaScript frameworks. Passionate about building interactive and scalable web applications.'
+            })
+            setFiles(userP.files)
+          }
+        };
+        
+        xhr.onerror = function() {
+        console.log("Error:", xhr.responseText);
+        };
+        
+        xhr.open('GET', 'http://localhost:8086/profile', true);
+        xhr.withCredentials = true;
+        
+        xhr.send();
+      } catch (error) {
+        console.log('Authentication error:', error);
+      }
+    };
+    if(document.cookie.includes('token=')){
+      checkToken();
     }
   }, []);
 
@@ -66,7 +95,7 @@ function Profile() {
                 style={{ width: '150px', height: '150px' }}
               />
 
-              {/* Profile Name & Username */}
+              {/* Profile Name & email */}
               <h5 className="mt-3">
                 {editing ? (
                   <input
@@ -84,13 +113,13 @@ function Profile() {
                 {editing ? (
                   <input
                     type="text"
-                    name="username"
-                    value={profile.username}
+                    name="email"
+                    value={profile.email}
                     onChange={handleChange}
                     className="form-control"
                   />
                 ) : (
-                  profile.username
+                  profile.email
                 )}
               </p>
 
@@ -139,7 +168,9 @@ function Profile() {
                     >
                       <strong>{file.name}</strong>
                       <span className="badge bg-primary">
-                        {file.category || 'No Category'}
+                        <Link className='text-black text-decoration-none p-2 py-3' to={"http://localhost:8086/files/" + file.name} download>
+                          download
+                        </Link>
                       </span>
                     </li>
                   ))

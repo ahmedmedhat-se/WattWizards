@@ -954,7 +954,7 @@ footer .links a{
   }
 
   .userInfo-container {
-    width: 350px;
+    width: 300px;
     margin: 50px auto;
     margin-top: 150px;
     padding: 30px;
@@ -962,6 +962,17 @@ footer .links a{
     border-radius: 10px;
     background-color: #071324;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  #workspace {
+    width: 320px;
+    margin: 50px auto;
+    margin-top: 150px;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: #071324;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   }
 }
 

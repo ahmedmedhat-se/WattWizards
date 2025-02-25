@@ -161,7 +161,7 @@ const OnlineSheets = () => {
 
             <div className="d-flex justify-content-center mt-4">
                 <button className="btn btn-primary" onClick={submitData}>
-                    <i className="fas fa-angle-right"></i> Submit
+                    Submit
                 </button>
                 <Link className='btn btn-primary me-2' to="/workspace">Workspace</Link>
                 <Link className='btn btn-primary' to="/vault">Archive</Link>

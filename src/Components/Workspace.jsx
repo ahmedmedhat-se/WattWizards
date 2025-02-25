@@ -71,8 +71,8 @@ const Workspace = () => {
     <div id='workspace' className="container">
       <div className="container-fluid p-0 m-0 d-flex justify-content-between">
         <h2>Workspace</h2>
-        <Link className='btn btn-primary' to="/online-sheets">Online Sheets</Link>
       </div>
+      <Link className='btn btn-primary mb-2 mt-2' to="/online-sheets">Online Sheets</Link>
 
       <form onSubmit={handleFileUpload} className="mb-4">
         <div className="mb-3">

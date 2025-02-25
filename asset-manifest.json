@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/WattWizards/static/css/main.e1e2b87a.css",
-    "main.js": "/WattWizards/static/js/main.5f35bf3a.js",
+    "main.css": "/WattWizards/static/css/main.4206cb39.css",
+    "main.js": "/WattWizards/static/js/main.a1ed02a3.js",
     "static/js/453.6e446ef5.chunk.js": "/WattWizards/static/js/453.6e446ef5.chunk.js",
     "static/media/logo.png": "/WattWizards/static/media/logo.6090a7c0fe4d2d38e46f.png",
     "static/media/circuit_breaker_dataset.jpg": "/WattWizards/static/media/circuit_breaker_dataset.06b28cb9c3684618e349.jpg",
@@ -11,12 +11,12 @@
     "static/media/horsepower_to_kilowatt_conversion_program.jpg": "/WattWizards/static/media/horsepower_to_kilowatt_conversion_program.7070efa7b15ba2fbb07a.jpg",
     "static/media/horsepower_to_ampere_conversion_program.jpg": "/WattWizards/static/media/horsepower_to_ampere_conversion_program.733336f8555396632088.jpg",
     "index.html": "/WattWizards/index.html",
-    "main.e1e2b87a.css.map": "/WattWizards/static/css/main.e1e2b87a.css.map",
-    "main.5f35bf3a.js.map": "/WattWizards/static/js/main.5f35bf3a.js.map",
+    "main.4206cb39.css.map": "/WattWizards/static/css/main.4206cb39.css.map",
+    "main.a1ed02a3.js.map": "/WattWizards/static/js/main.a1ed02a3.js.map",
     "453.6e446ef5.chunk.js.map": "/WattWizards/static/js/453.6e446ef5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e1e2b87a.css",
-    "static/js/main.5f35bf3a.js"
+    "static/css/main.4206cb39.css",
+    "static/js/main.a1ed02a3.js"
   ]
 }

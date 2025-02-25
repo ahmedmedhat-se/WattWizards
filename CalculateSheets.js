@@ -76,7 +76,7 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
     let processedData = runMigration(data, MReq.body.type);
 
     workSheets[sheet] = processedData;
-    console.log(`${sheet}: `, workSheets[sheet], "loucas \n");
+    console.log(`${sheet}: `, workSheets[sheet], "\n");
   });
 
   const newWorkbook = XLSX.utils.book_new();
@@ -88,8 +88,11 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
 
   MRes.setHeader(
     "Content-Type",
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    MReq.body["file-type"] == "pdf"
+      ? "application/pdf"
+      : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
   );
+
   const outputFilePath = join(__dirname, "public/result_files", `${fileName}`);
   XLSX.writeFile(newWorkbook, outputFilePath);
 
@@ -112,11 +115,24 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
       const headers = Object.keys(sheetData[0]).map((key) => ({
         label: key,
         align: "center",
-        width: 100,
+        width: null,
       }));
 
       // Extract rows from the data
       const rows = sheetData.map((row) => Object.values(row));
+
+      const columnCount = headers.length;
+
+      const maxTableLength =
+        pdfDoc.page.width -
+        pdfDoc.page.margins.left -
+        pdfDoc.page.margins.right;
+
+      const columnWidth = maxTableLength / columnCount;
+
+      headers.forEach((header) => {
+        header.width = columnWidth;
+      });
 
       // Add the table to the PDF
       pdfDoc.table(
@@ -126,8 +142,15 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
           rows,
         },
         {
-          prepareHeader: () => pdfDoc.font("Helvetica-Bold"),
-          prepareRow: (row, index) => pdfDoc.font("Helvetica"),
+          prepareHeader: () => pdfDoc.font("Helvetica-Bold").fontSize(12),
+          prepareRow: (row, index) => pdfDoc.font("Helvetica").fontSize(12),
+          wrap: true,
+          columnSpacing: 5,
+          padding: 5,
+          divider: {
+            header: { disabled: false, width: 1, color: "#000" },
+            horizontal: { disabled: false, width: 0.5, color: "#000" },
+          },
         }
       );
 
@@ -161,6 +184,7 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
     pdfDoc.pipe(createWriteStream(pdfFilePath));
     pdfDoc.pipe(MRes);
     pdfDoc.end();
+    return;
   }
 
   MRes.sendFile(outputFilePath, (err) => {
@@ -178,7 +202,12 @@ module.exports.OnlineSheetCalculation = async (MReq, MRes) => {
 
     let processedData = runMigration(SheetJsonData, MReq.body.type);
 
-    let fileName = "results_" + MReq.body.type + "_online" + ".xlsx";
+    console.log(processedData);
+
+    let fileName =
+      "results_" + MReq.body.type + "_online" + MReq.body["file-type"] == "pdf"
+        ? ".pdf"
+        : ".xlsx";
 
     const worksheet = XLSX.utils.json_to_sheet(processedData);
     const workbook = XLSX.utils.book_new();
@@ -193,25 +222,99 @@ module.exports.OnlineSheetCalculation = async (MReq, MRes) => {
       `${fileName}`
     );
 
-    await writeFile(outputFilePath, data, (err) => {
-      if (err) {
-        console.log("Error sending the file: ", err);
-      }
-    });
+    // await writeFile(outputFilePath, data, (err) => {
+    //   if (err) {
+    //     console.log("Error sending the file: ", err);
+    //   }
+    // });
 
-    // MRes.setHeader(
-    //   "Content-Type",
-    //   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    // );
+    MRes.setHeader(
+      "Content-Type",
+      MReq.body["file-type"] == "pdf"
+        ? "application/pdf"
+        : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
 
-    MRes.sendFile(outputFilePath, async (err) => {
-      if (err) {
-        console.log("Error sending the file: ", err);
+    if (MReq.body["file-type"] == "pdf") {
+      function addSheetToPdf(sheetData, sheetName, pdfDoc) {
+        // Add the sheet title
+        pdfDoc.fontSize(16).text(`Sheet: ${sheetName}`, { align: "left" });
+        pdfDoc.moveDown();
+
+        // Check if sheetData is empty
+        if (!sheetData || sheetData.length === 0) {
+          pdfDoc
+            .fontSize(12)
+            .text("No data found in this sheet.", { align: "left" });
+          pdfDoc.moveDown();
+          return;
+        }
+
+        // Extract headers from the first object's keys
+        const headers = Object.keys(sheetData[0]).map((key) => ({
+          label: key,
+          align: "center",
+          width: null,
+        }));
+
+        // Extract rows from the data
+        const rows = sheetData.map((row) => Object.values(row));
+
+        const columnCount = headers.length;
+
+        const maxTableLength =
+          pdfDoc.page.width -
+          pdfDoc.page.margins.left -
+          pdfDoc.page.margins.right;
+
+        const columnWidth = maxTableLength / columnCount;
+
+        headers.forEach((header) => {
+          header.width = columnWidth;
+        });
+
+        // Add the table to the PDF
+        pdfDoc.table(
+          {
+            title: sheetName,
+            headers,
+            rows,
+          },
+          {
+            prepareHeader: () => pdfDoc.font("Helvetica-Bold").fontSize(12),
+            prepareRow: (row, index) => pdfDoc.font("Helvetica").fontSize(12),
+            wrap: true,
+            columnSpacing: 5,
+            padding: 5,
+            divider: {
+              header: { disabled: false, width: 1, color: "#000" },
+              horizontal: { disabled: false, width: 0.5, color: "#000" },
+            },
+          }
+        );
+
+        pdfDoc.moveDown();
       }
-    });
+
+      const pdfFilePath = join(
+        __dirname,
+        `public/result_files/PDF/online_${fileName.split(".")[0]}.pdf`
+      );
+      const pdfDoc = new PDF({ size: "A4", layout: "landscape" });
+      pdfDoc.fontSize(20).text("WattWizards", { align: "center" });
+      pdfDoc.moveDown(2);
+
+      addSheetToPdf(processedData, "sheet one", pdfDoc);
+
+      pdfDoc.pipe(fs.createWriteStream(pdfFilePath));
+      pdfDoc.pipe(MRes);
+      pdfDoc.end();
+      return;
+    }
+
+    MRes.end(data);
   } catch (e) {
     console.log(e);
-
     MRes.status(404).send();
   }
 };

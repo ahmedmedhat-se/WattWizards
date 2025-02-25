@@ -113,9 +113,5 @@ module.exports.CircuitBreakerFunction = (row, callable) => {
     cableThickness = "unknown";
   }
   // done cableThickness
-  callable(
-    current.toFixed(2),
-    circuitBreaker.toFixed(2),
-    cableThickness.toFixed(2)
-  );
+  callable(current.toFixed(2), circuitBreaker, cableThickness);
 };

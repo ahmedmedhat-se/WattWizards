@@ -198,6 +198,14 @@ app.get("/check", multer().none(), (req, res) => {
   }
 });
 
+// products API
+
+app.get("/products", (MReq, MRes) => {
+  connection.execute("SELECT * FROM products", (err, res) => {
+    return MRes.json(res);
+  });
+});
+
 // handle Calculation routes
 
 app.post(

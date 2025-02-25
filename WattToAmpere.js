@@ -20,5 +20,5 @@ module.exports.WattToAmpereFunction = (row, callable) => {
     ampere = Watt / (PF * Voltage);
   }
 
-  callable(ampere.toFixed(3));
+  callable(ampere.toFixed(2));
 };

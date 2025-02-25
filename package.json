@@ -15,6 +15,7 @@
     "nodemailer": "^6.9.14",
     "nodemon": "^3.1.4",
     "pdfkit": "^0.16.0",
+    "pdfkit-table": "^0.1.99",
     "uuid": "^10.0.0",
     "winston": "^3.14.2",
     "xlsx": "^0.18.5"

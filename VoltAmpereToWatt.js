@@ -10,5 +10,5 @@ module.exports.VoltAmpereToWattFunction = (row, callable) => {
 
   let Watt = +((VoltAmpere * PF * 1000).toFixed(3) / 1000);
 
-  callable(Watt.toFixed());
+  callable(Watt.toFixed(2));
 };

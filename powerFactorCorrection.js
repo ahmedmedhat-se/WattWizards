@@ -82,9 +82,9 @@ module.exports.powerFactorCorrectionFunction = (row, callable) => {
 
   // microC /= 10;
   callable(
-    activePower.toFixed(3),
-    apparentPower.toFixed(3),
-    reactivePower,
-    microC.toFixed(3)
+    activePower.toFixed(2),
+    apparentPower.toFixed(2),
+    reactivePower.toFixed(2),
+    microC.toFixed(2)
   );
 };

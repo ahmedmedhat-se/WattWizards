@@ -1,6 +1,6 @@
 const XLSX = require("xlsx");
+const PDF = require("pdfkit-table");
 const { join } = require("path");
-const { unlinkSync, writeFile } = require("fs");
 const { CircuitBreakerFunction } = require("./CircuitBreakerApp");
 const { powerFactorCorrectionFunction } = require("./powerFactorCorrection");
 const { electricConsumptionFunction } = require("./electricConsumption");
@@ -8,6 +8,7 @@ const { HorseToAmpereConversionFunction } = require("./HorseToAmpere");
 const { AmpereToWattFunction } = require("./AmpereToWatt");
 const { WattToAmpereFunction } = require("./WattToAmpere");
 const { VoltAmpereToWattFunction } = require("./VoltAmpereToWatt");
+const { createWriteStream, unlink, writeFile } = require("fs");
 
 const runMigration = (theArray, type) => {
   let array2 = theArray.slice();
@@ -56,7 +57,7 @@ const runMigration = (theArray, type) => {
   return array2;
 };
 
-module.exports.MainSheetCalculation = (MReq, MRes) => {
+module.exports.MainSheetCalculation = async (MReq, MRes) => {
   if (!MReq.file) {
     return MRes.status(400).send("error no file uploaded");
   }
@@ -75,7 +76,7 @@ module.exports.MainSheetCalculation = (MReq, MRes) => {
     let processedData = runMigration(data, MReq.body.type);
 
     workSheets[sheet] = processedData;
-    console.log(`${sheet}: `, workSheets[sheet], "\n");
+    console.log(`${sheet}: `, workSheets[sheet], "loucas \n");
   });
 
   const newWorkbook = XLSX.utils.book_new();
@@ -91,11 +92,82 @@ module.exports.MainSheetCalculation = (MReq, MRes) => {
   );
   const outputFilePath = join(__dirname, "public/result_files", `${fileName}`);
   XLSX.writeFile(newWorkbook, outputFilePath);
+
+  if (MReq.body["file-type"] == "pdf") {
+    function addSheetToPdf(sheetData, sheetName, pdfDoc) {
+      // Add the sheet title
+      pdfDoc.fontSize(16).text(`Sheet: ${sheetName}`, { align: "left" });
+      pdfDoc.moveDown();
+
+      // Check if sheetData is empty
+      if (!sheetData || sheetData.length === 0) {
+        pdfDoc
+          .fontSize(12)
+          .text("No data found in this sheet.", { align: "left" });
+        pdfDoc.moveDown();
+        return;
+      }
+
+      // Extract headers from the first object's keys
+      const headers = Object.keys(sheetData[0]).map((key) => ({
+        label: key,
+        align: "center",
+        width: 100,
+      }));
+
+      // Extract rows from the data
+      const rows = sheetData.map((row) => Object.values(row));
+
+      // Add the table to the PDF
+      pdfDoc.table(
+        {
+          title: sheetName,
+          headers,
+          rows,
+        },
+        {
+          prepareHeader: () => pdfDoc.font("Helvetica-Bold"),
+          prepareRow: (row, index) => pdfDoc.font("Helvetica"),
+        }
+      );
+
+      pdfDoc.moveDown();
+    }
+
+    const pdfFilePath = join(
+      __dirname,
+      `public/result_files/PDF/${fileName.split(".")[0]}.pdf`
+    );
+    const pdfDoc = new PDF({ size: "A4", layout: "landscape" });
+    pdfDoc.fontSize(20).text("WattWizards", { align: "center" });
+    pdfDoc.moveDown(2);
+
+    // console.log(workSheets);
+    const sheetNames = Object.keys(workSheets);
+
+    for (let i = 0; i < sheetNames.length; i++) {
+      const sheetName = sheetNames[i];
+      const sheetData = workSheets[sheetName];
+
+      // Add sheet content
+      addSheetToPdf(sheetData, sheetName, pdfDoc);
+
+      // Add page break if not last sheet
+      if (i < sheetNames.length - 1) {
+        pdfDoc.addPage({ size: "A4", layout: "landscape" });
+      }
+    }
+
+    pdfDoc.pipe(createWriteStream(pdfFilePath));
+    pdfDoc.pipe(MRes);
+    pdfDoc.end();
+  }
+
   MRes.sendFile(outputFilePath, (err) => {
     if (err) {
       console.log("Error sending the file: ", err);
     }
-    unlinkSync(filePath);
+    unlink(filePath);
     // unlinkSync(outputFilePath);
   });
 };

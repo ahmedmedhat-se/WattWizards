@@ -1,5 +1,5 @@
 module.exports.electricConsumptionFunction = (row, callable) => {
-  let Power = row["Power"];
+  let Power = parseFloat(row["Power"]);
   const Voltage = row["Voltage"];
   const PF =
     parseFloat(row["Power factor"]) > 1
@@ -30,5 +30,9 @@ module.exports.electricConsumptionFunction = (row, callable) => {
   let KWPerDay = ((Power * workH) / 1000) * machines;
   let KWperMonth = KWPerDay * workD;
 
-  callable(Power, `${KWPerDay} KW`, `${KWperMonth} KW`);
+  callable(
+    Power.toFixed(2),
+    `${KWPerDay.toFixed(2)} KW`,
+    `${KWperMonth.toFixed(2)} KW`
+  );
 };

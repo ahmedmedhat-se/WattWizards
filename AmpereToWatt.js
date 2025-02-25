@@ -22,5 +22,5 @@ module.exports.AmpereToWattFunction = (row, callable) => {
 
   KW = +(KW / 1000);
 
-  callable(KW.toFixed(3));
+  callable(KW.toFixed(2));
 };

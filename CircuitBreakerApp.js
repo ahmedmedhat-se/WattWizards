@@ -32,9 +32,7 @@ module.exports.CircuitBreakerFunction = (row, callable) => {
 
   // calculate the current intensity
   if (row["Phases"].toLowerCase() === "three phases") {
-    console.log(CurrentWatt);
     current = +CurrentWatt / (row["Voltage"] * PF * 1.73);
-    console.log(current);
   } else {
     current = +CurrentWatt / (row["Voltage"] * PF);
   }
@@ -74,12 +72,12 @@ module.exports.CircuitBreakerFunction = (row, callable) => {
     6300: `6300A`,
   };
 
-  let CBB = parseInt(CB.toFixed());
+  let CBB = parseInt(CB.toFixed(2));
   while (!BreakerData[CBB.toFixed()] && CBB <= 6300) {
     CBB += 1;
   }
 
-  if (BreakerData[CBB] && CBB.toFixed(2) <= 6300) {
+  if (BreakerData[CBB.toFixed()] && CBB.toFixed(2) <= 6300) {
     circuitBreaker = BreakerData[CBB];
   } else {
     circuitBreaker = "unknown";
@@ -104,16 +102,20 @@ module.exports.CircuitBreakerFunction = (row, callable) => {
     300: 185,
   };
 
-  let CBC = CBB;
-  while (CBC <= 300 && !CableData[CBC]) {
+  let CBC = parseFloat(CBB);
+  while (CBC <= 300 && !CableData[CBC.toFixed()]) {
     CBC += 1;
   }
 
-  if (CableData[CBC] && CBC <= 300) {
+  if (CableData[CBC.toFixed()] && CBC <= 300) {
     cableThickness = CableData[CBC];
   } else {
     cableThickness = "unknown";
   }
   // done cableThickness
-  callable(current, circuitBreaker, cableThickness);
+  callable(
+    current.toFixed(2),
+    circuitBreaker.toFixed(2),
+    cableThickness.toFixed(2)
+  );
 };

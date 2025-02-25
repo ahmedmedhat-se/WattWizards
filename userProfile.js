@@ -67,7 +67,7 @@ module.exports.login = async (req, res) => {
           await connection
         ).execute("INSERT INTO token VALUES (NULL, ?, ?)", [
           newToken,
-          result[0].id,
+          user[0].id,
         ]);
 
         return res.status(200).send({ token: newToken });
@@ -125,7 +125,7 @@ module.exports.signup = async (req, res) => {
     await (
       await connection
     ).execute("INSERT INTO token VALUES (null , ?, ?)", [
-      token,
+      newToken,
       result2.insertId,
     ]);
 

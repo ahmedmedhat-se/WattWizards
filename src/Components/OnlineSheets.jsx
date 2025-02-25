@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const OnlineSheets = () => {
     const [rows, setRows] = useState([
@@ -162,6 +163,8 @@ const OnlineSheets = () => {
                 <button className="btn btn-primary" onClick={submitData}>
                     <i className="fas fa-angle-right"></i> Submit
                 </button>
+                <Link className='btn btn-primary me-2' to="/workspace">Workspace</Link>
+                <Link className='btn btn-primary' to="/vault">Archive</Link>
             </div>
         </div>
     );

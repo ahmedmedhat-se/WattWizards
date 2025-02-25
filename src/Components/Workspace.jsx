@@ -27,39 +27,39 @@ const Workspace = () => {
     }
     try {
       let xhr = new XMLHttpRequest();
-      xhr.onload = function() {
+      xhr.onload = function () {
         if (xhr.status === 200) {
           // Create a blob from the response
           const blob = new Blob([xhr.response], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
           });
-          
+
           // Create a downloadable link
           const link = document.createElement('a');
           link.href = window.URL.createObjectURL(blob);
           link.download = "result_" + document.getElementById("file1").files[0].name;
-          
+
           // Trigger the download
           document.body.appendChild(link);
           link.click();
-          
+
           // Clean up
           document.body.removeChild(link);
           window.URL.revokeObjectURL(link.href);
         }
       };
-      
-      xhr.onerror = function() {
-      console.log("Error:", xhr.responseText);
+
+      xhr.onerror = function () {
+        console.log("Error:", xhr.responseText);
       };
-      
+
       xhr.open('POST', 'http://localhost:8086/CalculateFile', true);
       xhr.withCredentials = true;
       // xhr.setRequestHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-      
+
       xhr.responseType = "blob"
       let y = new FormData(document.forms[0])
-      y.append("type" , type)
+      y.append("type", type)
       xhr.send(y);
     } catch (error) {
       console.log('Authentication error:', error);
@@ -101,6 +101,20 @@ const Workspace = () => {
             className="form-control"
           />
         </div>
+
+        {/* File Type Selection */}
+        <div className="mb-3">
+          <label htmlFor="fileCategory" className="form-label text-light me-2">File</label>
+          <select
+            id="fileCategory"
+            className="btn btn-primary"
+            name='file-type'
+          >
+            <option value="pdf">.pdf</option>
+            <option value="excel">.xlsx</option>
+          </select>
+        </div>
+        
         <button type="submit" className="btn btn-primary">Upload Files</button>
 
         <Link className='btn btn-primary' to="/vault">Archive</Link>

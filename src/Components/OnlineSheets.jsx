@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 
 const OnlineSheets = () => {
     const [rows, setRows] = useState([
-        { "Machines number":"" ,'Power':"", 'Power unit':"", 'Power factor':"", 'Voltage':"" , "Phases":""},
+        { "Machines number": "", 'Power': "", 'Power unit': "", 'Power factor': "", 'Voltage': "", "Phases": "" },
     ]);
     const [formType, setFormType] = useState('CircuitBreaker');
 
     const headers = {
-        'CircuitBreaker': [ "Machines number" ,'Power', 'Power unit', 'Power factor', 'Voltage' , "Phases"],
-        'PowerFactorCorrection': ['Power', 'Power unit', 'oldPF', 'newPF', 'Voltage', 'frequency' , "Phases"],
-        'ElectricConsumption': ['Machines number', 'Power', 'Power unit', 'WorkingHours', 'WorkingDays', 'Voltage', 'Power factor' , "Phases"],
+        'CircuitBreaker': ["Machines number", 'Power', 'Power unit', 'Power factor', 'Voltage', "Phases"],
+        'PowerFactorCorrection': ['Power', 'Power unit', 'oldPF', 'newPF', 'Voltage', 'frequency', "Phases"],
+        'ElectricConsumption': ['Machines number', 'Power', 'Power unit', 'WorkingHours', 'WorkingDays', 'Voltage', 'Power factor', "Phases"],
     };
 
     const handleFormTypeChange = (e) => {
@@ -20,7 +20,7 @@ const OnlineSheets = () => {
     const addRow = () => {
         setRows([
             ...rows,
-            { "Machines number":"" ,'Power':"", 'Power unit':"", 'Power factor':"", 'Voltage':"" , "Phases":""},
+            { "Machines number": "", 'Power': "", 'Power unit': "", 'Power factor': "", 'Voltage': "", "Phases": "" },
         ]);
     };
 
@@ -39,40 +39,40 @@ const OnlineSheets = () => {
     const submitData = () => {
         try {
             let xhr = new XMLHttpRequest();
-            xhr.onload = function() {
-              if (xhr.status === 200) {
-                console.log(xhr.response);
-                
-                const blob = new Blob([xhr.response], {
-                    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                });
-                
-                const link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = "result_" + formType;
-                
-                document.body.appendChild(link);
-                link.click();
-                
-                document.body.removeChild(link);
-                window.URL.revokeObjectURL(link.href);
-              }
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log(xhr.response);
+
+                    const blob = new Blob([xhr.response], {
+                        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                    });
+
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = "result_" + formType;
+
+                    document.body.appendChild(link);
+                    link.click();
+
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(link.href);
+                }
             };
-            
-            xhr.onerror = function() {
-            console.log("Error:", xhr.responseText);
+
+            xhr.onerror = function () {
+                console.log("Error:", xhr.responseText);
             };
-            
+
             xhr.open('POST', 'http://localhost:8086/CalculateOnlineSheet', true);
-            xhr.withCredentials = true;            
+            xhr.withCredentials = true;
             xhr.responseType = "blob"
             let y = new FormData()
-            y.append("data" , JSON.stringify(rows))
-            y.append("type" , formType)
+            y.append("data", JSON.stringify(rows))
+            y.append("type", formType)
             xhr.send(y);
-          } catch (error) {
+        } catch (error) {
             console.log('Authentication error:', error);
-          }
+        }
     };
 
     const saveData = () => {
@@ -143,6 +143,19 @@ const OnlineSheets = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            {/* File Type Selection */}
+            <div className="mb-3 d-flex justify-content-center p-2">
+                <label htmlFor="fileCategory" className="form-label text-light me-2">File</label>
+                <select
+                    id="fileCategory"
+                    className="btn btn-primary"
+                    name='file-type'
+                >
+                    <option value="pdf">.pdf</option>
+                    <option value="excel">.xlsx</option>
+                </select>
             </div>
 
             <div className="d-flex justify-content-center mt-4">

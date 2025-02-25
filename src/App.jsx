@@ -28,13 +28,19 @@ function App() {
         <Header />
         <SparkTalk />
         <Routes>
+          {/* Layout Routes */}
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/WattWizards" element={<Homepage />}></Route>
           <Route path="/homepage" element={<Homepage />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+
+          {/* Services Route */}
           <Route path="/programs" element={<Programs />}></Route>
           <Route path="/achievments" element={<Achievments />}></Route>
           <Route path="/workspace" element={<Workspace />}></Route>
           <Route path="/vault" element={<CircuitVault />}></Route>
+
+          {/* Auth Routes */}
           <Route path="/login" element={<Userin />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
 
@@ -43,9 +49,6 @@ function App() {
           <Route path="/project" element={<ProjectManager />}></Route>
           <Route path="/products" element={<Products />} />
           <Route path='/cart' element={<Cart />} />
-          {/* Premium Routes Ends */}
-
-          <Route path="*" element={<NotFound />}></Route>
         </Routes>
         <Footer />
         <GoToTop />

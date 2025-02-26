@@ -98,11 +98,9 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
 
   if (MReq.body["file-type"] == "pdf") {
     function addSheetToPdf(sheetData, sheetName, pdfDoc) {
-      // Add the sheet title
       pdfDoc.fontSize(16).text(`Sheet: ${sheetName}`, { align: "left" });
       pdfDoc.moveDown();
 
-      // Check if sheetData is empty
       if (!sheetData || sheetData.length === 0) {
         pdfDoc
           .fontSize(12)
@@ -111,15 +109,45 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
         return;
       }
 
-      // Extract headers from the first object's keys
-      const headers = Object.keys(sheetData[0]).map((key) => ({
+      const keyCounts = sheetData.map((obj) => Object.keys(obj).length);
+
+      const maxKeys = Math.max(...keyCounts);
+
+      const indexOfMaxKeys = keyCounts.indexOf(maxKeys);
+
+      const allKeys = [
+        ...new Set(sheetData.flatMap((obj) => Object.keys(obj))),
+      ];
+
+      const correctOrder = [];
+      sheetData.forEach((obj) => {
+        Object.keys(obj).forEach((key) => {
+          if (!correctOrder.includes(key)) {
+            correctOrder.push(key);
+          }
+        });
+      });
+
+      console.log("Correct order of keys:", correctOrder);
+
+      const headers = correctOrder.map((key) => ({
         label: key,
         align: "center",
         width: null,
+        padding: 5,
       }));
 
-      // Extract rows from the data
-      const rows = sheetData.map((row) => Object.values(row));
+      const rows = sheetData.map((obj) => {
+        return correctOrder.map((key) => obj[key] || 0);
+      });
+
+      const filledData = sheetData.map((obj) => {
+        const filledRow = {};
+        allKeys.forEach((key) => {
+          filledRow[key] = obj[key] || "undefined";
+        });
+        return filledRow;
+      });
 
       const columnCount = headers.length;
 
@@ -134,7 +162,6 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
         header.width = columnWidth;
       });
 
-      // Add the table to the PDF
       pdfDoc.table(
         {
           title: sheetName,
@@ -191,7 +218,7 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
     if (err) {
       console.log("Error sending the file: ", err);
     }
-    unlink(filePath);
+    unlink(filePath, (err) => {});
     // unlinkSync(outputFilePath);
   });
 };
@@ -306,7 +333,7 @@ module.exports.OnlineSheetCalculation = async (MReq, MRes) => {
 
       addSheetToPdf(processedData, "sheet one", pdfDoc);
 
-      pdfDoc.pipe(fs.createWriteStream(pdfFilePath));
+      pdfDoc.pipe(createWriteStream(pdfFilePath));
       pdfDoc.pipe(MRes);
       pdfDoc.end();
       return;

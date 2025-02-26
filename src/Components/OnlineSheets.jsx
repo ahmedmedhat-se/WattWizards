@@ -45,12 +45,13 @@ const OnlineSheets = () => {
                     console.log(xhr.response);
 
                     const blob = new Blob([xhr.response], {
-                        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                        type: xhr.getAllResponseHeaders("Content-Type")
                     });
 
                     const link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
-                    link.download = "result_" + formType;
+                    let fileName = document.getElementById("fileType").value == "pdf" ? "pdf" : "xlsx"
+                    link.download = `result_${formType}.${fileName}`;
 
                     document.body.appendChild(link);
                     link.click();
@@ -70,6 +71,7 @@ const OnlineSheets = () => {
             let y = new FormData()
             y.append("data", JSON.stringify(rows))
             y.append("type", formType)
+            y.append("file-type", document.getElementById("fileType").value)
             xhr.send(y);
         } catch (error) {
             console.log('Authentication error:', error);
@@ -148,9 +150,9 @@ const OnlineSheets = () => {
 
             {/* File Type Selection */}
             <div className="mb-3 d-flex justify-content-center p-2">
-                <label htmlFor="fileCategory" className="form-label text-light me-2">File</label>
+                <label htmlFor="fileType" className="form-label text-light me-2">File</label>
                 <select
-                    id="fileCategory"
+                    id="fileType"
                     className="btn btn-primary"
                     name='file-type'
                 >

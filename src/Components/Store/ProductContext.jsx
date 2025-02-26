@@ -8,7 +8,7 @@ export const ProductProvider = ({ children }) => {
 
     const getProductsFromStore = async () => {
         try {
-            const request = await axios.get("/Store/productsData.json");
+            const request = await axios.get("http://localhost:8086/products");
             setProducts(request.data);
         } catch (error) {
             console.error(`Error Fetching Data: ${error}`);

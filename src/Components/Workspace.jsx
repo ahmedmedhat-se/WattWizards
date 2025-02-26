@@ -31,13 +31,14 @@ const Workspace = () => {
         if (xhr.status === 200) {
           // Create a blob from the response
           const blob = new Blob([xhr.response], {
-            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            type: xhr.getAllResponseHeaders("Content-Type")
           });
 
           // Create a downloadable link
           const link = document.createElement('a');
           link.href = window.URL.createObjectURL(blob);
-          link.download = "result_" + document.getElementById("file1").files[0].name;
+          let fileName = document.getElementById("fileType").value == "pdf" ? "pdf" : "xlsx"
+          link.download = `result_${document.getElementById("file1").files[0].name.split(".")[0]}.${fileName}`;
 
           // Trigger the download
           document.body.appendChild(link);
@@ -104,9 +105,9 @@ const Workspace = () => {
 
         {/* File Type Selection */}
         <div className="mb-3">
-          <label htmlFor="fileCategory" className="form-label text-light me-2">File</label>
+          <label htmlFor="fileType" className="form-label text-light me-2">File</label>
           <select
-            id="fileCategory"
+            id="fileType"
             className="btn btn-primary"
             name='file-type'
           >

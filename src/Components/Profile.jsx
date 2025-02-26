@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Profile() {
+  let navigate = useNavigate()
   // Initialize state for profile information
   const [profile, setProfile] = useState({
     name: 'User',
@@ -79,6 +80,22 @@ function Profile() {
       reader.readAsDataURL(file);
     }
   };
+
+  let handleDelete = (e)=>{
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      console.log("sent");
+      window.location.reload()
+    }
+    
+    xhr.onerror = function() {
+    console.log("Error:", xhr.responseText);
+    };
+    
+    xhr.open('GET', `http://localhost:8086/delete/files/${e.target.getAttribute('data-medhat')}`, true);
+    xhr.withCredentials = true;
+    xhr.send();
+  }
 
   return (
     <div className="user-profile container-fluid p-5 mt-5">
@@ -167,11 +184,14 @@ function Profile() {
                       className="list-group-item d-flex justify-content-between align-items-center"
                     >
                       <strong>{file.name}</strong>
-                      <span className="badge bg-primary">
-                        <Link className='text-black text-decoration-none p-2 py-3' to={"http://localhost:8086/files/" + file.name} download>
-                          download
+                      <div>
+                        <Link className='text-black text-decoration-none p-2 py-3 badge bg-primary me-2' to={"http://localhost:8086/files/" + file.name} download>
+                          Download
                         </Link>
-                      </span>
+                        <button className='text-black text-decoration-none p-2 py-3 badge bg-danger' data-medhat={file.name} onClick={handleDelete} >
+                          Delete
+                        </button>
+                      </div>
                     </li>
                   ))
                 ) : (

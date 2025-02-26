@@ -18,14 +18,14 @@ function Header() {
     const handleLogout = () => {
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setIsLoggedIn(false);
-        navigate('/');        
+        navigate('/');    
     };
 
     const routes = [
         { path: '/programs', name: 'Programs' },
         { path: '/workspace', name: 'Workspace' },
         { path: '/products', name: 'Products' },
-        { path: isLoggedIn ? '#' : '/login', name: isLoggedIn ? 'Logout' : 'Login' },
+        { path: isLoggedIn ? '/' : '/login', name: isLoggedIn ? 'Logout' : 'Login' },
         { path: '/profile', name: 'Profile' }
     ];
 
@@ -40,7 +40,7 @@ function Header() {
         } else {
             const filtered = routes.filter(route => route.name.toLowerCase().includes(searchTerm.toLowerCase()));
             setFilteredResults(filtered);
-            setSelectedIndex(-1); // Reset selected index when search term changes
+            setSelectedIndex(-1);
         }
     }, [searchTerm]);
 

@@ -28,6 +28,9 @@ const CircuitVault = () => {
       try {
         let xhr = new XMLHttpRequest();
         xhr.onload = function() {
+          if(xhr.status == 200){
+            navigate("/profile");
+          }
           console.log(xhr.response);
         };
         

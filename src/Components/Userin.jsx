@@ -68,8 +68,8 @@ function Userin() {
     // Set up a listener for when the request completes
     xhr.onload = function () {
       const response = JSON.parse(xhr.responseText);
-      console.log(response.token);
       if (xhr.status === 200) {
+        console.log(response.token);
   
         if (response.token) {
           document.cookie += `token=${response.token}; path=/; expires=${new Date(Date.now() + 60*60*24*1000).toUTCString()};`;

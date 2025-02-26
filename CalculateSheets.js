@@ -113,8 +113,6 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
 
       const maxKeys = Math.max(...keyCounts);
 
-      const indexOfMaxKeys = keyCounts.indexOf(maxKeys);
-
       const allKeys = [
         ...new Set(sheetData.flatMap((obj) => Object.keys(obj))),
       ];
@@ -127,8 +125,6 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
           }
         });
       });
-
-      console.log("Correct order of keys:", correctOrder);
 
       const headers = correctOrder.map((key) => ({
         label: key,
@@ -192,17 +188,14 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
     pdfDoc.fontSize(20).text("WattWizards", { align: "center" });
     pdfDoc.moveDown(2);
 
-    // console.log(workSheets);
     const sheetNames = Object.keys(workSheets);
 
     for (let i = 0; i < sheetNames.length; i++) {
       const sheetName = sheetNames[i];
       const sheetData = workSheets[sheetName];
 
-      // Add sheet content
       addSheetToPdf(sheetData, sheetName, pdfDoc);
 
-      // Add page break if not last sheet
       if (i < sheetNames.length - 1) {
         pdfDoc.addPage({ size: "A4", layout: "landscape" });
       }
@@ -219,7 +212,7 @@ module.exports.MainSheetCalculation = async (MReq, MRes) => {
       console.log("Error sending the file: ", err);
     }
     unlink(filePath, (err) => {});
-    // unlinkSync(outputFilePath);
+    // unlink(outputFilePath , (err)=>{});
   });
 };
 
@@ -249,12 +242,6 @@ module.exports.OnlineSheetCalculation = async (MReq, MRes) => {
       `${fileName}`
     );
 
-    // await writeFile(outputFilePath, data, (err) => {
-    //   if (err) {
-    //     console.log("Error sending the file: ", err);
-    //   }
-    // });
-
     MRes.setHeader(
       "Content-Type",
       MReq.body["file-type"] == "pdf"
@@ -264,11 +251,9 @@ module.exports.OnlineSheetCalculation = async (MReq, MRes) => {
 
     if (MReq.body["file-type"] == "pdf") {
       function addSheetToPdf(sheetData, sheetName, pdfDoc) {
-        // Add the sheet title
         pdfDoc.fontSize(16).text(`Sheet: ${sheetName}`, { align: "left" });
         pdfDoc.moveDown();
 
-        // Check if sheetData is empty
         if (!sheetData || sheetData.length === 0) {
           pdfDoc
             .fontSize(12)
@@ -277,14 +262,12 @@ module.exports.OnlineSheetCalculation = async (MReq, MRes) => {
           return;
         }
 
-        // Extract headers from the first object's keys
         const headers = Object.keys(sheetData[0]).map((key) => ({
           label: key,
           align: "center",
           width: null,
         }));
 
-        // Extract rows from the data
         const rows = sheetData.map((row) => Object.values(row));
 
         const columnCount = headers.length;
@@ -300,7 +283,6 @@ module.exports.OnlineSheetCalculation = async (MReq, MRes) => {
           header.width = columnWidth;
         });
 
-        // Add the table to the PDF
         pdfDoc.table(
           {
             title: sheetName,

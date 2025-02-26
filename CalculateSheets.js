@@ -8,7 +8,7 @@ const { HorseToAmpereConversionFunction } = require("./HorseToAmpere");
 const { AmpereToWattFunction } = require("./AmpereToWatt");
 const { WattToAmpereFunction } = require("./WattToAmpere");
 const { VoltAmpereToWattFunction } = require("./VoltAmpereToWatt");
-const { createWriteStream, unlink, writeFile } = require("fs");
+const { createWriteStream, unlink } = require("fs");
 
 const runMigration = (theArray, type) => {
   let array2 = theArray.slice();

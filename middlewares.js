@@ -31,7 +31,7 @@ let connection = createConnection({
 
 module.exports.MainMiddleware = (req, res, next) => {
   try {
-    if (req.cookies && req.cookies.token) {
+    if (req.cookies?.token) {
       const user = verifyToken(req.cookies.token);
       // return console.log(verifyToken(req.cookies.token), req.cookies.token);
       if (user) {

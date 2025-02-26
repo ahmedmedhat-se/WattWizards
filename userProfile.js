@@ -117,7 +117,7 @@ module.exports.signup = async (req, res) => {
     ]);
 
     let newToken = CreateToken({
-      password: password,
+      password: hashedPassword,
       email: email,
       id: user.insertId,
     });
@@ -126,12 +126,12 @@ module.exports.signup = async (req, res) => {
       await connection
     ).execute("INSERT INTO token VALUES (null , ?, ?)", [
       newToken,
-      result2.insertId,
+      user.insertId,
     ]);
 
     res.status(200).json({
       message: "User created successfully!",
-      token: token,
+      token: newToken,
     });
   } catch (err) {
     console.log("Error:", err);

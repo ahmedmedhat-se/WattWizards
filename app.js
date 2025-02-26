@@ -6,7 +6,13 @@ const { createConnection } = require("mysql2");
 const { createHash, timingSafeEqual, randomBytes } = require("crypto");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
-const { login, signup, profile, DownloadFile } = require("./userProfile");
+const {
+  login,
+  signup,
+  profile,
+  DownloadFile,
+  DeleteFile,
+} = require("./userProfile");
 const { MainMiddleware } = require("./middlewares");
 const {
   MainSheetCalculation,
@@ -240,6 +246,10 @@ app.get("/delete/project/:projectID", MainMiddleware, deleteProject);
 // handle download project files
 
 app.get("/project/:projectLink", downloadProject);
+
+// handle delete vault files
+
+app.get("/delete/files/:fileName", MainMiddleware, DeleteFile);
 
 // handle download vault files
 

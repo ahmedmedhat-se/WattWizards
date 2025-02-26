@@ -2,6 +2,7 @@ const { createConnection } = require("mysql2/promise");
 const { createHash, timingSafeEqual, randomBytes } = require("crypto");
 const jwt = require("jsonwebtoken");
 const { join } = require("path");
+const { unlink } = require("fs/promises");
 const encrypt = (text) => createHash("sha256").update(text).digest("hex");
 require("dotenv").config();
 
@@ -199,4 +200,30 @@ module.exports.DownloadFile = async (MReq, MRes) => {
     join(__dirname, `public/main_storage/${file[0].fileName}`),
     file[0].realFileName
   );
+};
+
+module.exports.DeleteFile = async (MReq, MRes) => {
+  let [file] = await (
+    await connection
+  ).execute("SELECT * FROM vaul WHERE userID = ? AND realFileName = ?", [
+    MReq.user.id,
+    MReq.params.fileName,
+  ]);
+
+  if (file.length == 0) {
+    return MRes.status(404).send();
+  }
+
+  await (
+    await connection
+  ).execute("delete FROM vaul WHERE userID = ? AND realFileName = ?", [
+    MReq.user.id,
+    MReq.params.fileName,
+  ]);
+
+  unlink(join(__dirname, `public/main_storage/${file[0].fileName}`));
+
+  console.log(file[0].realFileName, "deleted");
+
+  MRes.status(200).send();
 };

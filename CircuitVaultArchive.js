@@ -11,7 +11,6 @@ let connection = createConnection({
 
 module.exports.CircuitVaultArchive = async (MReq, MRes) => {
   if (!MReq.files) {
-    console.log("we reach");
     return MRes.status(400).send("error no file uploaded");
   }
   console.log(MReq.files);
@@ -23,9 +22,10 @@ module.exports.CircuitVaultArchive = async (MReq, MRes) => {
       (err, res) => {
         if (err) {
           console.log(err);
-          return MRes.status(501);
+          return MRes.status(501).send();
         }
         console.log(index, file.filename, "uploaded");
+        return MRes.status(200).send();
       }
     );
   });

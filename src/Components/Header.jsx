@@ -6,13 +6,26 @@ function Header() {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
-    const [selectedIndex, setSelectedIndex] = useState(-1); // Track the selected result index
+    const [selectedIndex, setSelectedIndex] = useState(-1);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const cookies = document.cookie.split('; ');
+        const userCookie = cookies.find(row => row.startsWith('token='));
+        setIsLoggedIn(!!userCookie);
+    }, [location]);
+
+    const handleLogout = () => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        setIsLoggedIn(false);
+        navigate('/');        
+    };
 
     const routes = [
         { path: '/programs', name: 'Programs' },
         { path: '/workspace', name: 'Workspace' },
         { path: '/products', name: 'Products' },
-        { path: '/login', name: 'Login' },
+        { path: isLoggedIn ? '#' : '/login', name: isLoggedIn ? 'Logout' : 'Login' },
         { path: '/profile', name: 'Profile' }
     ];
 
@@ -34,7 +47,7 @@ function Header() {
     const handleSearchSelect = (path) => {
         setSearchTerm('');
         setFilteredResults([]);
-        setSelectedIndex(-1); // Reset selected index
+        setSelectedIndex(-1);
 
         const foundRoute = routes.find(route => route.path === path);
         if (foundRoute) {
@@ -92,9 +105,13 @@ function Header() {
 
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-center flex-grow-1 pe-3">
-                            {routes.map((route, index) => (
+                        {routes.map((route, index) => (
                                 <li className="nav-item" key={index}>
-                                    <Link className="nav-link text-light text-uppercase" to={route.path}>
+                                    <Link 
+                                        className="nav-link text-light text-uppercase" 
+                                        to={route.path} 
+                                        onClick={route.name === 'Logout' ? handleLogout : undefined}
+                                    >
                                         {route.name}
                                     </Link>
                                 </li>

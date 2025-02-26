@@ -17,7 +17,6 @@ import CircuitVault from "./Components/CircuitVault.jsx";
 // Importing Registerations
 import Userin from "./Components/Userin.jsx";
 import Profile from "./Components/Profile.jsx";
-import ProtectedProfileRoute from "./guard/ProtectedProfileRoute.jsx";
 
 // Importing Premium Services
 import ProjectManager from "./Components/Dev/ProjectManager.jsx";
@@ -48,10 +47,9 @@ function App() {
           {/* Auth Routes */}
           <Route path="/login" element={<Userin />}></Route>
 
-          {/* Protected User Routes */}
-          <Route element={<ProtectedProfileRoute />}>
-            <Route path="/profile" element={<Profile />} />
-          </Route>
+          {/* User Routes */}
+          <Route path="/profile" element={<Profile />} />
+
 
           {/* Premium Routes Starts */}
           <Route path="/online-sheets" element={<OnlineSheets />}></Route>

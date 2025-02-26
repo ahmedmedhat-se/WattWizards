@@ -73,8 +73,8 @@ function Userin() {
   
         if (response.token) {
           document.cookie += `token=${response.token}; path=/; expires=${new Date(Date.now() + 60*60*24*1000).toUTCString()};`;
-          navigate("/profile");
         }
+        navigate("/profile");
       } else {
         console.log("Error:", xhr.responseText);
         setError((JSON.parse(xhr.response)).message)
@@ -83,7 +83,7 @@ function Userin() {
   
     // Handle network errors
     xhr.onerror = function () {
-      console.log("Request failed");
+      console.log("Request failed" , xhr.status);
       setError("An error occurred while processing your request.");
     };
   

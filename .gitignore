@@ -1,0 +1,7 @@
+node_modules/
+.rest
+.env
+public/main_storage/*
+public/project_storage/*
+public/process_files/*
+public/result_files/*

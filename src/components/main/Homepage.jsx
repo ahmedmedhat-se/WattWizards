@@ -21,7 +21,7 @@ function Homepage() {
                             <Link className="cta-button"
                             to={"/wattwizards/achievments"}>Explore Our Achievments!</Link>
                         </div>
-                        <div className="XOperations-img">
+                        <div className="XOperations-img mb-0">
                             <div className="XOperations-img-container">
                                 <img src={logo} alt="Logo" />
                             </div>

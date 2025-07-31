@@ -3,7 +3,7 @@
 > Precision Electrical Calculations & Project Management Platform  
 > Developed by **Ahmed Medhat - Lucas Monir** • Team **XOperations**
 
-![WattWizards Logo](./public/logo.png)
+<img src="./public/logo.png" alt="WattWizards Logo" width="250" />
 
 ## 🔌 Introduction
 **WattWizards** is a powerful electrical engineering software platform that simplifies circuit analysis, power calculations, and project workflows — tailored for industrial and academic environments.

@@ -1,0 +1,127 @@
+/* SparkTalk Component Styling Starts */
+/* Styles for the chatbot */
+.bot-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+/* Button to open the chat */
+.open-chat-btn {
+  background-color: var(--electric-clr);
+  box-shadow: 0 5px 15px rgba(18, 5, 63, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chatbox styles */
+.SparkTalk {
+  background-color: #fff;
+  width: 90%;
+  max-height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.SparkTalk header {
+  display: flex;
+  background-color: var(--electric-clr);
+  color: #fff;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.SparkTalk header h2 {
+  font-size: 22px;
+  margin: 5px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Close button */
+.close-chat-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Message styles */
+.electrochat {
+  list-style: none;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 350px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.message p {
+  margin: 20px;
+  padding: 10px;
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 10px;
+}
+
+.message.incoming p {
+  font-family: 'Orbitron', sans-serif;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  color: #333;
+}
+
+.message.outgoing p {
+  background-color: var(--electric-clr);
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.bot-input {
+  display: flex;
+  align-items: center;
+}
+
+.bot-input input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.bot-input #send-btn {
+  background-color: #0f0845;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.message small.timestamp {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #999;
+}
+/* SparkTalk Component Styling Ends */

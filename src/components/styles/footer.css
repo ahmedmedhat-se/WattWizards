@@ -1,0 +1,80 @@
+/* Footer Component Styling Starts */
+footer {
+  background-color: #071324;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.footer-heading {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.footer-logo {
+  max-width: 100px;
+  transition: transform 0.3s ease;
+  border-radius: 5px;
+}
+
+.footer-description {
+  color: #ccc;
+  font-size: 16px;
+}
+
+footer ul li {
+  margin-bottom: 10px;
+}
+
+footer ul li a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+  color: #00bfff;
+}
+
+.footer-email {
+  color: #00bfff;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  font-size: 16px;
+}
+
+.footer-email:hover {
+  opacity: 0.8;
+}
+
+.footer-linkedin {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.footer-linkedin:hover {
+  color: #00bfff;
+}
+
+.footer-divider {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .footer-logo {
+    margin: 0 auto;
+  }
+
+  .footer-description {
+    text-align: center;
+  }
+}
+
+/* Footer Component Styling Ends */

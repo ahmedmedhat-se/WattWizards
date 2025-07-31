@@ -1,0 +1,9 @@
+/* Profile Component Styling Starts */
+.user-profile .card {
+  border: none;
+}
+
+.user-profile h4, .user-profile h5 {
+  font-family: 'Orbitron', sans-serif;
+}
+/* Profile Component Styling Starts */

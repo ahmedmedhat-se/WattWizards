@@ -1,0 +1,131 @@
+/* Header Component Styling Starts */
+nav, .navbar .offcanvas-end {
+  background: var(--primary-clr);
+}
+
+nav .navbar-brand strong, .navbar .offcanvas-end .offcanvas-title {
+  color: var(--primary-light-clr);
+  font-size: 22px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.header-nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1030;
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+
+.header-nav.scrolled {
+  width: calc(100% - 2rem);
+  margin: 0.5rem auto;
+  border-radius: 50px;
+  box-shadow: var(--shadow-md);
+  padding: 0.75rem 1rem !important;
+}
+
+nav .navbar-brand strong span {
+  color: #0066ff;
+  font-size: 22px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+nav .offcanvas-body .navbar-nav .nav-item .nav-link {
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+nav .navbar-toggler {
+  background: rgb(30, 0, 36);
+  background: linear-gradient(90deg, rgb(137, 125, 169) 0%, rgb(40, 44, 134) 100%);
+  border: none;
+  font-size: 22px;
+}
+
+nav .nav-link {
+  margin-right: 15px;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+}
+
+nav .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0066ff;
+  transition: width 0.3s ease-in-out;
+}
+
+nav .nav-link:hover::before {
+  width: 100%;
+}
+
+nav .nav-link:hover {
+  color: var(--electric-clr);
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.header-sidebar {
+  width: 250px;
+  height: 100vh;
+  background: var(--primary-clr);
+  color: var(--primary-light-clr);
+  padding: 1.5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  transition: all 0.3s ease;
+}
+
+.header-sidebar .brand {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--primary-light-clr);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.header-sidebar .brand span {
+  color: #0066ff;
+}
+
+.header-sidebar .nav-link {
+  font-size: 1rem;
+  color: #fff;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.header-sidebar .nav-link:hover {
+  color: var(--electric-clr);
+  transform: translateX(5px);
+}
+
+.header-sidebar .search-container {
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .header-sidebar {
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .content-wrapper {
+    margin-left: 250px;
+  }
+}
+/* Header Component Styling Ends */

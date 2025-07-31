@@ -1,0 +1,32 @@
+.project-manager {
+    width: 100%;
+    max-width: 800px;
+    margin: 2.5rem auto;
+    padding: 2.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #071324;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+
+@media(max-width: 768px) {
+    .project-manager  {
+        width: 350px;
+    }
+}
+
+.project-manager h2 {
+    color: var(--light-heading-clr);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.project-manager button {
+    background-color: #0f0845;
+}
+
+.project-manager p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 18px;
+}

@@ -1,0 +1,32 @@
+/* Workspace Component Styling Starts */
+.workspace {
+  width: 100%;
+  max-width: 800px;
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #071324;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.workspace h2 {
+  color: var(--light-heading-clr);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.workspace form button,
+.workspace .btn {
+  background-color: #0f0845;
+  color: #fff;
+}
+
+/* Small devices */
+@media (max-width: 768px) {
+  .workspace {
+    padding: 1.5rem;
+    margin-top: 5rem;
+  }
+}
+/* Workspace Component Styling Ends */

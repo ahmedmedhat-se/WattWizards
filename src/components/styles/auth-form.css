@@ -1,0 +1,89 @@
+/* Auth Component Styling Starts */
+.auth-container  {
+  width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border: none;
+  border-radius: 10px;
+  background-color: #071324;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.auth-container  h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.auth-container  label {
+  font-size: 18px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.auth-container  input {
+  width: 100%;
+  padding: 10px;
+  margin: 0 0 20px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+.auth-container  button {
+  padding: 10px;
+  margin-top: 5px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+}
+
+.auth-container  p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 18px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 35px;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.password-toggle-btn i {
+  font-size: 1.2rem;
+  color: #000;
+}
+
+@media(max-width: 668px) {
+  .auth-container  {
+    width: 300px;
+    margin: 50px auto;
+    margin-top: 150px;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: #071324;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+/* Auth Component Styling Ends */

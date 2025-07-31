@@ -1,0 +1,20 @@
+{
+    "company": {
+        "name": "XOperations",
+        "description": "WattWizards presents, a platform that simplifies complex scientific concepts. We break down technical jargon and make science easy to understand for learners and professionals alike, turning complicated ideas into clear, accessible knowledge for all.",
+        "contact": {
+            "phone": "+01000000000",
+            "address": "Egypt, Alexandria"
+        }
+    },
+    "services": {
+        "available-programs": "Improve Your Electrical Network With Powerful Programs",
+        "electrical-circuit-analysis": "Electrical Circuit Analysis and Optimization",
+        "partners-policies": "Partners Policies",
+        "achievments": "Certified Platform"
+    },
+    "authors": {
+        "ahmed-medhat": "Ahmed Medhat",
+        "loucas-monir": "Loucas Monir"
+    }
+}

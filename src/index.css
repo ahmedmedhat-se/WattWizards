@@ -1,0 +1,102 @@
+/* Styling The Whole Document */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Moontime&family=Now:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Styling The Root Node Of The Document */
+html {
+  scroll-behavior: smooth;
+  --primary-clr: #071324;
+  --primary-medium-clr: #fff;
+  --primary-light-clr: #fff;
+  --bg-clr-1: #ffffff;
+  --dark-heading-clr: #071324;
+  --dark-text-clr: #fff;
+  --electric-clr: #2d22a7;
+  --electric-clr-header: #0066ff;
+  --light-heading-clr: #fff;
+  --light-text-clr: #fff;
+}
+/* End Of Styling The Root Node Of The Document */
+
+/* Allow scrolling but hide scrollbar for "Chrome, Safari, Edge" Strt */
+html,
+body {
+  overflow: auto;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  scrollbar-width: none;
+}
+
+body {
+  -ms-overflow-style: none;
+}
+/* Allow scrolling but hide scrollbar for "Chrome, Safari, Edge" End */
+
+/* Global CSS Styles Section Starts*/
+.HeaderStyleH2 {
+    color: #7170d7;
+    font-weight: bold;
+}
+
+/* Global Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', 'Antonio', sans-serif;
+  font-weight: 700;
+  color: var(--dark-heading-clr);
+}
+/* Global CSS Styles Section Ends*/
+
+/* Styling The Body Section  */
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+button.btn {
+  margin-right: 10px;
+  padding: 10px 18px;
+  font-size: 15px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Media Queries Starts */
+
+/* Media Queries Ends */
+/* Styling Section Ends */

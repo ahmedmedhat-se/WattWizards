@@ -5,7 +5,7 @@ const RequireAuth = ({ children }) => {
   const location = useLocation();
 
   if (!isLoggedIn) {
-    return <Navigate to="/wattwizards-platform/login" state={{ from: location }} replace />;
+    return <Navigate to="/wattwizards/login" state={{ from: location }} replace />;
   }
 
   return children;
